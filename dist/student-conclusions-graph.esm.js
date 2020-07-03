@@ -745,7 +745,360 @@ var script$3 = defineComponent({
   setup(props, {
     emit
   }) {
-    const state = {
+    const state = reactive({
+      // myData: {
+      //   category: "SEL・EQ",
+      //   label: "selEq",
+      //   color: "#00ABFF",
+      //   background: "rgba(229, 247, 255, 0.6)",
+      //   summary: {
+      //     value: 3,
+      //     change: 0,
+      //     created_at: "2020-04"
+      //   },
+      //   monthly: [
+      //     {
+      //       value: 3,
+      //       change: 0,
+      //       created_at: "2020-04"
+      //     },
+      //     {
+      //       value: 3,
+      //       change: 0,
+      //       created_at: "2020-07"
+      //     },
+      //     {
+      //       value: 3,
+      //       change: 0,
+      //       created_at: "2020-11"
+      //     },
+      //     {
+      //       value: 4,
+      //       change: 0,
+      //       created_at: "2021-01"
+      //     }
+      //   ],
+      //   selfAwareness: {
+      //     summary: {
+      //       value: 3,
+      //       change: 0,
+      //       created_at: "2020-04"
+      //     },
+      //     monthly: [
+      //       {
+      //         value: 3,
+      //         change: 0,
+      //         created_at: "2020-04"
+      //       },
+      //       {
+      //         value: 3,
+      //         change: 0,
+      //         created_at: "2020-07"
+      //       },
+      //       {
+      //         value: 3,
+      //         change: 0,
+      //         created_at: "2020-11"
+      //       },
+      //       {
+      //         value: 4,
+      //         change: 0,
+      //         created_at: "2021-01"
+      //       }
+      //     ]
+      //   },
+      //   selfManagement: {
+      //     summary: {
+      //       value: 3,
+      //       change: 0,
+      //       created_at: "2020-04"
+      //     },
+      //     monthly: [
+      //       {
+      //         value: 3,
+      //         change: 0,
+      //         created_at: "2020-04"
+      //       },
+      //       {
+      //         value: 3,
+      //         change: 0,
+      //         created_at: "2020-07"
+      //       },
+      //       {
+      //         value: 3,
+      //         change: 0,
+      //         created_at: "2020-11"
+      //       },
+      //       {
+      //         value: 4,
+      //         change: 0,
+      //         created_at: "2021-01"
+      //       }
+      //     ]
+      //   },
+      //   socialAwareness: {
+      //     summary: {
+      //       value: 3,
+      //       change: 0,
+      //       created_at: "2020-04"
+      //     },
+      //     monthly: [
+      //       {
+      //         value: 3,
+      //         change: 0,
+      //         created_at: "2020-04"
+      //       },
+      //       {
+      //         value: 3,
+      //         change: 0,
+      //         created_at: "2020-07"
+      //       },
+      //       {
+      //         value: 3,
+      //         change: 0,
+      //         created_at: "2020-11"
+      //       },
+      //       {
+      //         value: 4,
+      //         change: 0,
+      //         created_at: "2021-01"
+      //       }
+      //     ]
+      //   },
+      //   relationship: {
+      //     summary: {
+      //       value: 3,
+      //       change: 0,
+      //       created_at: "2020-04"
+      //     },
+      //     monthly: [
+      //       {
+      //         value: 3,
+      //         change: 0,
+      //         created_at: "2020-04"
+      //       },
+      //       {
+      //         value: 3,
+      //         change: 0,
+      //         created_at: "2020-07"
+      //       },
+      //       {
+      //         value: 3,
+      //         change: 0,
+      //         created_at: "2020-11"
+      //       },
+      //       {
+      //         value: 4,
+      //         change: 0,
+      //         created_at: "2021-01"
+      //       }
+      //     ]
+      //   },
+      //   responsibleDecision: {
+      //     summary: {
+      //       value: 3,
+      //       change: 0,
+      //       created_at: "2020-04"
+      //     },
+      //     monthly: [
+      //       {
+      //         value: 3,
+      //         change: 0,
+      //         created_at: "2020-04"
+      //       },
+      //       {
+      //         value: 3,
+      //         change: 0,
+      //         created_at: "2020-07"
+      //       },
+      //       {
+      //         value: 3,
+      //         change: 0,
+      //         created_at: "2020-11"
+      //       },
+      //       {
+      //         value: 4,
+      //         change: 0,
+      //         created_at: "2021-01"
+      //       }
+      //     ]
+      //   }
+      // },
+      // myLabels: {
+      //   dashboard: {
+      //     labels: {
+      //       title: "{class}のダッシュボード"
+      //     },
+      //     nav: [
+      //       {
+      //         label: "ホーム",
+      //         icon: "IconHome",
+      //         target: "/dashboard",
+      //         isCurrent: true
+      //       },
+      //       {
+      //         label: "生徒情報",
+      //         icon: "IconPeople",
+      //         target: "/students",
+      //         isCurrent: false
+      //       },
+      //       {
+      //         label: "コーチングプラン",
+      //         icon: "IconBook",
+      //         target: "/coaching",
+      //         isCurrent: false
+      //       }
+      //     ],
+      //     details: {
+      //       selEq: [
+      //         {
+      //           label: "selfAwareness",
+      //           value: "自己理解",
+      //           text:
+      //             "自分の感情や思考を理解し、自分の他者に対する態度や行動にどのように影響しているかを理解する"
+      //         },
+      //         {
+      //           label: "selfManagement",
+      //           value: "セルフマネジメント",
+      //           text:
+      //             "難しい環境に遭っても、自分自身の感情や思考、態度をコントロールする"
+      //         },
+      //         {
+      //           label: "socialAwareness",
+      //           value: "社会や他者への理解",
+      //           text: "多様なバックグラウンドや文化を持つ他者に対して共感する力"
+      //         },
+      //         {
+      //           label: "relationship",
+      //           value: "対人関係スキル",
+      //           text:
+      //             "多様な人々と関わるグループにおいて、他者と適切に関係を構築・維持する力"
+      //         },
+      //         {
+      //           label: "responsibleDecision",
+      //           value: "責任ある意思決定",
+      //           text: "人が良く生きるために自らの責任で意思決定する力のこと"
+      //         }
+      //       ],
+      //       grit: [
+      //         {
+      //           label: "courage",
+      //           value: "度胸",
+      //           text: "困難に挑み、逆境にたじろがない勇気"
+      //         },
+      //         {
+      //           label: "resilience",
+      //           value: "復元力",
+      //           text: "挫折から立ち直る力"
+      //         },
+      //         {
+      //           label: "spontaneity",
+      //           value: "自発性",
+      //           text: "率先して物事に取り組む力"
+      //         },
+      //         {
+      //           label: "obsession",
+      //           value: "執念",
+      //           text: "どんなことがあっても物事に集中しつづける能力"
+      //         }
+      //       ],
+      //       motivation: [
+      //         {
+      //           label: "home",
+      //           value: "家庭環境",
+      //           text: "生徒の家庭環境について知る事が可能"
+      //         },
+      //         {
+      //           label: "friendship",
+      //           value: "友人関係",
+      //           text: "生徒の友人関係についてどう感じているか知る事が可能"
+      //         },
+      //         {
+      //           label: "trust",
+      //           value: "教師への信頼度",
+      //           text: "生徒が教師に対してどう感じているかを知る事が可能"
+      //         },
+      //         {
+      //           label: "community",
+      //           value: "コミュニティへの満足度",
+      //           text: "部活動や社外活動などの満足度を知る事が可能"
+      //         }
+      //       ]
+      //     }
+      //   },
+      //   common: {
+      //     labels: {
+      //       selEq: "SEL/EQ",
+      //       motivation: "モチベーション",
+      //       motiva: "モチベ",
+      //       grit: "GRIT",
+      //       deviation: "模試"
+      //     }
+      //   }
+      // },
+      // summaryChartData: {
+      //   labels: ["4月", "7月", "11月", "1月"],
+      //   datasets: [
+      //     {
+      //       data: [3, 3, 3, 4],
+      //       lineTension: 0,
+      //       backgroundColor: "rgba(229, 247, 255, 0.6)",
+      //       borderColor: "#00ABFF",
+      //       pointBackgroundColor: "#00ABFF"
+      //     }
+      //   ]
+      // },
+      // detailChartData: {
+      //   labels: ["4月", "7月", "11月", "1月"],
+      //   datasets: [
+      //     {
+      //       data: [3, 3, 3, 4],
+      //       lineTension: 0,
+      //       backgroundColor: "rgba(229, 247, 255, 0.6)",
+      //       borderColor: "#00ABFF",
+      //       pointBackgroundColor: "#00ABFF"
+      //     }
+      //   ]
+      // },
+      // details: {
+      //   intro: {
+      //     title: "自己理解",
+      //     text:
+      //       "自分の感情や思考を理解し、自分の他者に対する態度や行動にどのように影響しているかを理解する"
+      //   },
+      //   data: [
+      //     {
+      //       label: "selfAwareness",
+      //       value: "自己理解",
+      //       text:
+      //         "自分の感情や思考を理解し、自分の他者に対する態度や行動にどのように影響しているかを理解する"
+      //     },
+      //     {
+      //       label: "selfManagement",
+      //       value: "セルフマネジメント",
+      //       text:
+      //         "難しい環境に遭っても、自分自身の感情や思考、態度をコントロールする"
+      //     },
+      //     {
+      //       label: "socialAwareness",
+      //       value: "社会や他者への理解",
+      //       text: "多様なバックグラウンドや文化を持つ他者に対して共感する力"
+      //     },
+      //     {
+      //       label: "relationship",
+      //       value: "対人関係スキル",
+      //       text:
+      //         "多様な人々と関わるグループにおいて、他者と適切に関係を構築・維持する力"
+      //     },
+      //     {
+      //       label: "responsibleDecision",
+      //       value: "責任ある意思決定",
+      //       text: "人が良く生きるために自らの責任で意思決定する力のこと"
+      //     }
+      //   ]
+      // },
+      // selectDetail: 0,
+      // contentKey: 0,
       options: {
         legend: {
           labels: {
@@ -792,9 +1145,10 @@ var script$3 = defineComponent({
           }]
         }
       }
-    };
+    });
 
     function selectDetailData(label, index) {
+      console.log(label, index, 'student-conclusions-graph is emit event');
       emit("handleDetailData", {
         label,
         index,
@@ -803,6 +1157,7 @@ var script$3 = defineComponent({
       });
     }
 
+    console.log(state, 'student-conclusions-graph is state');
     return {
       myData: props.myData,
       myLabels: props.myLabels,
@@ -915,8 +1270,8 @@ var __vue_staticRenderFns__$8 = [function () {
 
 const __vue_inject_styles__$9 = function (inject) {
   if (!inject) return;
-  inject("data-v-39a431f0_0", {
-    source: ".m-student_survey_graph[data-v-39a431f0]{margin-top:2rem;background:#fff;border-radius:5px;border:1px solid #e1ebeb}.m-student_survey_graph.is-selEq .p-student_survey_solid[data-v-39a431f0]{background:#00abff}.m-student_survey_graph.is-grit .p-student_survey_solid[data-v-39a431f0]{background:#bf6be6}.m-student_survey_graph.is-motivation .p-student_survey_solid[data-v-39a431f0]{background:#00c09e}.m-student_survey_graph.is-deviation .p-student_survey_solid[data-v-39a431f0]{background:#015593}.p-student_survey_solid[data-v-39a431f0]{display:block;height:.5rem;border-radius:5px 5px 0 0}header[data-v-39a431f0]{padding:1.55rem 2rem;font-size:1.6rem;font-weight:700;border-bottom:1px solid #e1ebeb}.p-student_survey_summary[data-v-39a431f0]{display:flex;justify-content:space-between;align-items:flex-start;padding:2rem 3rem;border-bottom:1px solid #e1ebeb}.p-student_survey_result[data-v-39a431f0]{font-size:0}.p-student_survey_result>div[data-v-39a431f0],.p-student_survey_result>p[data-v-39a431f0]{display:inline-block;vertical-align:middle}.p-student_survey_score[data-v-39a431f0]{padding-left:2rem;font-size:3.2rem;font-weight:700}.p-student_survey_content[data-v-39a431f0]{padding-top:1.6rem}.p-student_survey_content li[data-v-39a431f0]{position:relative;padding:.6rem 0 .6rem 2.8rem;font-size:1.4rem;line-height:1.2}.p-student_survey_content li[data-v-39a431f0]::before{content:\"\";display:block;position:absolute;top:50%;left:1rem;transform:translate(0,-50%);width:.6rem;height:.6rem;border-radius:50%;background:#00abff}.p-student_survey_result_graph[data-v-39a431f0]{width:43.2rem}.p-student_survey_detail[data-v-39a431f0]{display:flex;justify-content:space-between}.p-student_detail_list[data-v-39a431f0]{position:relative;width:calc(100% - 47rem);border-right:1px solid #e1ebeb}.p-student_detail_list li[data-v-39a431f0]{cursor:pointer;position:relative;padding:1rem 3rem;font-size:0;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li p[data-v-39a431f0]{display:inline-block;vertical-align:middle;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li[data-v-39a431f0]:hover{background:#f9fbfb}.p-student_detail_list li:hover .p-student_detail_result[data-v-39a431f0]{color:#00abff}.p-student_detail_list li:hover .p-student_detail_label[data-v-39a431f0]{color:#00abff}.p-student_detail_list li.is-select[data-v-39a431f0]::before{content:\"\";display:block;position:absolute;top:0;right:0;width:.5rem;height:100%;background:#00abff}.p-student_detail_list li.is-select[data-v-39a431f0]::after{content:\"\";display:block;position:absolute;top:50%;right:-1.2rem;transform:translate(0,-50%);width:0;height:0;border-top:solid .6rem transparent;border-right:solid .6rem transparent;border-bottom:solid .6rem transparent;border-left:solid .6rem #00abff}.p-student_detail_result[data-v-39a431f0]{padding-right:.6rem;font-size:2.4rem;font-weight:700}.p-student_detail_label[data-v-39a431f0]{padding-left:1.2rem;font-size:1.4rem;font-weight:700}.p-student_detail_graph[data-v-39a431f0]{padding:2.4rem 2rem;width:47rem}.p-student_detail_graph h4[data-v-39a431f0]{padding-bottom:1.4rem;font-size:1.6rem;font-weight:700}.p-student_detail_graph p[data-v-39a431f0]{padding-bottom:2rem;font-size:1.2rem;line-height:1.5}",
+  inject("data-v-db4d484a_0", {
+    source: ".m-student_survey_graph[data-v-db4d484a]{margin-top:2rem;background:#fff;border-radius:5px;border:1px solid #e1ebeb}.m-student_survey_graph.is-selEq .p-student_survey_solid[data-v-db4d484a]{background:#00abff}.m-student_survey_graph.is-grit .p-student_survey_solid[data-v-db4d484a]{background:#bf6be6}.m-student_survey_graph.is-motivation .p-student_survey_solid[data-v-db4d484a]{background:#00c09e}.m-student_survey_graph.is-deviation .p-student_survey_solid[data-v-db4d484a]{background:#015593}.p-student_survey_solid[data-v-db4d484a]{display:block;height:.5rem;border-radius:5px 5px 0 0}header[data-v-db4d484a]{padding:1.55rem 2rem;font-size:1.6rem;font-weight:700;border-bottom:1px solid #e1ebeb}.p-student_survey_summary[data-v-db4d484a]{display:flex;justify-content:space-between;align-items:flex-start;padding:2rem 3rem;border-bottom:1px solid #e1ebeb}.p-student_survey_result[data-v-db4d484a]{font-size:0}.p-student_survey_result>div[data-v-db4d484a],.p-student_survey_result>p[data-v-db4d484a]{display:inline-block;vertical-align:middle}.p-student_survey_score[data-v-db4d484a]{padding-left:2rem;font-size:3.2rem;font-weight:700}.p-student_survey_content[data-v-db4d484a]{padding-top:1.6rem}.p-student_survey_content li[data-v-db4d484a]{position:relative;padding:.6rem 0 .6rem 2.8rem;font-size:1.4rem;line-height:1.2}.p-student_survey_content li[data-v-db4d484a]::before{content:\"\";display:block;position:absolute;top:50%;left:1rem;transform:translate(0,-50%);width:.6rem;height:.6rem;border-radius:50%;background:#00abff}.p-student_survey_result_graph[data-v-db4d484a]{width:43.2rem}.p-student_survey_detail[data-v-db4d484a]{display:flex;justify-content:space-between}.p-student_detail_list[data-v-db4d484a]{position:relative;width:calc(100% - 47rem);border-right:1px solid #e1ebeb}.p-student_detail_list li[data-v-db4d484a]{cursor:pointer;position:relative;padding:1rem 3rem;font-size:0;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li p[data-v-db4d484a]{display:inline-block;vertical-align:middle;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li[data-v-db4d484a]:hover{background:#f9fbfb}.p-student_detail_list li:hover .p-student_detail_result[data-v-db4d484a]{color:#00abff}.p-student_detail_list li:hover .p-student_detail_label[data-v-db4d484a]{color:#00abff}.p-student_detail_list li.is-select[data-v-db4d484a]::before{content:\"\";display:block;position:absolute;top:0;right:0;width:.5rem;height:100%;background:#00abff}.p-student_detail_list li.is-select[data-v-db4d484a]::after{content:\"\";display:block;position:absolute;top:50%;right:-1.2rem;transform:translate(0,-50%);width:0;height:0;border-top:solid .6rem transparent;border-right:solid .6rem transparent;border-bottom:solid .6rem transparent;border-left:solid .6rem #00abff}.p-student_detail_result[data-v-db4d484a]{padding-right:.6rem;font-size:2.4rem;font-weight:700}.p-student_detail_label[data-v-db4d484a]{padding-left:1.2rem;font-size:1.4rem;font-weight:700}.p-student_detail_graph[data-v-db4d484a]{padding:2.4rem 2rem;width:47rem}.p-student_detail_graph h4[data-v-db4d484a]{padding-bottom:1.4rem;font-size:1.6rem;font-weight:700}.p-student_detail_graph p[data-v-db4d484a]{padding-bottom:2rem;font-size:1.2rem;line-height:1.5}",
     map: undefined,
     media: undefined
   });
@@ -924,7 +1279,7 @@ const __vue_inject_styles__$9 = function (inject) {
 /* scoped */
 
 
-const __vue_scope_id__$9 = "data-v-39a431f0";
+const __vue_scope_id__$9 = "data-v-db4d484a";
 /* module identifier */
 
 const __vue_module_identifier__$9 = undefined;
