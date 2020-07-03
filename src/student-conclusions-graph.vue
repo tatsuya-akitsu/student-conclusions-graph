@@ -77,7 +77,7 @@ export default defineComponent({
   },
 
   setup(props, { emit }) {
-    const state = reactive({
+    const state = {
       options: {
         legend: {
           labels: {
@@ -123,7 +123,7 @@ export default defineComponent({
           ]
         }
       }
-    });
+    };
 
     function selectDetailData(label, index) {
       emit("handleDetailData", {
