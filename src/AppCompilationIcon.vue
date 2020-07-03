@@ -5,6 +5,18 @@
     :width="width"
     :height="height"
   >
+    <template v-if="label === 'selEq'">
+      <icon-sel-eq :style="{ width: imgWidth }"></icon-sel-eq>
+    </template>
+    <template v-else-if="label === 'grit'">
+      <icon-grit :style="{ width: imgWidth }"></icon-grit>
+    </template>
+    <template v-else-if="label === 'motivation'">
+      <icon-motivation :style="{ width: imgWidth }"></icon-motivation>
+    </template>
+    <template v-else-if="label === 'deviation'">
+      <icon-deviation :style="{ width: imgWidth }"></icon-deviation>
+    </template>
     <img
       :src="path"
       alt=""
@@ -15,8 +27,19 @@
 
 <script>
 import { defineComponent, reactive, computed } from '@vue/composition-api'
+import IconDeviation from '@/IconDeviation'
+import IconGrit from '@/IconGrit'
+import IconMotivation from '@/IconMotivation'
+import IconSelEq from '@/IconSelEq'
 
 export default defineComponent({
+  components: {
+    IconDeviation,
+    IconGrit,
+    IconMotivation,
+    IconSelEq
+  },
+
   props: {
     label: { type: String, required: true, default: '' },
     width: { type: String, required: true, default: '5rem' },
@@ -25,21 +48,6 @@ export default defineComponent({
   },
 
   setup (props) {
-    const state = reactive({
-      path: computed(() => {
-        switch (label) {
-          case 'selEq':
-            return './assets/img/icons/icon_selEq.svg'
-          case 'grit':
-            return './assets/img/icons/icon_grit.svg'
-          case 'motivation':
-            return './assets/img/icons/icon_motivation.svg'
-          case 'deviation':
-            return './assets/img/icons/icon_deviation.svg'
-        }
-      })
-    })
-
     return {
       label: props.label,
       width: props.width,
@@ -75,7 +83,7 @@ export default defineComponent({
   }
 }
 
-img {
+svg {
   display: block;
   position: absolute;
   top: 50%;

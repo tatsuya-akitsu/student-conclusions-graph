@@ -3,10 +3,10 @@
     <slot></slot>
     <p class="m-survey_change_result">
       <template v-if="changeType === 'is-down'">
-        <img src="./assets/img/icons/icon_triangle_down.svg" alt="" />
+        <icon-triangle-down></icon-triangle-down>
       </template>
       <template v-else-if="changeType === 'is-up'">
-        <img src="./assets/img/icons/icon_triangle_up.svg" alt="" />
+        <icon-triangle-up></icon-triangle-up>
       </template>
       <template v-else>
         <span>-</span>
@@ -18,8 +18,15 @@
 
 <script>
 import { defineComponent, reactive, computed } from '@vue/composition-api'
+import IconTriangleDown from '@/IconTriangleDown'
+import IconTriangleUp from '@/IconTriangleUp'
 
 export default defineComponent({
+  components: {
+    IconTriangleDown,
+    IconTriangleUp
+  },
+
   props: {
     change: { type: Number, required: true, default: 0 }
   },
@@ -89,11 +96,12 @@ export default defineComponent({
   vertical-align: middle;
   font-size: 0;
 
-  img,
+  svg,
   span {
     display: inline-block;
     vertical-align: middle;
   }
+  svg { width: 3rem; }
   span {
     padding-left: 0.28rem;
     font-size: 1.4rem;
