@@ -1,8 +1,6 @@
 {
-  "name": "StudentConclusionsGraph",
+  "name": "student-conclusions-graph",
   "version": "1.0.0",
-  "private": false,
-  "license": "MIT",
   "description": "",
   "main": "dist/student-conclusions-graph.ssr.js",
   "browser": "dist/student-conclusions-graph.esm.js",
@@ -17,8 +15,7 @@
     "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
     "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
-    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
-    "prepublish": "npm run build"
+    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
   },
   "dependencies": {},
   "devDependencies": {
@@ -38,7 +35,7 @@
     "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-terser": "^5.3.0",
     "rollup-plugin-vue": "^5.1.6",
-    "sass-loader": "^9.0.0",
+    "sass-loader": "^9.0.1",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.0",
     "vue-template-compiler": "^2.6.11"
