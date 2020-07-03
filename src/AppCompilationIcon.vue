@@ -6,7 +6,7 @@
     :height="height"
   >
     <img
-      :src="require(`./assets/img/icons/icon_${label}.svg`)"
+      :src="path"
       alt=""
       :width="imgWidth"
     />
@@ -14,14 +14,41 @@
 </template>
 
 <script>
-export default {
+import { defineComponent, reactive, computed } from '@vue/composition-api'
+
+export default defineComponent({
   props: {
     label: { type: String, required: true, default: '' },
     width: { type: String, required: true, default: '5rem' },
     height: { type: String, required: true, default: '5rem' },
     imgWidth: { type: String, require: true, default: 'auto' }
+  },
+
+  setup (props) {
+    const state = reactive({
+      path: computed(() => {
+        switch (label) {
+          case 'selEq':
+            return './assets/img/icons/icon_selEq.svg'
+          case 'grit':
+            return './assets/img/icons/icon_grit.svg'
+          case 'motivation':
+            return './assets/img/icons/icon_motivation.svg'
+          case 'deviation':
+            return './assets/img/icons/icon_deviation.svg'
+        }
+      })
+    })
+
+    return {
+      label: props.label,
+      width: props.width,
+      height: props.height,
+      imgWidth: props.imgWidth,
+      path: state.path
+    }
   }
-}
+});
 </script>
 
 <style lang="scss" scoped>

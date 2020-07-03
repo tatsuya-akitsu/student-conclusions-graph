@@ -70,18 +70,18 @@
 </template>
 
 <script>
-import vueChartOptions from '@/vue-chart-options'
+import { defineComponent, reactive, computed } from '@vue/composition-api'
 import AppChangeTag from '@/AppChangeTag'
 import AppCompilationIcon from '@/AppCompilationIcon'
 import LineChart from '@/LineChart'
 
-export default {
-  mixins: [vueChartOptions],
+export default defineComponent({
   components: {
     AppChangeTag,
     AppCompilationIcon,
     LineChart
   },
+
   props: {
     myData: { type: Object, required: true, default: () => {} },
     myLabels: { type: Object, required: true, default: () => {} },
@@ -91,23 +91,78 @@ export default {
     selectDetail: { type: Number, required: true, default: 0 },
     contentKey: { type: Number, required: false, default: 0 }
   },
-  data: () => ({
-    options: {}
-  }),
-  mounted () {
-    this.setOptions()
-  },
-  methods: {
-    selectDetailData(label, index) {
-      this.$emit('handleDetailData', {
+
+  setup (props, { emit }) {
+    const state = reactive({
+      options: {
+        legend: {
+          labels: {
+            filter: (items) => {
+              return (items.text = '')
+            }
+          }
+        },
+        tooltips: {
+          mode: 'index',
+          intersect: true
+        },
+        scales: {
+          xAxes: [
+            {
+              display: true, // Y軸の表示
+              ticks: {
+                min: 0, // Y軸の最小値
+                max: 5, // Y軸の最大値
+                fontSize: 12, // Y軸のフォントサイズ
+                fontColor: '#7BA0A6',
+                stepSize: 1 // Y軸の間隔
+              },
+              gridLines: {
+                color: '#E1EBEB'
+              }
+            }
+          ],
+          yAxes: [
+            {
+              position: 'right',
+              ticks: {
+                min: 0,
+                max: 5,
+                fontSize: 12,
+                fontColor: '#7BA0A6',
+                stepSize: 1
+              },
+              gridLines: {
+                color: '#E1EBEB'
+              }
+            }
+          ]
+        }
+      }
+    })
+
+    function selectDetailData (label, index) {
+      emit('handleDetailData', {
         label,
         index,
-        key: this.contentKey,
-        category: this.myData.label
+        key: props.contentKey,
+        category: props.myData.label
       })
     }
+
+    return {
+      myData: props.myData,
+      myLabels: props.myLabels,
+      summaryChartData: props.summaryChartData,
+      detailChartData: props.detailChartData,
+      details: props.details,
+      selectDetail: props.selectDetail,
+      contentKey: props.contentKey,
+      options: state.options,
+      selectDetailData
+    }
   }
-}
+});
 </script>
 
 <style lang="scss" scoped>
