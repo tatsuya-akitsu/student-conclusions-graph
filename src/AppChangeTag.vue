@@ -17,9 +17,9 @@
 </template>
 
 <script>
-import { defineComponent, reactive, computed } from '@vue/composition-api'
-import IconTriangleDown from '@/IconTriangleDown'
-import IconTriangleUp from '@/IconTriangleUp'
+import { defineComponent, reactive, computed } from "@vue/composition-api";
+import IconTriangleDown from "@/IconTriangleDown";
+import IconTriangleUp from "@/IconTriangleUp";
 
 export default defineComponent({
   components: {
@@ -31,24 +31,26 @@ export default defineComponent({
     change: { type: Number, required: true, default: 0 }
   },
 
-  setup (props) {
+  setup(props) {
     const state = reactive({
-      value: String(props.change).includes('-') ? Number(String(props.change).replace('-', '')) : props.change,
+      value: String(props.change).includes("-")
+        ? Number(String(props.change).replace("-", ""))
+        : props.change,
       changeType: computed(() => {
         if (props.change === 0 || props.change === 0.0) {
-          return 'is-normal'
-        } else if (String(props.change).includes('-')) {
-          return 'is-down'
+          return "is-normal";
+        } else if (String(props.change).includes("-")) {
+          return "is-down";
         } else {
-          return 'is-up'
+          return "is-up";
         }
       })
-    })
+    });
 
     return {
       value: state.value,
       changeType: state.changeType
-    }
+    };
   }
 });
 </script>
@@ -101,7 +103,9 @@ export default defineComponent({
     display: inline-block;
     vertical-align: middle;
   }
-  svg { width: 3rem; }
+  svg {
+    width: 3rem;
+  }
   span {
     padding-left: 0.28rem;
     font-size: 1.4rem;

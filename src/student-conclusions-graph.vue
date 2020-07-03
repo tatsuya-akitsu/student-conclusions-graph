@@ -26,11 +26,7 @@
           </div>
         </div>
         <div class="p-student_survey_result_graph">
-          <line-chart
-            :chart-data="summaryChartData"
-            :options="options"
-            :height="124"
-          ></line-chart>
+          <line-chart :chart-data="summaryChartData" :options="options" :height="124"></line-chart>
         </div>
       </div>
       <div class="p-student_survey_detail">
@@ -42,27 +38,15 @@
             :class="{ 'is-select': selectDetail === index }"
             @click="selectDetailData(text.label, index)"
           >
-            <p class="p-student_detail_result">
-              {{ myData[text.label].summary.value }}
-            </p>
-            <app-change-tag
-              :change="myData[text.label].summary.change"
-            ></app-change-tag>
+            <p class="p-student_detail_result">{{ myData[text.label].summary.value }}</p>
+            <app-change-tag :change="myData[text.label].summary.change"></app-change-tag>
             <p class="p-student_detail_label">{{ text.value }}</p>
           </li>
         </ul>
         <div class="p-student_detail_graph">
-          <h4>
-            {{ details.intro.title }}
-          </h4>
-          <p>
-            {{ details.intro.text }}
-          </p>
-          <line-chart
-            :chart-data="detailChartData"
-            :options="options"
-            :height="124"
-          ></line-chart>
+          <h4>{{ details.intro.title }}</h4>
+          <p>{{ details.intro.text }}</p>
+          <line-chart :chart-data="detailChartData" :options="options" :height="124"></line-chart>
         </div>
       </div>
     </div>
@@ -70,10 +54,10 @@
 </template>
 
 <script>
-import { defineComponent, reactive, computed } from '@vue/composition-api'
-import AppChangeTag from '@/AppChangeTag'
-import AppCompilationIcon from '@/AppCompilationIcon'
-import LineChart from '@/LineChart'
+import { defineComponent, reactive, computed } from "@vue/composition-api";
+import AppChangeTag from "@/AppChangeTag";
+import AppCompilationIcon from "@/AppCompilationIcon";
+import LineChart from "@/LineChart";
 
 export default defineComponent({
   components: {
@@ -92,18 +76,18 @@ export default defineComponent({
     contentKey: { type: Number, required: false, default: 0 }
   },
 
-  setup (props, { emit }) {
+  setup(props, { emit }) {
     const state = reactive({
       options: {
         legend: {
           labels: {
-            filter: (items) => {
-              return (items.text = '')
+            filter: items => {
+              return (items.text = "");
             }
           }
         },
         tooltips: {
-          mode: 'index',
+          mode: "index",
           intersect: true
         },
         scales: {
@@ -114,40 +98,40 @@ export default defineComponent({
                 min: 0, // Y軸の最小値
                 max: 5, // Y軸の最大値
                 fontSize: 12, // Y軸のフォントサイズ
-                fontColor: '#7BA0A6',
+                fontColor: "#7BA0A6",
                 stepSize: 1 // Y軸の間隔
               },
               gridLines: {
-                color: '#E1EBEB'
+                color: "#E1EBEB"
               }
             }
           ],
           yAxes: [
             {
-              position: 'right',
+              position: "right",
               ticks: {
                 min: 0,
                 max: 5,
                 fontSize: 12,
-                fontColor: '#7BA0A6',
+                fontColor: "#7BA0A6",
                 stepSize: 1
               },
               gridLines: {
-                color: '#E1EBEB'
+                color: "#E1EBEB"
               }
             }
           ]
         }
       }
-    })
+    });
 
-    function selectDetailData (label, index) {
-      emit('handleDetailData', {
+    function selectDetailData(label, index) {
+      emit("handleDetailData", {
         label,
         index,
         key: props.contentKey,
         category: props.myData.label
-      })
+      });
     }
 
     return {
@@ -160,23 +144,22 @@ export default defineComponent({
       contentKey: props.contentKey,
       options: state.options,
       selectDetailData
-    }
+    };
   }
 });
 </script>
 
 <style lang="scss" scoped>
 $base-white-color: #ffffff;
-$base-primary-color: #00ABFF;
-$base-border-color: #E1EBEB;
+$base-primary-color: #00abff;
+$base-border-color: #e1ebeb;
 
-$base-sel-color: #00ABFF;
-$base-motivation-color: #00C09E;
-$base-grit-color: #BF6BE6;
+$base-sel-color: #00abff;
+$base-motivation-color: #00c09e;
+$base-grit-color: #bf6be6;
 $base-deviation-color: #015593;
 
 $easeInOutQuart: all 600ms cubic-bezier(0.77, 0, 0.175, 1);
-
 
 .m-student_survey_graph {
   margin-top: 2rem;
@@ -255,7 +238,7 @@ header {
     line-height: 1.2;
   }
   li::before {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
     top: 50%;
@@ -307,7 +290,7 @@ header {
   }
 
   li.is-select::before {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
     top: 0;
@@ -317,7 +300,7 @@ header {
     background: $base-primary-color;
   }
   li.is-select::after {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
     top: 50%;

@@ -1,10 +1,5 @@
 <template>
-  <div
-    class="m-compilation_icon"
-    :class="`is-${label}`"
-    :width="width"
-    :height="height"
-  >
+  <div class="m-compilation_icon" :class="`is-${label}`" :width="width" :height="height">
     <template v-if="label === 'selEq'">
       <icon-sel-eq :style="{ width: imgWidth }"></icon-sel-eq>
     </template>
@@ -17,20 +12,15 @@
     <template v-else-if="label === 'deviation'">
       <icon-deviation :style="{ width: imgWidth }"></icon-deviation>
     </template>
-    <img
-      :src="path"
-      alt=""
-      :width="imgWidth"
-    />
   </div>
 </template>
 
 <script>
-import { defineComponent, reactive, computed } from '@vue/composition-api'
-import IconDeviation from '@/IconDeviation'
-import IconGrit from '@/IconGrit'
-import IconMotivation from '@/IconMotivation'
-import IconSelEq from '@/IconSelEq'
+import { defineComponent, reactive, computed } from "@vue/composition-api";
+import IconDeviation from "@/IconDeviation";
+import IconGrit from "@/IconGrit";
+import IconMotivation from "@/IconMotivation";
+import IconSelEq from "@/IconSelEq";
 
 export default defineComponent({
   components: {
@@ -41,20 +31,19 @@ export default defineComponent({
   },
 
   props: {
-    label: { type: String, required: true, default: '' },
-    width: { type: String, required: true, default: '5rem' },
-    height: { type: String, required: true, default: '5rem' },
-    imgWidth: { type: String, require: true, default: 'auto' }
+    label: { type: String, required: true, default: "" },
+    width: { type: String, required: true, default: "5rem" },
+    height: { type: String, required: true, default: "5rem" },
+    imgWidth: { type: String, require: true, default: "auto" }
   },
 
-  setup (props) {
+  setup(props) {
     return {
       label: props.label,
       width: props.width,
       height: props.height,
-      imgWidth: props.imgWidth,
-      path: state.path
-    }
+      imgWidth: props.imgWidth
+    };
   }
 });
 </script>
