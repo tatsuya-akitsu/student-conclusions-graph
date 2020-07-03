@@ -633,7 +633,7 @@ var script$3 = compositionApi.defineComponent({
   },
   setup: function setup(props, _ref) {
     var emit = _ref.emit;
-    var state = compositionApi.reactive({
+    var state = {
       options: {
         legend: {
           labels: {
@@ -680,7 +680,7 @@ var script$3 = compositionApi.defineComponent({
           }]
         }
       }
-    });
+    };
 
     function selectDetailData(label, index) {
       emit("handleDetailData", {
@@ -717,32 +717,32 @@ var __vue_render__$8 = function __vue_render__() {
   return _c('div', {
     staticClass: "m-student_survey_graph",
     class: "is-" + _vm.myData.label
-  }, [_vm._ssrNode("<span class=\"p-student_survey_solid\" data-v-50b3f480></span> <header data-v-50b3f480><h3 data-v-50b3f480>" + _vm._ssrEscape(_vm._s(_vm.myData.category) + "の調査結果") + "</h3></header> "), _vm._ssrNode("<div class=\"p-student_survey_body\" data-v-50b3f480>", "</div>", [_vm._ssrNode("<div class=\"p-student_survey_summary\" data-v-50b3f480>", "</div>", [_vm._ssrNode("<div class=\"p-student_survey_result_box\" data-v-50b3f480>", "</div>", [_vm._ssrNode("<div class=\"p-student_survey_result\" data-v-50b3f480>", "</div>", [_c('app-compilation-icon', {
+  }, [_vm._ssrNode("<span class=\"p-student_survey_solid\" data-v-39a431f0></span> <header data-v-39a431f0><h3 data-v-39a431f0>" + _vm._ssrEscape(_vm._s(_vm.myData.category) + "の調査結果") + "</h3></header> "), _vm._ssrNode("<div class=\"p-student_survey_body\" data-v-39a431f0>", "</div>", [_vm._ssrNode("<div class=\"p-student_survey_summary\" data-v-39a431f0>", "</div>", [_vm._ssrNode("<div class=\"p-student_survey_result_box\" data-v-39a431f0>", "</div>", [_vm._ssrNode("<div class=\"p-student_survey_result\" data-v-39a431f0>", "</div>", [_c('app-compilation-icon', {
     attrs: {
       "label": _vm.myData.label,
       "width": "5rem",
       "height": "5rem",
       "img-width": "auto"
     }
-  }), _vm._ssrNode(" <p class=\"p-student_survey_score\" data-v-50b3f480>" + _vm._ssrEscape(_vm._s(_vm.myData.summary.value)) + "</p> "), _c('app-change-tag', {
+  }), _vm._ssrNode(" <p class=\"p-student_survey_score\" data-v-39a431f0>" + _vm._ssrEscape(_vm._s(_vm.myData.summary.value)) + "</p> "), _c('app-change-tag', {
     attrs: {
       "change": _vm.myData.summary.change
     }
-  })], 2), _vm._ssrNode(" <div class=\"p-student_survey_content\" data-v-50b3f480><ul data-v-50b3f480><li data-v-50b3f480>感情・情動能力</li> <li data-v-50b3f480>短い説明</li> <li data-v-50b3f480>みじかい説明</li></ul></div>")], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"p-student_survey_result_graph\" data-v-50b3f480>", "</div>", [_c('line-chart', {
+  })], 2), _vm._ssrNode(" <div class=\"p-student_survey_content\" data-v-39a431f0><ul data-v-39a431f0><li data-v-39a431f0>感情・情動能力</li> <li data-v-39a431f0>短い説明</li> <li data-v-39a431f0>みじかい説明</li></ul></div>")], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"p-student_survey_result_graph\" data-v-39a431f0>", "</div>", [_c('line-chart', {
     attrs: {
       "chart-data": _vm.summaryChartData,
       "options": _vm.options,
       "height": 124
     }
-  })], 1)], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"p-student_survey_detail\" data-v-50b3f480>", "</div>", [_vm._ssrNode("<ul class=\"p-student_detail_list\" data-v-50b3f480>", "</ul>", _vm._l(_vm.details.data, function (text, index) {
+  })], 1)], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"p-student_survey_detail\" data-v-39a431f0>", "</div>", [_vm._ssrNode("<ul class=\"p-student_detail_list\" data-v-39a431f0>", "</ul>", _vm._l(_vm.details.data, function (text, index) {
     return _vm._ssrNode("<li" + _vm._ssrClass(null, {
       'is-select': _vm.selectDetail === index
-    }) + " data-v-50b3f480>", "</li>", [_vm._ssrNode("<p class=\"p-student_detail_result\" data-v-50b3f480>" + _vm._ssrEscape(_vm._s(_vm.myData[text.label].summary.value)) + "</p> "), _c('app-change-tag', {
+    }) + " data-v-39a431f0>", "</li>", [_vm._ssrNode("<p class=\"p-student_detail_result\" data-v-39a431f0>" + _vm._ssrEscape(_vm._s(_vm.myData[text.label].summary.value)) + "</p> "), _c('app-change-tag', {
       attrs: {
         "change": _vm.myData[text.label].summary.change
       }
-    }), _vm._ssrNode(" <p class=\"p-student_detail_label\" data-v-50b3f480>" + _vm._ssrEscape(_vm._s(text.value)) + "</p>")], 2);
-  }), 0), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"p-student_detail_graph\" data-v-50b3f480>", "</div>", [_vm._ssrNode("<h4 data-v-50b3f480>" + _vm._ssrEscape(_vm._s(_vm.details.intro.title)) + "</h4> <p data-v-50b3f480>" + _vm._ssrEscape(_vm._s(_vm.details.intro.text)) + "</p> "), _c('line-chart', {
+    }), _vm._ssrNode(" <p class=\"p-student_detail_label\" data-v-39a431f0>" + _vm._ssrEscape(_vm._s(text.value)) + "</p>")], 2);
+  }), 0), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"p-student_detail_graph\" data-v-39a431f0>", "</div>", [_vm._ssrNode("<h4 data-v-39a431f0>" + _vm._ssrEscape(_vm._s(_vm.details.intro.title)) + "</h4> <p data-v-39a431f0>" + _vm._ssrEscape(_vm._s(_vm.details.intro.text)) + "</p> "), _c('line-chart', {
     attrs: {
       "chart-data": _vm.detailChartData,
       "options": _vm.options,
@@ -756,8 +756,8 @@ var __vue_staticRenderFns__$8 = [];
 
 var __vue_inject_styles__$9 = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-50b3f480_0", {
-    source: ".m-student_survey_graph[data-v-50b3f480]{margin-top:2rem;background:#fff;border-radius:5px;border:1px solid #e1ebeb}.m-student_survey_graph.is-selEq .p-student_survey_solid[data-v-50b3f480]{background:#00abff}.m-student_survey_graph.is-grit .p-student_survey_solid[data-v-50b3f480]{background:#bf6be6}.m-student_survey_graph.is-motivation .p-student_survey_solid[data-v-50b3f480]{background:#00c09e}.m-student_survey_graph.is-deviation .p-student_survey_solid[data-v-50b3f480]{background:#015593}.p-student_survey_solid[data-v-50b3f480]{display:block;height:.5rem;border-radius:5px 5px 0 0}header[data-v-50b3f480]{padding:1.55rem 2rem;font-size:1.6rem;font-weight:700;border-bottom:1px solid #e1ebeb}.p-student_survey_summary[data-v-50b3f480]{display:flex;justify-content:space-between;align-items:flex-start;padding:2rem 3rem;border-bottom:1px solid #e1ebeb}.p-student_survey_result[data-v-50b3f480]{font-size:0}.p-student_survey_result>div[data-v-50b3f480],.p-student_survey_result>p[data-v-50b3f480]{display:inline-block;vertical-align:middle}.p-student_survey_score[data-v-50b3f480]{padding-left:2rem;font-size:3.2rem;font-weight:700}.p-student_survey_content[data-v-50b3f480]{padding-top:1.6rem}.p-student_survey_content li[data-v-50b3f480]{position:relative;padding:.6rem 0 .6rem 2.8rem;font-size:1.4rem;line-height:1.2}.p-student_survey_content li[data-v-50b3f480]::before{content:\"\";display:block;position:absolute;top:50%;left:1rem;transform:translate(0,-50%);width:.6rem;height:.6rem;border-radius:50%;background:#00abff}.p-student_survey_result_graph[data-v-50b3f480]{width:43.2rem}.p-student_survey_detail[data-v-50b3f480]{display:flex;justify-content:space-between}.p-student_detail_list[data-v-50b3f480]{position:relative;width:calc(100% - 47rem);border-right:1px solid #e1ebeb}.p-student_detail_list li[data-v-50b3f480]{cursor:pointer;position:relative;padding:1rem 3rem;font-size:0;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li p[data-v-50b3f480]{display:inline-block;vertical-align:middle;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li[data-v-50b3f480]:hover{background:#f9fbfb}.p-student_detail_list li:hover .p-student_detail_result[data-v-50b3f480]{color:#00abff}.p-student_detail_list li:hover .p-student_detail_label[data-v-50b3f480]{color:#00abff}.p-student_detail_list li.is-select[data-v-50b3f480]::before{content:\"\";display:block;position:absolute;top:0;right:0;width:.5rem;height:100%;background:#00abff}.p-student_detail_list li.is-select[data-v-50b3f480]::after{content:\"\";display:block;position:absolute;top:50%;right:-1.2rem;transform:translate(0,-50%);width:0;height:0;border-top:solid .6rem transparent;border-right:solid .6rem transparent;border-bottom:solid .6rem transparent;border-left:solid .6rem #00abff}.p-student_detail_result[data-v-50b3f480]{padding-right:.6rem;font-size:2.4rem;font-weight:700}.p-student_detail_label[data-v-50b3f480]{padding-left:1.2rem;font-size:1.4rem;font-weight:700}.p-student_detail_graph[data-v-50b3f480]{padding:2.4rem 2rem;width:47rem}.p-student_detail_graph h4[data-v-50b3f480]{padding-bottom:1.4rem;font-size:1.6rem;font-weight:700}.p-student_detail_graph p[data-v-50b3f480]{padding-bottom:2rem;font-size:1.2rem;line-height:1.5}",
+  inject("data-v-39a431f0_0", {
+    source: ".m-student_survey_graph[data-v-39a431f0]{margin-top:2rem;background:#fff;border-radius:5px;border:1px solid #e1ebeb}.m-student_survey_graph.is-selEq .p-student_survey_solid[data-v-39a431f0]{background:#00abff}.m-student_survey_graph.is-grit .p-student_survey_solid[data-v-39a431f0]{background:#bf6be6}.m-student_survey_graph.is-motivation .p-student_survey_solid[data-v-39a431f0]{background:#00c09e}.m-student_survey_graph.is-deviation .p-student_survey_solid[data-v-39a431f0]{background:#015593}.p-student_survey_solid[data-v-39a431f0]{display:block;height:.5rem;border-radius:5px 5px 0 0}header[data-v-39a431f0]{padding:1.55rem 2rem;font-size:1.6rem;font-weight:700;border-bottom:1px solid #e1ebeb}.p-student_survey_summary[data-v-39a431f0]{display:flex;justify-content:space-between;align-items:flex-start;padding:2rem 3rem;border-bottom:1px solid #e1ebeb}.p-student_survey_result[data-v-39a431f0]{font-size:0}.p-student_survey_result>div[data-v-39a431f0],.p-student_survey_result>p[data-v-39a431f0]{display:inline-block;vertical-align:middle}.p-student_survey_score[data-v-39a431f0]{padding-left:2rem;font-size:3.2rem;font-weight:700}.p-student_survey_content[data-v-39a431f0]{padding-top:1.6rem}.p-student_survey_content li[data-v-39a431f0]{position:relative;padding:.6rem 0 .6rem 2.8rem;font-size:1.4rem;line-height:1.2}.p-student_survey_content li[data-v-39a431f0]::before{content:\"\";display:block;position:absolute;top:50%;left:1rem;transform:translate(0,-50%);width:.6rem;height:.6rem;border-radius:50%;background:#00abff}.p-student_survey_result_graph[data-v-39a431f0]{width:43.2rem}.p-student_survey_detail[data-v-39a431f0]{display:flex;justify-content:space-between}.p-student_detail_list[data-v-39a431f0]{position:relative;width:calc(100% - 47rem);border-right:1px solid #e1ebeb}.p-student_detail_list li[data-v-39a431f0]{cursor:pointer;position:relative;padding:1rem 3rem;font-size:0;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li p[data-v-39a431f0]{display:inline-block;vertical-align:middle;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li[data-v-39a431f0]:hover{background:#f9fbfb}.p-student_detail_list li:hover .p-student_detail_result[data-v-39a431f0]{color:#00abff}.p-student_detail_list li:hover .p-student_detail_label[data-v-39a431f0]{color:#00abff}.p-student_detail_list li.is-select[data-v-39a431f0]::before{content:\"\";display:block;position:absolute;top:0;right:0;width:.5rem;height:100%;background:#00abff}.p-student_detail_list li.is-select[data-v-39a431f0]::after{content:\"\";display:block;position:absolute;top:50%;right:-1.2rem;transform:translate(0,-50%);width:0;height:0;border-top:solid .6rem transparent;border-right:solid .6rem transparent;border-bottom:solid .6rem transparent;border-left:solid .6rem #00abff}.p-student_detail_result[data-v-39a431f0]{padding-right:.6rem;font-size:2.4rem;font-weight:700}.p-student_detail_label[data-v-39a431f0]{padding-left:1.2rem;font-size:1.4rem;font-weight:700}.p-student_detail_graph[data-v-39a431f0]{padding:2.4rem 2rem;width:47rem}.p-student_detail_graph h4[data-v-39a431f0]{padding-bottom:1.4rem;font-size:1.6rem;font-weight:700}.p-student_detail_graph p[data-v-39a431f0]{padding-bottom:2rem;font-size:1.2rem;line-height:1.5}",
     map: undefined,
     media: undefined
   });
@@ -765,10 +765,10 @@ var __vue_inject_styles__$9 = function __vue_inject_styles__(inject) {
 /* scoped */
 
 
-var __vue_scope_id__$9 = "data-v-50b3f480";
+var __vue_scope_id__$9 = "data-v-39a431f0";
 /* module identifier */
 
-var __vue_module_identifier__$9 = "data-v-50b3f480";
+var __vue_module_identifier__$9 = "data-v-39a431f0";
 /* functional template */
 
 var __vue_is_functional_template__$9 = false;
