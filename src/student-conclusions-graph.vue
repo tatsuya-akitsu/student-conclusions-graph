@@ -26,7 +26,11 @@
           </div>
         </div>
         <div class="p-student_survey_result_graph">
-          <line-chart :chart-data="summaryChartData" :options="options" :height="124"></line-chart>
+          <line-chart
+            :chart-data="summaryChartData"
+            :options="options"
+            :height="124"
+          ></line-chart>
         </div>
       </div>
       <div class="p-student_survey_detail">
@@ -38,15 +42,23 @@
             :class="{ 'is-select': selectDetail === index }"
             @click="selectDetailData(text.label, index)"
           >
-            <p class="p-student_detail_result">{{ myData[text.label].summary.value }}</p>
-            <app-change-tag :change="myData[text.label].summary.change"></app-change-tag>
+            <p class="p-student_detail_result">
+              {{ myData[text.label].summary.value }}
+            </p>
+            <app-change-tag
+              :change="myData[text.label].summary.change"
+            ></app-change-tag>
             <p class="p-student_detail_label">{{ text.value }}</p>
           </li>
         </ul>
         <div class="p-student_detail_graph">
           <h4>{{ details.intro.title }}</h4>
           <p>{{ details.intro.text }}</p>
-          <line-chart :chart-data="detailChartData" :options="options" :height="124"></line-chart>
+          <line-chart
+            :chart-data="detailChartData"
+            :options="options"
+            :height="124"
+          ></line-chart>
         </div>
       </div>
     </div>
@@ -54,18 +66,16 @@
 </template>
 
 <script>
-import { defineComponent, reactive, computed } from "@vue/composition-api";
 import AppChangeTag from "@/AppChangeTag";
 import AppCompilationIcon from "@/AppCompilationIcon";
 import LineChart from "@/LineChart";
 
-export default defineComponent({
+export default {
   components: {
     AppChangeTag,
     AppCompilationIcon,
-    LineChart
+    LineChart,
   },
-
   props: {
     myData: { type: Object, required: true, default: () => {} },
     myLabels: { type: Object, required: true, default: () => {} },
@@ -73,437 +83,419 @@ export default defineComponent({
     detailChartData: { type: Object, required: true, default: () => {} },
     details: { type: Object, required: true, default: () => {} },
     selectDetail: { type: Number, required: true, default: 0 },
-    contentKey: { type: Number, required: false, default: 0 }
+    contentKey: { type: Number, required: false, default: 0 },
   },
-
-  setup(props, { emit }) {
-    const state = reactive({
-      // myData: {
-      //   category: "SEL・EQ",
-      //   label: "selEq",
-      //   color: "#00ABFF",
-      //   background: "rgba(229, 247, 255, 0.6)",
-      //   summary: {
-      //     value: 3,
-      //     change: 0,
-      //     created_at: "2020-04"
-      //   },
-      //   monthly: [
-      //     {
-      //       value: 3,
-      //       change: 0,
-      //       created_at: "2020-04"
-      //     },
-      //     {
-      //       value: 3,
-      //       change: 0,
-      //       created_at: "2020-07"
-      //     },
-      //     {
-      //       value: 3,
-      //       change: 0,
-      //       created_at: "2020-11"
-      //     },
-      //     {
-      //       value: 4,
-      //       change: 0,
-      //       created_at: "2021-01"
-      //     }
-      //   ],
-      //   selfAwareness: {
-      //     summary: {
-      //       value: 3,
-      //       change: 0,
-      //       created_at: "2020-04"
-      //     },
-      //     monthly: [
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-04"
-      //       },
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-07"
-      //       },
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-11"
-      //       },
-      //       {
-      //         value: 4,
-      //         change: 0,
-      //         created_at: "2021-01"
-      //       }
-      //     ]
-      //   },
-      //   selfManagement: {
-      //     summary: {
-      //       value: 3,
-      //       change: 0,
-      //       created_at: "2020-04"
-      //     },
-      //     monthly: [
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-04"
-      //       },
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-07"
-      //       },
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-11"
-      //       },
-      //       {
-      //         value: 4,
-      //         change: 0,
-      //         created_at: "2021-01"
-      //       }
-      //     ]
-      //   },
-      //   socialAwareness: {
-      //     summary: {
-      //       value: 3,
-      //       change: 0,
-      //       created_at: "2020-04"
-      //     },
-      //     monthly: [
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-04"
-      //       },
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-07"
-      //       },
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-11"
-      //       },
-      //       {
-      //         value: 4,
-      //         change: 0,
-      //         created_at: "2021-01"
-      //       }
-      //     ]
-      //   },
-      //   relationship: {
-      //     summary: {
-      //       value: 3,
-      //       change: 0,
-      //       created_at: "2020-04"
-      //     },
-      //     monthly: [
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-04"
-      //       },
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-07"
-      //       },
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-11"
-      //       },
-      //       {
-      //         value: 4,
-      //         change: 0,
-      //         created_at: "2021-01"
-      //       }
-      //     ]
-      //   },
-      //   responsibleDecision: {
-      //     summary: {
-      //       value: 3,
-      //       change: 0,
-      //       created_at: "2020-04"
-      //     },
-      //     monthly: [
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-04"
-      //       },
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-07"
-      //       },
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-11"
-      //       },
-      //       {
-      //         value: 4,
-      //         change: 0,
-      //         created_at: "2021-01"
-      //       }
-      //     ]
-      //   }
-      // },
-      // myLabels: {
-      //   dashboard: {
-      //     labels: {
-      //       title: "{class}のダッシュボード"
-      //     },
-      //     nav: [
-      //       {
-      //         label: "ホーム",
-      //         icon: "IconHome",
-      //         target: "/dashboard",
-      //         isCurrent: true
-      //       },
-      //       {
-      //         label: "生徒情報",
-      //         icon: "IconPeople",
-      //         target: "/students",
-      //         isCurrent: false
-      //       },
-      //       {
-      //         label: "コーチングプラン",
-      //         icon: "IconBook",
-      //         target: "/coaching",
-      //         isCurrent: false
-      //       }
-      //     ],
-      //     details: {
-      //       selEq: [
-      //         {
-      //           label: "selfAwareness",
-      //           value: "自己理解",
-      //           text:
-      //             "自分の感情や思考を理解し、自分の他者に対する態度や行動にどのように影響しているかを理解する"
-      //         },
-      //         {
-      //           label: "selfManagement",
-      //           value: "セルフマネジメント",
-      //           text:
-      //             "難しい環境に遭っても、自分自身の感情や思考、態度をコントロールする"
-      //         },
-      //         {
-      //           label: "socialAwareness",
-      //           value: "社会や他者への理解",
-      //           text: "多様なバックグラウンドや文化を持つ他者に対して共感する力"
-      //         },
-      //         {
-      //           label: "relationship",
-      //           value: "対人関係スキル",
-      //           text:
-      //             "多様な人々と関わるグループにおいて、他者と適切に関係を構築・維持する力"
-      //         },
-      //         {
-      //           label: "responsibleDecision",
-      //           value: "責任ある意思決定",
-      //           text: "人が良く生きるために自らの責任で意思決定する力のこと"
-      //         }
-      //       ],
-      //       grit: [
-      //         {
-      //           label: "courage",
-      //           value: "度胸",
-      //           text: "困難に挑み、逆境にたじろがない勇気"
-      //         },
-      //         {
-      //           label: "resilience",
-      //           value: "復元力",
-      //           text: "挫折から立ち直る力"
-      //         },
-      //         {
-      //           label: "spontaneity",
-      //           value: "自発性",
-      //           text: "率先して物事に取り組む力"
-      //         },
-      //         {
-      //           label: "obsession",
-      //           value: "執念",
-      //           text: "どんなことがあっても物事に集中しつづける能力"
-      //         }
-      //       ],
-      //       motivation: [
-      //         {
-      //           label: "home",
-      //           value: "家庭環境",
-      //           text: "生徒の家庭環境について知る事が可能"
-      //         },
-      //         {
-      //           label: "friendship",
-      //           value: "友人関係",
-      //           text: "生徒の友人関係についてどう感じているか知る事が可能"
-      //         },
-      //         {
-      //           label: "trust",
-      //           value: "教師への信頼度",
-      //           text: "生徒が教師に対してどう感じているかを知る事が可能"
-      //         },
-      //         {
-      //           label: "community",
-      //           value: "コミュニティへの満足度",
-      //           text: "部活動や社外活動などの満足度を知る事が可能"
-      //         }
-      //       ]
-      //     }
-      //   },
-      //   common: {
-      //     labels: {
-      //       selEq: "SEL/EQ",
-      //       motivation: "モチベーション",
-      //       motiva: "モチベ",
-      //       grit: "GRIT",
-      //       deviation: "模試"
-      //     }
-      //   }
-      // },
-      // summaryChartData: {
-      //   labels: ["4月", "7月", "11月", "1月"],
-      //   datasets: [
-      //     {
-      //       data: [3, 3, 3, 4],
-      //       lineTension: 0,
-      //       backgroundColor: "rgba(229, 247, 255, 0.6)",
-      //       borderColor: "#00ABFF",
-      //       pointBackgroundColor: "#00ABFF"
-      //     }
-      //   ]
-      // },
-      // detailChartData: {
-      //   labels: ["4月", "7月", "11月", "1月"],
-      //   datasets: [
-      //     {
-      //       data: [3, 3, 3, 4],
-      //       lineTension: 0,
-      //       backgroundColor: "rgba(229, 247, 255, 0.6)",
-      //       borderColor: "#00ABFF",
-      //       pointBackgroundColor: "#00ABFF"
-      //     }
-      //   ]
-      // },
-      // details: {
-      //   intro: {
-      //     title: "自己理解",
-      //     text:
-      //       "自分の感情や思考を理解し、自分の他者に対する態度や行動にどのように影響しているかを理解する"
-      //   },
-      //   data: [
-      //     {
-      //       label: "selfAwareness",
-      //       value: "自己理解",
-      //       text:
-      //         "自分の感情や思考を理解し、自分の他者に対する態度や行動にどのように影響しているかを理解する"
-      //     },
-      //     {
-      //       label: "selfManagement",
-      //       value: "セルフマネジメント",
-      //       text:
-      //         "難しい環境に遭っても、自分自身の感情や思考、態度をコントロールする"
-      //     },
-      //     {
-      //       label: "socialAwareness",
-      //       value: "社会や他者への理解",
-      //       text: "多様なバックグラウンドや文化を持つ他者に対して共感する力"
-      //     },
-      //     {
-      //       label: "relationship",
-      //       value: "対人関係スキル",
-      //       text:
-      //         "多様な人々と関わるグループにおいて、他者と適切に関係を構築・維持する力"
-      //     },
-      //     {
-      //       label: "responsibleDecision",
-      //       value: "責任ある意思決定",
-      //       text: "人が良く生きるために自らの責任で意思決定する力のこと"
-      //     }
-      //   ]
-      // },
-      // selectDetail: 0,
-      // contentKey: 0,
-
-      options: {
-        legend: {
-          labels: {
-            filter: items => {
-              return (items.text = "");
-            }
-          }
+  data: () => ({
+    // myData: {
+    //   category: "SEL・EQ",
+    //   label: "selEq",
+    //   color: "#00ABFF",
+    //   background: "rgba(229, 247, 255, 0.6)",
+    //   summary: {
+    //     value: 3,
+    //     change: 0,
+    //     created_at: "2020-04"
+    //   },
+    //   monthly: [
+    //     {
+    //       value: 3,
+    //       change: 0,
+    //       created_at: "2020-04"
+    //     },
+    //     {
+    //       value: 3,
+    //       change: 0,
+    //       created_at: "2020-07"
+    //     },
+    //     {
+    //       value: 3,
+    //       change: 0,
+    //       created_at: "2020-11"
+    //     },
+    //     {
+    //       value: 4,
+    //       change: 0,
+    //       created_at: "2021-01"
+    //     }
+    //   ],
+    //   selfAwareness: {
+    //     summary: {
+    //       value: 3,
+    //       change: 0,
+    //       created_at: "2020-04"
+    //     },
+    //     monthly: [
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-04"
+    //       },
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-07"
+    //       },
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-11"
+    //       },
+    //       {
+    //         value: 4,
+    //         change: 0,
+    //         created_at: "2021-01"
+    //       }
+    //     ]
+    //   },
+    //   selfManagement: {
+    //     summary: {
+    //       value: 3,
+    //       change: 0,
+    //       created_at: "2020-04"
+    //     },
+    //     monthly: [
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-04"
+    //       },
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-07"
+    //       },
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-11"
+    //       },
+    //       {
+    //         value: 4,
+    //         change: 0,
+    //         created_at: "2021-01"
+    //       }
+    //     ]
+    //   },
+    //   socialAwareness: {
+    //     summary: {
+    //       value: 3,
+    //       change: 0,
+    //       created_at: "2020-04"
+    //     },
+    //     monthly: [
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-04"
+    //       },
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-07"
+    //       },
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-11"
+    //       },
+    //       {
+    //         value: 4,
+    //         change: 0,
+    //         created_at: "2021-01"
+    //       }
+    //     ]
+    //   },
+    //   relationship: {
+    //     summary: {
+    //       value: 3,
+    //       change: 0,
+    //       created_at: "2020-04"
+    //     },
+    //     monthly: [
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-04"
+    //       },
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-07"
+    //       },
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-11"
+    //       },
+    //       {
+    //         value: 4,
+    //         change: 0,
+    //         created_at: "2021-01"
+    //       }
+    //     ]
+    //   },
+    //   responsibleDecision: {
+    //     summary: {
+    //       value: 3,
+    //       change: 0,
+    //       created_at: "2020-04"
+    //     },
+    //     monthly: [
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-04"
+    //       },
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-07"
+    //       },
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-11"
+    //       },
+    //       {
+    //         value: 4,
+    //         change: 0,
+    //         created_at: "2021-01"
+    //       }
+    //     ]
+    //   }
+    // },
+    // myLabels: {
+    //   dashboard: {
+    //     labels: {
+    //       title: "{class}のダッシュボード"
+    //     },
+    //     nav: [
+    //       {
+    //         label: "ホーム",
+    //         icon: "IconHome",
+    //         target: "/dashboard",
+    //         isCurrent: true
+    //       },
+    //       {
+    //         label: "生徒情報",
+    //         icon: "IconPeople",
+    //         target: "/students",
+    //         isCurrent: false
+    //       },
+    //       {
+    //         label: "コーチングプラン",
+    //         icon: "IconBook",
+    //         target: "/coaching",
+    //         isCurrent: false
+    //       }
+    //     ],
+    //     details: {
+    //       selEq: [
+    //         {
+    //           label: "selfAwareness",
+    //           value: "自己理解",
+    //           text:
+    //             "自分の感情や思考を理解し、自分の他者に対する態度や行動にどのように影響しているかを理解する"
+    //         },
+    //         {
+    //           label: "selfManagement",
+    //           value: "セルフマネジメント",
+    //           text:
+    //             "難しい環境に遭っても、自分自身の感情や思考、態度をコントロールする"
+    //         },
+    //         {
+    //           label: "socialAwareness",
+    //           value: "社会や他者への理解",
+    //           text: "多様なバックグラウンドや文化を持つ他者に対して共感する力"
+    //         },
+    //         {
+    //           label: "relationship",
+    //           value: "対人関係スキル",
+    //           text:
+    //             "多様な人々と関わるグループにおいて、他者と適切に関係を構築・維持する力"
+    //         },
+    //         {
+    //           label: "responsibleDecision",
+    //           value: "責任ある意思決定",
+    //           text: "人が良く生きるために自らの責任で意思決定する力のこと"
+    //         }
+    //       ],
+    //       grit: [
+    //         {
+    //           label: "courage",
+    //           value: "度胸",
+    //           text: "困難に挑み、逆境にたじろがない勇気"
+    //         },
+    //         {
+    //           label: "resilience",
+    //           value: "復元力",
+    //           text: "挫折から立ち直る力"
+    //         },
+    //         {
+    //           label: "spontaneity",
+    //           value: "自発性",
+    //           text: "率先して物事に取り組む力"
+    //         },
+    //         {
+    //           label: "obsession",
+    //           value: "執念",
+    //           text: "どんなことがあっても物事に集中しつづける能力"
+    //         }
+    //       ],
+    //       motivation: [
+    //         {
+    //           label: "home",
+    //           value: "家庭環境",
+    //           text: "生徒の家庭環境について知る事が可能"
+    //         },
+    //         {
+    //           label: "friendship",
+    //           value: "友人関係",
+    //           text: "生徒の友人関係についてどう感じているか知る事が可能"
+    //         },
+    //         {
+    //           label: "trust",
+    //           value: "教師への信頼度",
+    //           text: "生徒が教師に対してどう感じているかを知る事が可能"
+    //         },
+    //         {
+    //           label: "community",
+    //           value: "コミュニティへの満足度",
+    //           text: "部活動や社外活動などの満足度を知る事が可能"
+    //         }
+    //       ]
+    //     }
+    //   },
+    //   common: {
+    //     labels: {
+    //       selEq: "SEL/EQ",
+    //       motivation: "モチベーション",
+    //       motiva: "モチベ",
+    //       grit: "GRIT",
+    //       deviation: "模試"
+    //     }
+    //   }
+    // },
+    // summaryChartData: {
+    //   labels: ["4月", "7月", "11月", "1月"],
+    //   datasets: [
+    //     {
+    //       data: [3, 3, 3, 4],
+    //       lineTension: 0,
+    //       backgroundColor: "rgba(229, 247, 255, 0.6)",
+    //       borderColor: "#00ABFF",
+    //       pointBackgroundColor: "#00ABFF"
+    //     }
+    //   ]
+    // },
+    // detailChartData: {
+    //   labels: ["4月", "7月", "11月", "1月"],
+    //   datasets: [
+    //     {
+    //       data: [3, 3, 3, 4],
+    //       lineTension: 0,
+    //       backgroundColor: "rgba(229, 247, 255, 0.6)",
+    //       borderColor: "#00ABFF",
+    //       pointBackgroundColor: "#00ABFF"
+    //     }
+    //   ]
+    // },
+    // details: {
+    //   intro: {
+    //     title: "自己理解",
+    //     text:
+    //       "自分の感情や思考を理解し、自分の他者に対する態度や行動にどのように影響しているかを理解する"
+    //   },
+    //   data: [
+    //     {
+    //       label: "selfAwareness",
+    //       value: "自己理解",
+    //       text:
+    //         "自分の感情や思考を理解し、自分の他者に対する態度や行動にどのように影響しているかを理解する"
+    //     },
+    //     {
+    //       label: "selfManagement",
+    //       value: "セルフマネジメント",
+    //       text:
+    //         "難しい環境に遭っても、自分自身の感情や思考、態度をコントロールする"
+    //     },
+    //     {
+    //       label: "socialAwareness",
+    //       value: "社会や他者への理解",
+    //       text: "多様なバックグラウンドや文化を持つ他者に対して共感する力"
+    //     },
+    //     {
+    //       label: "relationship",
+    //       value: "対人関係スキル",
+    //       text:
+    //         "多様な人々と関わるグループにおいて、他者と適切に関係を構築・維持する力"
+    //     },
+    //     {
+    //       label: "responsibleDecision",
+    //       value: "責任ある意思決定",
+    //       text: "人が良く生きるために自らの責任で意思決定する力のこと"
+    //     }
+    //   ]
+    // },
+    // selectDetail: 0,
+    // contentKey: 0,
+    options: {
+      legend: {
+        labels: {
+          filter: (items) => {
+            return (items.text = "");
+          },
         },
-        tooltips: {
-          mode: "index",
-          intersect: true
-        },
-        scales: {
-          xAxes: [
-            {
-              display: true, // Y軸の表示
-              ticks: {
-                min: 0, // Y軸の最小値
-                max: 5, // Y軸の最大値
-                fontSize: 12, // Y軸のフォントサイズ
-                fontColor: "#7BA0A6",
-                stepSize: 1 // Y軸の間隔
-              },
-              gridLines: {
-                color: "#E1EBEB"
-              }
-            }
-          ],
-          yAxes: [
-            {
-              position: "right",
-              ticks: {
-                min: 0,
-                max: 5,
-                fontSize: 12,
-                fontColor: "#7BA0A6",
-                stepSize: 1
-              },
-              gridLines: {
-                color: "#E1EBEB"
-              }
-            }
-          ]
-        }
-      }
-    });
-
-    function selectDetailData(label, index) {
-      console.log(label, index, 'student-conclusions-graph is emit event')
-      emit("handleDetailData", {
+      },
+      tooltips: {
+        mode: "index",
+        intersect: true,
+      },
+      scales: {
+        xAxes: [
+          {
+            display: true, // Y軸の表示
+            ticks: {
+              min: 0, // Y軸の最小値
+              max: 5, // Y軸の最大値
+              fontSize: 12, // Y軸のフォントサイズ
+              fontColor: "#7BA0A6",
+              stepSize: 1, // Y軸の間隔
+            },
+            gridLines: {
+              color: "#E1EBEB",
+            },
+          },
+        ],
+        yAxes: [
+          {
+            position: "right",
+            ticks: {
+              min: 0,
+              max: 5,
+              fontSize: 12,
+              fontColor: "#7BA0A6",
+              stepSize: 1,
+            },
+            gridLines: {
+              color: "#E1EBEB",
+            },
+          },
+        ],
+      },
+    },
+  }),
+  methods: {
+    selectDetailData(label, index) {
+      this.$emit("handleDetailData", {
         label,
         index,
-        key: props.contentKey,
-        category: props.myData.label
+        key: this.contentKey,
+        category: this.myData.label,
       });
-    }
-
-    console.log(state, 'student-conclusions-graph is state');
-
-    return {
-      myData: props.myData,
-      myLabels: props.myLabels,
-      summaryChartData: props.summaryChartData,
-      detailChartData: props.detailChartData,
-      details: props.details,
-      selectDetail: props.selectDetail,
-      contentKey: props.contentKey,
-      options: state.options,
-      selectDetailData
-    };
-  }
-});
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

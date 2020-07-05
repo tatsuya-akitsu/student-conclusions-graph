@@ -16,36 +16,25 @@
 </template>
 
 <script>
-import { defineComponent, reactive, computed } from "@vue/composition-api";
 import IconDeviation from "@/IconDeviation";
 import IconGrit from "@/IconGrit";
 import IconMotivation from "@/IconMotivation";
 import IconSelEq from "@/IconSelEq";
 
-export default defineComponent({
+export default {
   components: {
     IconDeviation,
     IconGrit,
     IconMotivation,
     IconSelEq
   },
-
   props: {
-    label: { type: String, required: true, default: "" },
-    width: { type: String, required: true, default: "5rem" },
-    height: { type: String, required: true, default: "5rem" },
-    imgWidth: { type: String, require: true, default: "auto" }
-  },
-
-  setup(props) {
-    return {
-      label: props.label,
-      width: props.width,
-      height: props.height,
-      imgWidth: props.imgWidth
-    };
+    label: { type: String, required: true, default: '' },
+    width: { type: String, required: true, default: '5rem' },
+    height: { type: String, required: true, default: '5rem' },
+    imgWidth: { type: String, require: true, default: 'auto' }
   }
-});
+}
 </script>
 
 <style lang="scss" scoped>

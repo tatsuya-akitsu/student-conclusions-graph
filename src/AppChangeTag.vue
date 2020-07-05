@@ -11,48 +11,40 @@
       <template v-else>
         <span>-</span>
       </template>
-      <span class="m-survey_change_value">{{ change }}</span>
+      <span class="m-survey_change_value">{{ change | removeMinus }}</span>
     </p>
   </div>
 </template>
 
 <script>
-import { defineComponent, reactive, computed } from "@vue/composition-api";
 import IconTriangleDown from "@/IconTriangleDown";
 import IconTriangleUp from "@/IconTriangleUp";
 
-export default defineComponent({
-  components: {
-    IconTriangleDown,
-    IconTriangleUp
+export default {
+  filters: {
+    removeMinus: (num) => {
+      if (String(num).includes('-')) {
+        return Number(String(num).replace('-', ''))
+      } else {
+        return num
+      }
+    }
   },
-
   props: {
     change: { type: Number, required: true, default: 0 }
   },
-
-  setup(props) {
-    const state = reactive({
-      value: String(props.change).includes("-")
-        ? Number(String(props.change).replace("-", ""))
-        : props.change,
-      changeType: computed(() => {
-        if (props.change === 0 || props.change === 0.0) {
-          return "is-normal";
-        } else if (String(props.change).includes("-")) {
-          return "is-down";
-        } else {
-          return "is-up";
-        }
-      })
-    });
-
-    return {
-      value: state.value,
-      changeType: state.changeType
-    };
+  computed: {
+    changeType() {
+      if (this.change === 0 || this.change === 0.0) {
+        return 'is-normal'
+      } else if (String(this.change).includes('-')) {
+        return 'is-down'
+      } else {
+        return 'is-up'
+      }
+    }
   }
-});
+}
 </script>
 
 <style lang="scss" scoped>

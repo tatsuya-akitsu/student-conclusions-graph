@@ -1,4 +1,3 @@
-import { defineComponent, reactive, computed } from '@vue/composition-api';
 import { Line, mixins } from 'vue-chartjs';
 
 function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier /* server only */, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
@@ -76,111 +75,16 @@ function normalizeComponent(template, style, script, scopeId, isFunctionalTempla
     return script;
 }
 
-/* script */
-
-/* template */
-var __vue_render__ = function () {
-  var _vm = this;
-
-  var _h = _vm.$createElement;
-
-  var _c = _vm._self._c || _h;
-
-  return _c('svg', {
-    attrs: {
-      "width": "8",
-      "height": "7",
-      "viewBox": "0 0 8 7",
-      "fill": "none",
-      "xmlns": "http://www.w3.org/2000/svg"
-    }
-  }, [_c('path', {
-    attrs: {
-      "d": "M5.27483 5.92196C4.89408 6.60893 3.90631 6.60893 3.52556 5.92196L1.06622 1.48477C0.696799 0.818259 1.17881 -7.01252e-07 1.94086 -6.34631e-07L6.85953 -2.04627e-07C7.62158 -1.38007e-07 8.10359 0.81826 7.73417 1.48477L5.27483 5.92196Z",
-      "fill": "#FF0055"
-    }
-  })]);
-};
-
-var __vue_staticRenderFns__ = [];
-/* style */
-
-const __vue_inject_styles__ = undefined;
-/* scoped */
-
-const __vue_scope_id__ = undefined;
-/* module identifier */
-
-const __vue_module_identifier__ = undefined;
-/* functional template */
-
-const __vue_is_functional_template__ = false;
-/* style inject */
-
-/* style inject SSR */
-
-/* style inject shadow dom */
-
-const __vue_component__ = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__,
-  staticRenderFns: __vue_staticRenderFns__
-}, __vue_inject_styles__, {}, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);
-
-/* script */
-
-/* template */
-var __vue_render__$1 = function () {
-  var _vm = this;
-
-  var _h = _vm.$createElement;
-
-  var _c = _vm._self._c || _h;
-
-  return _c('svg', {
-    attrs: {
-      "width": "8",
-      "height": "7",
-      "viewBox": "0 0 8 7",
-      "fill": "none",
-      "xmlns": "http://www.w3.org/2000/svg"
-    }
-  }, [_c('path', {
-    attrs: {
-      "d": "M3.52546 1.07804C3.90621 0.391074 4.89398 0.391074 5.27474 1.07804L7.73407 5.51523C8.10349 6.18174 7.62148 7 6.85944 7H1.94076C1.17872 7 0.696701 6.18174 1.06612 5.51523L3.52546 1.07804Z",
-      "fill": "#00EB9D"
-    }
-  })]);
-};
-
-var __vue_staticRenderFns__$1 = [];
-/* style */
-
-const __vue_inject_styles__$1 = undefined;
-/* scoped */
-
-const __vue_scope_id__$1 = undefined;
-/* module identifier */
-
-const __vue_module_identifier__$1 = undefined;
-/* functional template */
-
-const __vue_is_functional_template__$1 = false;
-/* style inject */
-
-/* style inject SSR */
-
-/* style inject shadow dom */
-
-const __vue_component__$1 = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__$1,
-  staticRenderFns: __vue_staticRenderFns__$1
-}, __vue_inject_styles__$1, {}, __vue_scope_id__$1, __vue_is_functional_template__$1, __vue_module_identifier__$1, false, undefined, undefined, undefined);
-
 //
-var script = defineComponent({
-  components: {
-    IconTriangleDown: __vue_component__,
-    IconTriangleUp: __vue_component__$1
+var script = {
+  filters: {
+    removeMinus: num => {
+      if (String(num).includes('-')) {
+        return Number(String(num).replace('-', ''));
+      } else {
+        return num;
+      }
+    }
   },
   props: {
     change: {
@@ -189,27 +93,19 @@ var script = defineComponent({
       default: 0
     }
   },
+  computed: {
+    changeType() {
+      if (this.change === 0 || this.change === 0.0) {
+        return 'is-normal';
+      } else if (String(this.change).includes('-')) {
+        return 'is-down';
+      } else {
+        return 'is-up';
+      }
+    }
 
-  setup(props) {
-    const state = reactive({
-      value: String(props.change).includes("-") ? Number(String(props.change).replace("-", "")) : props.change,
-      changeType: computed(() => {
-        if (props.change === 0 || props.change === 0.0) {
-          return "is-normal";
-        } else if (String(props.change).includes("-")) {
-          return "is-down";
-        } else {
-          return "is-up";
-        }
-      })
-    });
-    return {
-      value: state.value,
-      changeType: state.changeType
-    };
   }
-
-});
+};
 
 const isOldIE = typeof navigator !== 'undefined' &&
     /msie [6-9]\\b/.test(navigator.userAgent.toLowerCase());
@@ -268,7 +164,7 @@ function addStyle(id, css) {
 const __vue_script__ = script;
 /* template */
 
-var __vue_render__$2 = function () {
+var __vue_render__ = function () {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -282,16 +178,16 @@ var __vue_render__$2 = function () {
     staticClass: "m-survey_change_result"
   }, [_vm.changeType === 'is-down' ? [_c('icon-triangle-down')] : _vm.changeType === 'is-up' ? [_c('icon-triangle-up')] : [_c('span', [_vm._v("-")])], _vm._v(" "), _c('span', {
     staticClass: "m-survey_change_value"
-  }, [_vm._v(_vm._s(_vm.change))])], 2)], 2);
+  }, [_vm._v(_vm._s(_vm._f("removeMinus")(_vm.change)))])], 2)], 2);
 };
 
-var __vue_staticRenderFns__$2 = [];
+var __vue_staticRenderFns__ = [];
 /* style */
 
-const __vue_inject_styles__$2 = function (inject) {
+const __vue_inject_styles__ = function (inject) {
   if (!inject) return;
-  inject("data-v-61366233_0", {
-    source: ".m-survey_change_tag[data-v-61366233]{display:inline-block;padding:.5rem 1rem;font-size:0;text-align:center;border-radius:5px}.m-survey_change_tag.is-down[data-v-61366233]{background:#ffebf2}.m-survey_change_tag.is-down .m-survey_change_result>span[data-v-61366233]{color:#f05}.m-survey_change_tag.is-up[data-v-61366233]{background:#ebfff8}.m-survey_change_tag.is-up .m-survey_change_result>span[data-v-61366233]{color:#00eb9d}.m-survey_change_tag.is-normal[data-v-61366233]{background:#f9fbfb}.m-survey_change_tag.is-normal .m-survey_change_result>span[data-v-61366233]{color:#7ba0a6}.m-survey_change_tag.is-normal .m-survey_change_result>span[data-v-61366233]:nth-child(1){padding-left:0;padding-right:1rem}.m-survey_change_tag.is-normal .m-survey_change_result>span[data-v-61366233]:nth-child(2){padding:0}.m-survey_change_result[data-v-61366233]{display:inline-block;vertical-align:middle;font-size:0}.m-survey_change_result span[data-v-61366233],.m-survey_change_result svg[data-v-61366233]{display:inline-block;vertical-align:middle}.m-survey_change_result svg[data-v-61366233]{width:3rem}.m-survey_change_result span[data-v-61366233]{padding-left:.28rem;font-size:1.4rem;font-weight:700;line-height:1}",
+  inject("data-v-210cfd60_0", {
+    source: ".m-survey_change_tag[data-v-210cfd60]{display:inline-block;padding:.5rem 1rem;font-size:0;text-align:center;border-radius:5px}.m-survey_change_tag.is-down[data-v-210cfd60]{background:#ffebf2}.m-survey_change_tag.is-down .m-survey_change_result>span[data-v-210cfd60]{color:#f05}.m-survey_change_tag.is-up[data-v-210cfd60]{background:#ebfff8}.m-survey_change_tag.is-up .m-survey_change_result>span[data-v-210cfd60]{color:#00eb9d}.m-survey_change_tag.is-normal[data-v-210cfd60]{background:#f9fbfb}.m-survey_change_tag.is-normal .m-survey_change_result>span[data-v-210cfd60]{color:#7ba0a6}.m-survey_change_tag.is-normal .m-survey_change_result>span[data-v-210cfd60]:nth-child(1){padding-left:0;padding-right:1rem}.m-survey_change_tag.is-normal .m-survey_change_result>span[data-v-210cfd60]:nth-child(2){padding:0}.m-survey_change_result[data-v-210cfd60]{display:inline-block;vertical-align:middle;font-size:0}.m-survey_change_result span[data-v-210cfd60],.m-survey_change_result svg[data-v-210cfd60]{display:inline-block;vertical-align:middle}.m-survey_change_result svg[data-v-210cfd60]{width:3rem}.m-survey_change_result span[data-v-210cfd60]{padding-left:.28rem;font-size:1.4rem;font-weight:700;line-height:1}",
     map: undefined,
     media: undefined
   });
@@ -299,26 +195,26 @@ const __vue_inject_styles__$2 = function (inject) {
 /* scoped */
 
 
-const __vue_scope_id__$2 = "data-v-61366233";
+const __vue_scope_id__ = "data-v-210cfd60";
 /* module identifier */
 
-const __vue_module_identifier__$2 = undefined;
+const __vue_module_identifier__ = undefined;
 /* functional template */
 
-const __vue_is_functional_template__$2 = false;
+const __vue_is_functional_template__ = false;
 /* style inject SSR */
 
 /* style inject shadow dom */
 
-const __vue_component__$2 = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__$2,
-  staticRenderFns: __vue_staticRenderFns__$2
-}, __vue_inject_styles__$2, __vue_script__, __vue_scope_id__$2, __vue_is_functional_template__$2, __vue_module_identifier__$2, false, createInjector, undefined, undefined);
+const __vue_component__ = /*#__PURE__*/normalizeComponent({
+  render: __vue_render__,
+  staticRenderFns: __vue_staticRenderFns__
+}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, createInjector, undefined, undefined);
 
 /* script */
 
 /* template */
-var __vue_render__$3 = function () {
+var __vue_render__$1 = function () {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -352,6 +248,110 @@ var __vue_render__$3 = function () {
     attrs: {
       "d": "M28.6305 22.2987C28.5715 22.2987 28.5151 22.2936 28.4561 22.2836L13.2817 19.7236C13.0792 19.6884 12.8946 19.5979 12.7459 19.4571C8.43638 15.4034 1.97078 17.5585 1.90669 17.5811C1.37344 17.7647 0.788923 17.4881 0.599211 16.965C0.412062 16.4419 0.688942 15.8686 1.22219 15.6825C1.52983 15.5744 8.71581 13.1527 13.9303 17.7898L28.0306 20.1687L33.3399 9.05125C33.5809 8.54831 34.1911 8.33205 34.7038 8.56843C35.2166 8.80481 35.437 9.40331 35.196 9.90625L29.5534 21.7178C29.3868 22.0774 29.0227 22.2987 28.6305 22.2987Z",
       "fill": "#015593"
+    }
+  })]);
+};
+
+var __vue_staticRenderFns__$1 = [];
+/* style */
+
+const __vue_inject_styles__$1 = undefined;
+/* scoped */
+
+const __vue_scope_id__$1 = undefined;
+/* module identifier */
+
+const __vue_module_identifier__$1 = undefined;
+/* functional template */
+
+const __vue_is_functional_template__$1 = false;
+/* style inject */
+
+/* style inject SSR */
+
+/* style inject shadow dom */
+
+const __vue_component__$1 = /*#__PURE__*/normalizeComponent({
+  render: __vue_render__$1,
+  staticRenderFns: __vue_staticRenderFns__$1
+}, __vue_inject_styles__$1, {}, __vue_scope_id__$1, __vue_is_functional_template__$1, __vue_module_identifier__$1, false, undefined, undefined, undefined);
+
+/* script */
+
+/* template */
+var __vue_render__$2 = function () {
+  var _vm = this;
+
+  var _h = _vm.$createElement;
+
+  var _c = _vm._self._c || _h;
+
+  return _c('svg', {
+    attrs: {
+      "width": "30",
+      "height": "30",
+      "viewBox": "0 0 30 30",
+      "fill": "none",
+      "xmlns": "http://www.w3.org/2000/svg"
+    }
+  }, [_c('path', {
+    attrs: {
+      "fill-rule": "evenodd",
+      "clip-rule": "evenodd",
+      "d": "M15.9247 17.2832C16.8677 17.7186 18.726 18.0097 20.549 18.0097C22.186 18.0097 24.497 17.7841 26.2195 16.7089C26.5338 16.5122 26.7425 16.1817 26.7903 15.7988C26.8355 15.4159 26.7148 15.0409 26.4558 14.7655C25.9554 14.2384 25.3268 13.4306 24.5825 12.3659L24.6156 12.3327C24.8512 12.097 25.0893 11.8588 25.3343 11.6158L25.3599 11.5903C26.5062 10.4495 27.6926 9.26883 28.983 7.89173C29.3778 7.47212 29.4381 6.83483 29.1314 6.34179C28.9101 5.98774 28.5354 5.77531 28.128 5.77531C27.9872 5.77531 27.8464 5.80153 27.7131 5.85399C26.7978 6.20803 25.8523 6.38112 24.8188 6.38112C22.4853 6.38112 20.0914 5.49469 17.534 4.54531C16.7344 4.24896 15.9121 3.94474 15.0848 3.66937C15.0044 3.26025 14.9817 3.14748 14.9717 3.10027C14.6375 1.60378 12.9522 1.25444 12.1419 1.08646L12.1402 1.08612L12.0698 1.07039C11.0564 0.860582 10.1286 0.758301 9.23588 0.758301C7.92829 0.758301 6.71877 0.981221 5.53188 1.44017C4.97867 1.6526 4.66183 2.24793 4.7775 2.85112L7.30216 16.048C7.3776 16.444 7.63408 16.7797 7.98864 16.9423C8.14455 17.0131 8.30548 17.0498 8.47396 17.0498C8.69021 17.0498 8.90144 16.9895 9.08752 16.8741C10.3524 16.0873 11.6776 15.7359 13.3824 15.7359C13.6113 15.7359 13.8552 15.7438 14.1016 15.7569C14.3355 15.77 14.5844 15.7883 14.851 15.8146L14.9113 16.1267C15.0069 16.6276 15.3489 17.0183 15.9247 17.2832ZM20.5692 15.5261C19.0302 15.5261 17.7428 15.3032 17.1518 15.1143L17.016 14.4298C16.9129 13.9001 16.498 13.4988 15.9825 13.4359C15.291 13.3493 14.7303 13.2969 14.2198 13.2707C13.8954 13.2523 13.6012 13.2444 13.3171 13.2444C11.8561 13.2444 10.5485 13.4857 9.33646 13.9814L7.3273 3.47268C7.93835 3.32581 8.567 3.25238 9.2384 3.25238C9.97517 3.25238 10.7472 3.33893 11.6021 3.51726L11.675 3.533C12.2811 3.65626 12.5577 3.76378 12.6733 3.81886C12.706 3.97621 12.7664 4.28306 12.882 4.88887C12.9675 5.34258 13.2869 5.70712 13.7119 5.83825C14.7177 6.15034 15.7537 6.53324 16.7621 6.90827L16.7678 6.91038C19.3133 7.85385 21.9416 8.82803 24.6353 8.87258C24.3159 9.19254 23.9991 9.50725 23.6847 9.81933L23.6395 9.86392C23.1366 10.3622 22.6512 10.8448 22.181 11.3221C21.7611 11.7496 21.6982 12.4262 22.0352 12.9297C22.6236 13.8057 23.1441 14.54 23.6168 15.1563C22.5607 15.4553 21.4116 15.5261 20.5692 15.5261ZM5.39244 28.4591C5.51688 29.0775 5.97802 29.5107 6.51479 29.5107C6.60995 29.5107 6.70754 29.495 6.80026 29.4637C7.40291 29.281 7.75914 28.5713 7.61518 27.8485L2.6744 3.24755C2.54996 2.62914 2.08883 2.19598 1.55205 2.19598C1.45689 2.19598 1.3593 2.21164 1.26658 2.24034C0.666368 2.423 0.307703 3.13274 0.451657 3.85553L5.39244 28.4591Z",
+      "fill": "#BF6BE6"
+    }
+  })]);
+};
+
+var __vue_staticRenderFns__$2 = [];
+/* style */
+
+const __vue_inject_styles__$2 = undefined;
+/* scoped */
+
+const __vue_scope_id__$2 = undefined;
+/* module identifier */
+
+const __vue_module_identifier__$2 = undefined;
+/* functional template */
+
+const __vue_is_functional_template__$2 = false;
+/* style inject */
+
+/* style inject SSR */
+
+/* style inject shadow dom */
+
+const __vue_component__$2 = /*#__PURE__*/normalizeComponent({
+  render: __vue_render__$2,
+  staticRenderFns: __vue_staticRenderFns__$2
+}, __vue_inject_styles__$2, {}, __vue_scope_id__$2, __vue_is_functional_template__$2, __vue_module_identifier__$2, false, undefined, undefined, undefined);
+
+/* script */
+
+/* template */
+var __vue_render__$3 = function () {
+  var _vm = this;
+
+  var _h = _vm.$createElement;
+
+  var _c = _vm._self._c || _h;
+
+  return _c('svg', {
+    attrs: {
+      "width": "30",
+      "height": "34",
+      "viewBox": "0 0 30 34",
+      "fill": "none",
+      "xmlns": "http://www.w3.org/2000/svg"
+    }
+  }, [_c('path', {
+    attrs: {
+      "fill-rule": "evenodd",
+      "clip-rule": "evenodd",
+      "d": "M13.0514 32.1477C10.3986 32.4415 7.83188 32.1431 5.42682 31.2601C5.12879 31.1521 4.89554 30.9305 4.76433 30.6417C4.63577 30.3526 4.63066 30.0206 4.74758 29.7283C4.90875 29.3299 5.27586 29.0525 5.70611 29.0048C5.88824 28.9846 6.07508 29.0065 6.24785 29.0699C8.30443 29.8239 10.5054 30.0777 12.7913 29.8245C14.119 29.6774 15.4994 29.3569 16.8904 28.8676C20.0583 27.7564 22.3818 26.1092 23.1487 25.5655L23.1505 25.5642L23.219 25.5164L23.2191 25.5163C23.3084 25.4539 23.3636 25.4153 23.4059 25.3869C23.8915 25.0697 24.7431 24.704 25.9352 24.3006C26.5713 24.0865 26.9312 23.4107 26.7345 22.7992L26.7344 22.7991L26.7264 22.7765C26.7174 22.7509 26.7084 22.7257 26.6995 22.702L26.681 22.6562L21.8595 8.83044L20.6336 5.78138C20.5006 5.45288 20.2339 5.19506 19.8975 5.078L15.5608 3.55481C15.5192 3.5408 15.4784 3.53467 15.4335 3.53964C15.3411 3.54987 15.2587 3.60157 15.2116 3.68129L13.753 6.97978L15.9024 8.03748L16.3489 7.61021L16.1522 7.07059C15.9876 6.76955 15.9637 6.413 16.0853 6.09089C16.2072 5.77141 16.4675 5.51908 16.7942 5.40574C16.8766 5.37798 16.9599 5.35812 17.0444 5.34876C17.5169 5.29643 17.9909 5.54459 18.2228 5.96856L18.6276 6.8869C18.8387 7.27093 18.8909 7.70803 18.7973 8.11362L19.1022 7.73621C19.2863 7.56681 19.518 7.464 19.7661 7.43652C20.1383 7.3953 20.5094 7.53513 20.7617 7.80784C20.9744 8.03704 21.0828 8.33634 21.0697 8.64909C21.0566 8.96184 20.9206 9.25096 20.6901 9.46007L20.4177 9.79729C21.2955 11.5948 20.9285 13.2644 20.5715 14.8889L20.5711 14.8904C20.2218 16.4723 19.8947 17.9666 20.5328 19.8701C20.5463 19.9105 20.5577 19.9513 20.5667 19.9922C20.84 20.0879 21.077 20.1765 21.2757 20.2508L21.337 20.2733L21.3499 20.2781C21.4756 20.3255 21.5854 20.3667 21.6685 20.3936C22.2681 20.5932 22.5941 21.2382 22.3964 21.8349C22.2625 22.2381 21.9183 22.529 21.4986 22.5995L21.4695 22.6027C21.4751 22.6047 21.4566 22.6068 21.4382 22.6088C21.2745 22.6269 21.1041 22.6086 20.9486 22.5566C20.8292 22.5166 20.6817 22.4638 20.4975 22.3937C19.2646 21.9316 16.3808 20.8541 12.4505 21.2894C9.92968 21.5686 7.37478 22.4263 4.86056 23.8382C4.72479 23.9144 4.57787 23.9626 4.42477 23.9796C4.2796 23.9957 4.13382 23.9825 3.99068 23.9452C3.69559 23.8635 3.45238 23.6722 3.29977 23.4071C2.98985 22.8587 3.18464 22.164 3.73505 21.8529C6.53108 20.2848 9.38246 19.3304 12.2094 19.0173C14.4664 18.7673 16.4122 18.9559 17.9619 19.2697C17.6211 17.3743 17.9658 15.8031 18.278 14.3861L18.2783 14.3848L18.2783 14.3848C18.6246 12.8114 18.8499 11.7881 18.2269 10.6623C17.8627 10.6311 17.5047 10.5273 17.1829 10.3567L16.9447 10.2261C16.7213 10.3653 16.4662 10.4548 16.203 10.4839C15.8704 10.5208 15.5352 10.4621 15.2354 10.3144L12.6336 9.03541C11.545 8.50145 11.0776 7.21489 11.5659 6.10985L13.0778 2.69104C13.1033 2.63235 13.1343 2.57569 13.1686 2.524C13.6265 1.8161 14.3769 1.35784 15.2268 1.2637C15.6676 1.21488 16.1035 1.26505 16.5291 1.4148L20.6739 2.87145C21.6475 3.21327 22.4282 3.95694 22.8105 4.91236L24.0601 8.03063L28.8808 21.8485C28.9104 21.9223 28.9412 22.0067 28.9665 22.0891C29.5496 23.9082 28.5241 25.895 26.6857 26.5163C25.7381 26.8368 24.9897 27.1458 24.6886 27.3441C24.6638 27.3601 24.6267 27.3869 24.5789 27.4213L24.5788 27.4214L24.5787 27.4214L24.5153 27.4671L24.5034 27.4755C23.6547 28.0768 21.1348 29.8622 17.6666 31.0752C16.4581 31.499 15.2454 31.8143 14.0673 32.0086C13.7263 32.065 13.384 32.1109 13.0514 32.1477Z",
+      "fill": "#00C09E"
     }
   })]);
 };
@@ -393,17 +393,22 @@ var __vue_render__$4 = function () {
   return _c('svg', {
     attrs: {
       "width": "30",
-      "height": "30",
-      "viewBox": "0 0 30 30",
+      "height": "31",
+      "viewBox": "0 0 30 31",
       "fill": "none",
       "xmlns": "http://www.w3.org/2000/svg"
     }
   }, [_c('path', {
     attrs: {
+      "d": "M17.6911 30.2583C17.3882 30.2559 17.1064 30.136 16.8975 29.9178L11.5624 24.4154C9.79892 22.5957 9.81536 19.6515 11.5953 17.8509C12.45 16.9878 13.5865 16.5107 14.7935 16.5107C15.8924 16.5107 16.928 16.9039 17.7498 17.6232C18.5717 16.9015 19.6096 16.5083 20.7062 16.5083H20.7297C21.9437 16.5155 23.0826 17.0022 23.9373 17.8845C24.7897 18.7644 25.257 19.932 25.2499 21.1739C25.2429 22.4159 24.7662 23.5787 23.9044 24.449L18.4825 29.9274C18.2711 30.1408 17.9917 30.2583 17.6935 30.2583H17.6911ZM14.7935 18.8028C14.183 18.8028 13.6077 19.0425 13.1733 19.4813C12.2716 20.3923 12.2645 21.8836 13.1568 22.8043L17.7029 27.4939L22.3264 22.8211C22.7632 22.3799 23.0051 21.7925 23.0074 21.162C23.0098 20.5338 22.7749 19.9416 22.3429 19.4957C21.9108 19.0497 21.3332 18.8028 20.7179 18.798C20.0957 18.798 19.5204 19.0401 19.086 19.4789L18.5318 20.0375C18.3205 20.2509 18.041 20.3684 17.7428 20.3684C17.4399 20.3684 17.1581 20.2485 16.9444 20.0279L16.4278 19.4933C15.9958 19.0497 15.4134 18.8028 14.7935 18.8028Z",
+      "fill": "#00ABFF"
+    }
+  }), _vm._v(" "), _c('path', {
+    attrs: {
       "fill-rule": "evenodd",
       "clip-rule": "evenodd",
-      "d": "M15.9247 17.2832C16.8677 17.7186 18.726 18.0097 20.549 18.0097C22.186 18.0097 24.497 17.7841 26.2195 16.7089C26.5338 16.5122 26.7425 16.1817 26.7903 15.7988C26.8355 15.4159 26.7148 15.0409 26.4558 14.7655C25.9554 14.2384 25.3268 13.4306 24.5825 12.3659L24.6156 12.3327C24.8512 12.097 25.0893 11.8588 25.3343 11.6158L25.3599 11.5903C26.5062 10.4495 27.6926 9.26883 28.983 7.89173C29.3778 7.47212 29.4381 6.83483 29.1314 6.34179C28.9101 5.98774 28.5354 5.77531 28.128 5.77531C27.9872 5.77531 27.8464 5.80153 27.7131 5.85399C26.7978 6.20803 25.8523 6.38112 24.8188 6.38112C22.4853 6.38112 20.0914 5.49469 17.534 4.54531C16.7344 4.24896 15.9121 3.94474 15.0848 3.66937C15.0044 3.26025 14.9817 3.14748 14.9717 3.10027C14.6375 1.60378 12.9522 1.25444 12.1419 1.08646L12.1402 1.08612L12.0698 1.07039C11.0564 0.860582 10.1286 0.758301 9.23588 0.758301C7.92829 0.758301 6.71877 0.981221 5.53188 1.44017C4.97867 1.6526 4.66183 2.24793 4.7775 2.85112L7.30216 16.048C7.3776 16.444 7.63408 16.7797 7.98864 16.9423C8.14455 17.0131 8.30548 17.0498 8.47396 17.0498C8.69021 17.0498 8.90144 16.9895 9.08752 16.8741C10.3524 16.0873 11.6776 15.7359 13.3824 15.7359C13.6113 15.7359 13.8552 15.7438 14.1016 15.7569C14.3355 15.77 14.5844 15.7883 14.851 15.8146L14.9113 16.1267C15.0069 16.6276 15.3489 17.0183 15.9247 17.2832ZM20.5692 15.5261C19.0302 15.5261 17.7428 15.3032 17.1518 15.1143L17.016 14.4298C16.9129 13.9001 16.498 13.4988 15.9825 13.4359C15.291 13.3493 14.7303 13.2969 14.2198 13.2707C13.8954 13.2523 13.6012 13.2444 13.3171 13.2444C11.8561 13.2444 10.5485 13.4857 9.33646 13.9814L7.3273 3.47268C7.93835 3.32581 8.567 3.25238 9.2384 3.25238C9.97517 3.25238 10.7472 3.33893 11.6021 3.51726L11.675 3.533C12.2811 3.65626 12.5577 3.76378 12.6733 3.81886C12.706 3.97621 12.7664 4.28306 12.882 4.88887C12.9675 5.34258 13.2869 5.70712 13.7119 5.83825C14.7177 6.15034 15.7537 6.53324 16.7621 6.90827L16.7678 6.91038C19.3133 7.85385 21.9416 8.82803 24.6353 8.87258C24.3159 9.19254 23.9991 9.50725 23.6847 9.81933L23.6395 9.86392C23.1366 10.3622 22.6512 10.8448 22.181 11.3221C21.7611 11.7496 21.6982 12.4262 22.0352 12.9297C22.6236 13.8057 23.1441 14.54 23.6168 15.1563C22.5607 15.4553 21.4116 15.5261 20.5692 15.5261ZM5.39244 28.4591C5.51688 29.0775 5.97802 29.5107 6.51479 29.5107C6.60995 29.5107 6.70754 29.495 6.80026 29.4637C7.40291 29.281 7.75914 28.5713 7.61518 27.8485L2.6744 3.24755C2.54996 2.62914 2.08883 2.19598 1.55205 2.19598C1.45689 2.19598 1.3593 2.21164 1.26658 2.24034C0.666368 2.423 0.307703 3.13274 0.451657 3.85553L5.39244 28.4591Z",
-      "fill": "#BF6BE6"
+      "d": "M9.85287 12.5594C10.6387 12.904 11.5064 13.0953 12.4181 13.0953C13.1507 13.0953 13.8551 12.9716 14.5115 12.7439L18.7959 14.4187C19.1047 14.5394 19.4038 14.6915 19.6812 14.8726L19.8597 14.9886L20.0648 14.9354C21.0692 14.4676 22.8819 14.7222 22.887 14.7253L22.243 14.0371C21.5097 13.2547 20.6316 12.6607 19.6354 12.2695L16.9449 11.2178C18.1086 10.0554 18.8298 8.44898 18.8298 6.67679C18.8298 3.13672 15.9544 0.258301 12.4181 0.258301C8.88178 0.258301 6.00642 3.13672 6.00642 6.67679C6.00642 8.31595 6.62288 9.81325 7.63599 10.9486L4.74482 12.0788C2.24094 13.0592 0.518619 15.3315 0.255688 18.0119C0.19297 18.6445 0.656115 19.2096 1.29053 19.2724C1.32671 19.2748 1.36531 19.2772 1.40149 19.2772C1.99731 19.2772 2.4894 18.8305 2.54729 18.2413C2.7258 16.4302 3.88848 14.892 5.58186 14.2303L9.85287 12.5594ZM8.31249 6.67438C8.31249 4.40931 10.153 2.56442 12.4181 2.56442C14.6807 2.56442 16.5237 4.40931 16.5237 6.67438C16.5237 8.93944 14.6832 10.7843 12.4181 10.7843C10.1554 10.7843 8.31249 8.93944 8.31249 6.67438ZM24.1634 16.0652C24.2387 16.1117 24.3176 16.144 24.4018 16.1653C24.7807 16.2609 25.1837 16.0937 25.3829 15.7579L26.189 14.4073C26.44 13.985 26.3021 13.4372 25.8803 13.1863C25.8049 13.1398 25.726 13.1075 25.6418 13.0862C25.2653 12.9912 24.86 13.1578 24.6608 13.4936L23.8546 14.8442C23.6037 15.2665 23.7416 15.8143 24.1634 16.0652ZM25.7732 17.8091C25.8492 17.8532 25.9281 17.8856 26.0123 17.9068C26.2578 17.9688 26.5183 17.9225 26.7305 17.7818L28.0685 16.8768C28.2643 16.7419 28.4 16.5395 28.4439 16.3065C28.4878 16.0736 28.4404 15.8374 28.3063 15.6392C28.1833 15.4563 27.9993 15.3276 27.7865 15.2739C27.5409 15.2119 27.2805 15.2582 27.0706 15.3995L25.7326 16.3045C25.5368 16.4394 25.4011 16.6418 25.3573 16.8748C25.311 17.1072 25.3602 17.3462 25.4925 17.5415C25.5642 17.6517 25.6587 17.7404 25.7732 17.8091ZM26.7242 20.0339C26.8001 20.0779 26.879 20.1103 26.9632 20.1316C27.0544 20.1546 27.1521 20.1618 27.2504 20.1567L28.8164 20.034C29.3063 19.9958 29.673 19.5679 29.6351 19.0776C29.6044 18.6963 29.3367 18.3772 28.9648 18.2833C28.8713 18.2597 28.7742 18.2501 28.6776 18.2581L27.1116 18.3808C26.6224 18.4167 26.255 18.847 26.293 19.3372C26.3145 19.6266 26.4753 19.8864 26.7242 20.0339Z",
+      "fill": "#00ABFF"
     }
   })]);
 };
@@ -432,162 +437,43 @@ const __vue_component__$4 = /*#__PURE__*/normalizeComponent({
   staticRenderFns: __vue_staticRenderFns__$4
 }, __vue_inject_styles__$4, {}, __vue_scope_id__$4, __vue_is_functional_template__$4, __vue_module_identifier__$4, false, undefined, undefined, undefined);
 
-/* script */
-
-/* template */
-var __vue_render__$5 = function () {
-  var _vm = this;
-
-  var _h = _vm.$createElement;
-
-  var _c = _vm._self._c || _h;
-
-  return _c('svg', {
-    attrs: {
-      "width": "30",
-      "height": "34",
-      "viewBox": "0 0 30 34",
-      "fill": "none",
-      "xmlns": "http://www.w3.org/2000/svg"
-    }
-  }, [_c('path', {
-    attrs: {
-      "fill-rule": "evenodd",
-      "clip-rule": "evenodd",
-      "d": "M13.0514 32.1477C10.3986 32.4415 7.83188 32.1431 5.42682 31.2601C5.12879 31.1521 4.89554 30.9305 4.76433 30.6417C4.63577 30.3526 4.63066 30.0206 4.74758 29.7283C4.90875 29.3299 5.27586 29.0525 5.70611 29.0048C5.88824 28.9846 6.07508 29.0065 6.24785 29.0699C8.30443 29.8239 10.5054 30.0777 12.7913 29.8245C14.119 29.6774 15.4994 29.3569 16.8904 28.8676C20.0583 27.7564 22.3818 26.1092 23.1487 25.5655L23.1505 25.5642L23.219 25.5164L23.2191 25.5163C23.3084 25.4539 23.3636 25.4153 23.4059 25.3869C23.8915 25.0697 24.7431 24.704 25.9352 24.3006C26.5713 24.0865 26.9312 23.4107 26.7345 22.7992L26.7344 22.7991L26.7264 22.7765C26.7174 22.7509 26.7084 22.7257 26.6995 22.702L26.681 22.6562L21.8595 8.83044L20.6336 5.78138C20.5006 5.45288 20.2339 5.19506 19.8975 5.078L15.5608 3.55481C15.5192 3.5408 15.4784 3.53467 15.4335 3.53964C15.3411 3.54987 15.2587 3.60157 15.2116 3.68129L13.753 6.97978L15.9024 8.03748L16.3489 7.61021L16.1522 7.07059C15.9876 6.76955 15.9637 6.413 16.0853 6.09089C16.2072 5.77141 16.4675 5.51908 16.7942 5.40574C16.8766 5.37798 16.9599 5.35812 17.0444 5.34876C17.5169 5.29643 17.9909 5.54459 18.2228 5.96856L18.6276 6.8869C18.8387 7.27093 18.8909 7.70803 18.7973 8.11362L19.1022 7.73621C19.2863 7.56681 19.518 7.464 19.7661 7.43652C20.1383 7.3953 20.5094 7.53513 20.7617 7.80784C20.9744 8.03704 21.0828 8.33634 21.0697 8.64909C21.0566 8.96184 20.9206 9.25096 20.6901 9.46007L20.4177 9.79729C21.2955 11.5948 20.9285 13.2644 20.5715 14.8889L20.5711 14.8904C20.2218 16.4723 19.8947 17.9666 20.5328 19.8701C20.5463 19.9105 20.5577 19.9513 20.5667 19.9922C20.84 20.0879 21.077 20.1765 21.2757 20.2508L21.337 20.2733L21.3499 20.2781C21.4756 20.3255 21.5854 20.3667 21.6685 20.3936C22.2681 20.5932 22.5941 21.2382 22.3964 21.8349C22.2625 22.2381 21.9183 22.529 21.4986 22.5995L21.4695 22.6027C21.4751 22.6047 21.4566 22.6068 21.4382 22.6088C21.2745 22.6269 21.1041 22.6086 20.9486 22.5566C20.8292 22.5166 20.6817 22.4638 20.4975 22.3937C19.2646 21.9316 16.3808 20.8541 12.4505 21.2894C9.92968 21.5686 7.37478 22.4263 4.86056 23.8382C4.72479 23.9144 4.57787 23.9626 4.42477 23.9796C4.2796 23.9957 4.13382 23.9825 3.99068 23.9452C3.69559 23.8635 3.45238 23.6722 3.29977 23.4071C2.98985 22.8587 3.18464 22.164 3.73505 21.8529C6.53108 20.2848 9.38246 19.3304 12.2094 19.0173C14.4664 18.7673 16.4122 18.9559 17.9619 19.2697C17.6211 17.3743 17.9658 15.8031 18.278 14.3861L18.2783 14.3848L18.2783 14.3848C18.6246 12.8114 18.8499 11.7881 18.2269 10.6623C17.8627 10.6311 17.5047 10.5273 17.1829 10.3567L16.9447 10.2261C16.7213 10.3653 16.4662 10.4548 16.203 10.4839C15.8704 10.5208 15.5352 10.4621 15.2354 10.3144L12.6336 9.03541C11.545 8.50145 11.0776 7.21489 11.5659 6.10985L13.0778 2.69104C13.1033 2.63235 13.1343 2.57569 13.1686 2.524C13.6265 1.8161 14.3769 1.35784 15.2268 1.2637C15.6676 1.21488 16.1035 1.26505 16.5291 1.4148L20.6739 2.87145C21.6475 3.21327 22.4282 3.95694 22.8105 4.91236L24.0601 8.03063L28.8808 21.8485C28.9104 21.9223 28.9412 22.0067 28.9665 22.0891C29.5496 23.9082 28.5241 25.895 26.6857 26.5163C25.7381 26.8368 24.9897 27.1458 24.6886 27.3441C24.6638 27.3601 24.6267 27.3869 24.5789 27.4213L24.5788 27.4214L24.5787 27.4214L24.5153 27.4671L24.5034 27.4755C23.6547 28.0768 21.1348 29.8622 17.6666 31.0752C16.4581 31.499 15.2454 31.8143 14.0673 32.0086C13.7263 32.065 13.384 32.1109 13.0514 32.1477Z",
-      "fill": "#00C09E"
-    }
-  })]);
-};
-
-var __vue_staticRenderFns__$5 = [];
-/* style */
-
-const __vue_inject_styles__$5 = undefined;
-/* scoped */
-
-const __vue_scope_id__$5 = undefined;
-/* module identifier */
-
-const __vue_module_identifier__$5 = undefined;
-/* functional template */
-
-const __vue_is_functional_template__$5 = false;
-/* style inject */
-
-/* style inject SSR */
-
-/* style inject shadow dom */
-
-const __vue_component__$5 = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__$5,
-  staticRenderFns: __vue_staticRenderFns__$5
-}, __vue_inject_styles__$5, {}, __vue_scope_id__$5, __vue_is_functional_template__$5, __vue_module_identifier__$5, false, undefined, undefined, undefined);
-
-/* script */
-
-/* template */
-var __vue_render__$6 = function () {
-  var _vm = this;
-
-  var _h = _vm.$createElement;
-
-  var _c = _vm._self._c || _h;
-
-  return _c('svg', {
-    attrs: {
-      "width": "30",
-      "height": "31",
-      "viewBox": "0 0 30 31",
-      "fill": "none",
-      "xmlns": "http://www.w3.org/2000/svg"
-    }
-  }, [_c('path', {
-    attrs: {
-      "d": "M17.6911 30.2583C17.3882 30.2559 17.1064 30.136 16.8975 29.9178L11.5624 24.4154C9.79892 22.5957 9.81536 19.6515 11.5953 17.8509C12.45 16.9878 13.5865 16.5107 14.7935 16.5107C15.8924 16.5107 16.928 16.9039 17.7498 17.6232C18.5717 16.9015 19.6096 16.5083 20.7062 16.5083H20.7297C21.9437 16.5155 23.0826 17.0022 23.9373 17.8845C24.7897 18.7644 25.257 19.932 25.2499 21.1739C25.2429 22.4159 24.7662 23.5787 23.9044 24.449L18.4825 29.9274C18.2711 30.1408 17.9917 30.2583 17.6935 30.2583H17.6911ZM14.7935 18.8028C14.183 18.8028 13.6077 19.0425 13.1733 19.4813C12.2716 20.3923 12.2645 21.8836 13.1568 22.8043L17.7029 27.4939L22.3264 22.8211C22.7632 22.3799 23.0051 21.7925 23.0074 21.162C23.0098 20.5338 22.7749 19.9416 22.3429 19.4957C21.9108 19.0497 21.3332 18.8028 20.7179 18.798C20.0957 18.798 19.5204 19.0401 19.086 19.4789L18.5318 20.0375C18.3205 20.2509 18.041 20.3684 17.7428 20.3684C17.4399 20.3684 17.1581 20.2485 16.9444 20.0279L16.4278 19.4933C15.9958 19.0497 15.4134 18.8028 14.7935 18.8028Z",
-      "fill": "#00ABFF"
-    }
-  }), _vm._v(" "), _c('path', {
-    attrs: {
-      "fill-rule": "evenodd",
-      "clip-rule": "evenodd",
-      "d": "M9.85287 12.5594C10.6387 12.904 11.5064 13.0953 12.4181 13.0953C13.1507 13.0953 13.8551 12.9716 14.5115 12.7439L18.7959 14.4187C19.1047 14.5394 19.4038 14.6915 19.6812 14.8726L19.8597 14.9886L20.0648 14.9354C21.0692 14.4676 22.8819 14.7222 22.887 14.7253L22.243 14.0371C21.5097 13.2547 20.6316 12.6607 19.6354 12.2695L16.9449 11.2178C18.1086 10.0554 18.8298 8.44898 18.8298 6.67679C18.8298 3.13672 15.9544 0.258301 12.4181 0.258301C8.88178 0.258301 6.00642 3.13672 6.00642 6.67679C6.00642 8.31595 6.62288 9.81325 7.63599 10.9486L4.74482 12.0788C2.24094 13.0592 0.518619 15.3315 0.255688 18.0119C0.19297 18.6445 0.656115 19.2096 1.29053 19.2724C1.32671 19.2748 1.36531 19.2772 1.40149 19.2772C1.99731 19.2772 2.4894 18.8305 2.54729 18.2413C2.7258 16.4302 3.88848 14.892 5.58186 14.2303L9.85287 12.5594ZM8.31249 6.67438C8.31249 4.40931 10.153 2.56442 12.4181 2.56442C14.6807 2.56442 16.5237 4.40931 16.5237 6.67438C16.5237 8.93944 14.6832 10.7843 12.4181 10.7843C10.1554 10.7843 8.31249 8.93944 8.31249 6.67438ZM24.1634 16.0652C24.2387 16.1117 24.3176 16.144 24.4018 16.1653C24.7807 16.2609 25.1837 16.0937 25.3829 15.7579L26.189 14.4073C26.44 13.985 26.3021 13.4372 25.8803 13.1863C25.8049 13.1398 25.726 13.1075 25.6418 13.0862C25.2653 12.9912 24.86 13.1578 24.6608 13.4936L23.8546 14.8442C23.6037 15.2665 23.7416 15.8143 24.1634 16.0652ZM25.7732 17.8091C25.8492 17.8532 25.9281 17.8856 26.0123 17.9068C26.2578 17.9688 26.5183 17.9225 26.7305 17.7818L28.0685 16.8768C28.2643 16.7419 28.4 16.5395 28.4439 16.3065C28.4878 16.0736 28.4404 15.8374 28.3063 15.6392C28.1833 15.4563 27.9993 15.3276 27.7865 15.2739C27.5409 15.2119 27.2805 15.2582 27.0706 15.3995L25.7326 16.3045C25.5368 16.4394 25.4011 16.6418 25.3573 16.8748C25.311 17.1072 25.3602 17.3462 25.4925 17.5415C25.5642 17.6517 25.6587 17.7404 25.7732 17.8091ZM26.7242 20.0339C26.8001 20.0779 26.879 20.1103 26.9632 20.1316C27.0544 20.1546 27.1521 20.1618 27.2504 20.1567L28.8164 20.034C29.3063 19.9958 29.673 19.5679 29.6351 19.0776C29.6044 18.6963 29.3367 18.3772 28.9648 18.2833C28.8713 18.2597 28.7742 18.2501 28.6776 18.2581L27.1116 18.3808C26.6224 18.4167 26.255 18.847 26.293 19.3372C26.3145 19.6266 26.4753 19.8864 26.7242 20.0339Z",
-      "fill": "#00ABFF"
-    }
-  })]);
-};
-
-var __vue_staticRenderFns__$6 = [];
-/* style */
-
-const __vue_inject_styles__$6 = undefined;
-/* scoped */
-
-const __vue_scope_id__$6 = undefined;
-/* module identifier */
-
-const __vue_module_identifier__$6 = undefined;
-/* functional template */
-
-const __vue_is_functional_template__$6 = false;
-/* style inject */
-
-/* style inject SSR */
-
-/* style inject shadow dom */
-
-const __vue_component__$6 = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__$6,
-  staticRenderFns: __vue_staticRenderFns__$6
-}, __vue_inject_styles__$6, {}, __vue_scope_id__$6, __vue_is_functional_template__$6, __vue_module_identifier__$6, false, undefined, undefined, undefined);
-
 //
-var script$1 = defineComponent({
+var script$1 = {
   components: {
-    IconDeviation: __vue_component__$3,
-    IconGrit: __vue_component__$4,
-    IconMotivation: __vue_component__$5,
-    IconSelEq: __vue_component__$6
+    IconDeviation: __vue_component__$1,
+    IconGrit: __vue_component__$2,
+    IconMotivation: __vue_component__$3,
+    IconSelEq: __vue_component__$4
   },
   props: {
     label: {
       type: String,
       required: true,
-      default: ""
+      default: ''
     },
     width: {
       type: String,
       required: true,
-      default: "5rem"
+      default: '5rem'
     },
     height: {
       type: String,
       required: true,
-      default: "5rem"
+      default: '5rem'
     },
     imgWidth: {
       type: String,
       require: true,
-      default: "auto"
+      default: 'auto'
     }
-  },
-
-  setup(props) {
-    return {
-      label: props.label,
-      width: props.width,
-      height: props.height,
-      imgWidth: props.imgWidth
-    };
   }
-
-});
+};
 
 /* script */
 const __vue_script__$1 = script$1;
 /* template */
 
-var __vue_render__$7 = function () {
+var __vue_render__$5 = function () {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -620,13 +506,13 @@ var __vue_render__$7 = function () {
   })] : _vm._e()], 2);
 };
 
-var __vue_staticRenderFns__$7 = [];
+var __vue_staticRenderFns__$5 = [];
 /* style */
 
-const __vue_inject_styles__$7 = function (inject) {
+const __vue_inject_styles__$5 = function (inject) {
   if (!inject) return;
-  inject("data-v-1694c475_0", {
-    source: ".m-compilation_icon[data-v-1694c475]{position:relative;width:5rem;height:5rem;border-radius:50%}.m-compilation_icon.is-selEq[data-v-1694c475]{background:#e5f7ff}.m-compilation_icon.is-grit[data-v-1694c475]{background:#f9f0fc}.m-compilation_icon.is-motivation[data-v-1694c475]{background:#e5f9f5}.m-compilation_icon.is-deviation[data-v-1694c475]{background:#e6eef4}svg[data-v-1694c475]{display:block;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}",
+  inject("data-v-5cb967f0_0", {
+    source: ".m-compilation_icon[data-v-5cb967f0]{position:relative;width:5rem;height:5rem;border-radius:50%}.m-compilation_icon.is-selEq[data-v-5cb967f0]{background:#e5f7ff}.m-compilation_icon.is-grit[data-v-5cb967f0]{background:#f9f0fc}.m-compilation_icon.is-motivation[data-v-5cb967f0]{background:#e5f9f5}.m-compilation_icon.is-deviation[data-v-5cb967f0]{background:#e6eef4}svg[data-v-5cb967f0]{display:block;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}",
     map: undefined,
     media: undefined
   });
@@ -634,21 +520,21 @@ const __vue_inject_styles__$7 = function (inject) {
 /* scoped */
 
 
-const __vue_scope_id__$7 = "data-v-1694c475";
+const __vue_scope_id__$5 = "data-v-5cb967f0";
 /* module identifier */
 
-const __vue_module_identifier__$7 = undefined;
+const __vue_module_identifier__$5 = undefined;
 /* functional template */
 
-const __vue_is_functional_template__$7 = false;
+const __vue_is_functional_template__$5 = false;
 /* style inject SSR */
 
 /* style inject shadow dom */
 
-const __vue_component__$7 = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__$7,
-  staticRenderFns: __vue_staticRenderFns__$7
-}, __vue_inject_styles__$7, __vue_script__$1, __vue_scope_id__$7, __vue_is_functional_template__$7, __vue_module_identifier__$7, false, createInjector, undefined, undefined);
+const __vue_component__$5 = /*#__PURE__*/normalizeComponent({
+  render: __vue_render__$5,
+  staticRenderFns: __vue_staticRenderFns__$5
+}, __vue_inject_styles__$5, __vue_script__$1, __vue_scope_id__$5, __vue_is_functional_template__$5, __vue_module_identifier__$5, false, createInjector, undefined, undefined);
 
 var script$2 = {
   mixins: [Line, mixins.reactiveProp],
@@ -679,30 +565,30 @@ const __vue_script__$2 = script$2;
 
 /* style */
 
-const __vue_inject_styles__$8 = undefined;
+const __vue_inject_styles__$6 = undefined;
 /* scoped */
 
-const __vue_scope_id__$8 = undefined;
+const __vue_scope_id__$6 = undefined;
 /* module identifier */
 
-const __vue_module_identifier__$8 = undefined;
+const __vue_module_identifier__$6 = undefined;
 /* functional template */
 
-const __vue_is_functional_template__$8 = undefined;
+const __vue_is_functional_template__$6 = undefined;
 /* style inject */
 
 /* style inject SSR */
 
 /* style inject shadow dom */
 
-const __vue_component__$8 = /*#__PURE__*/normalizeComponent({}, __vue_inject_styles__$8, __vue_script__$2, __vue_scope_id__$8, __vue_is_functional_template__$8, __vue_module_identifier__$8, false, undefined, undefined, undefined);
+const __vue_component__$6 = /*#__PURE__*/normalizeComponent({}, __vue_inject_styles__$6, __vue_script__$2, __vue_scope_id__$6, __vue_is_functional_template__$6, __vue_module_identifier__$6, false, undefined, undefined, undefined);
 
 //
-var script$3 = defineComponent({
+var script$3 = {
   components: {
-    AppChangeTag: __vue_component__$2,
-    AppCompilationIcon: __vue_component__$7,
-    LineChart: __vue_component__$8
+    AppChangeTag: __vue_component__,
+    AppCompilationIcon: __vue_component__$5,
+    LineChart: __vue_component__$6
   },
   props: {
     myData: {
@@ -741,443 +627,425 @@ var script$3 = defineComponent({
       default: 0
     }
   },
-
-  setup(props, {
-    emit
-  }) {
-    const state = reactive({
-      // myData: {
-      //   category: "SEL・EQ",
-      //   label: "selEq",
-      //   color: "#00ABFF",
-      //   background: "rgba(229, 247, 255, 0.6)",
-      //   summary: {
-      //     value: 3,
-      //     change: 0,
-      //     created_at: "2020-04"
-      //   },
-      //   monthly: [
-      //     {
-      //       value: 3,
-      //       change: 0,
-      //       created_at: "2020-04"
-      //     },
-      //     {
-      //       value: 3,
-      //       change: 0,
-      //       created_at: "2020-07"
-      //     },
-      //     {
-      //       value: 3,
-      //       change: 0,
-      //       created_at: "2020-11"
-      //     },
-      //     {
-      //       value: 4,
-      //       change: 0,
-      //       created_at: "2021-01"
-      //     }
-      //   ],
-      //   selfAwareness: {
-      //     summary: {
-      //       value: 3,
-      //       change: 0,
-      //       created_at: "2020-04"
-      //     },
-      //     monthly: [
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-04"
-      //       },
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-07"
-      //       },
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-11"
-      //       },
-      //       {
-      //         value: 4,
-      //         change: 0,
-      //         created_at: "2021-01"
-      //       }
-      //     ]
-      //   },
-      //   selfManagement: {
-      //     summary: {
-      //       value: 3,
-      //       change: 0,
-      //       created_at: "2020-04"
-      //     },
-      //     monthly: [
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-04"
-      //       },
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-07"
-      //       },
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-11"
-      //       },
-      //       {
-      //         value: 4,
-      //         change: 0,
-      //         created_at: "2021-01"
-      //       }
-      //     ]
-      //   },
-      //   socialAwareness: {
-      //     summary: {
-      //       value: 3,
-      //       change: 0,
-      //       created_at: "2020-04"
-      //     },
-      //     monthly: [
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-04"
-      //       },
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-07"
-      //       },
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-11"
-      //       },
-      //       {
-      //         value: 4,
-      //         change: 0,
-      //         created_at: "2021-01"
-      //       }
-      //     ]
-      //   },
-      //   relationship: {
-      //     summary: {
-      //       value: 3,
-      //       change: 0,
-      //       created_at: "2020-04"
-      //     },
-      //     monthly: [
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-04"
-      //       },
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-07"
-      //       },
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-11"
-      //       },
-      //       {
-      //         value: 4,
-      //         change: 0,
-      //         created_at: "2021-01"
-      //       }
-      //     ]
-      //   },
-      //   responsibleDecision: {
-      //     summary: {
-      //       value: 3,
-      //       change: 0,
-      //       created_at: "2020-04"
-      //     },
-      //     monthly: [
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-04"
-      //       },
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-07"
-      //       },
-      //       {
-      //         value: 3,
-      //         change: 0,
-      //         created_at: "2020-11"
-      //       },
-      //       {
-      //         value: 4,
-      //         change: 0,
-      //         created_at: "2021-01"
-      //       }
-      //     ]
-      //   }
-      // },
-      // myLabels: {
-      //   dashboard: {
-      //     labels: {
-      //       title: "{class}のダッシュボード"
-      //     },
-      //     nav: [
-      //       {
-      //         label: "ホーム",
-      //         icon: "IconHome",
-      //         target: "/dashboard",
-      //         isCurrent: true
-      //       },
-      //       {
-      //         label: "生徒情報",
-      //         icon: "IconPeople",
-      //         target: "/students",
-      //         isCurrent: false
-      //       },
-      //       {
-      //         label: "コーチングプラン",
-      //         icon: "IconBook",
-      //         target: "/coaching",
-      //         isCurrent: false
-      //       }
-      //     ],
-      //     details: {
-      //       selEq: [
-      //         {
-      //           label: "selfAwareness",
-      //           value: "自己理解",
-      //           text:
-      //             "自分の感情や思考を理解し、自分の他者に対する態度や行動にどのように影響しているかを理解する"
-      //         },
-      //         {
-      //           label: "selfManagement",
-      //           value: "セルフマネジメント",
-      //           text:
-      //             "難しい環境に遭っても、自分自身の感情や思考、態度をコントロールする"
-      //         },
-      //         {
-      //           label: "socialAwareness",
-      //           value: "社会や他者への理解",
-      //           text: "多様なバックグラウンドや文化を持つ他者に対して共感する力"
-      //         },
-      //         {
-      //           label: "relationship",
-      //           value: "対人関係スキル",
-      //           text:
-      //             "多様な人々と関わるグループにおいて、他者と適切に関係を構築・維持する力"
-      //         },
-      //         {
-      //           label: "responsibleDecision",
-      //           value: "責任ある意思決定",
-      //           text: "人が良く生きるために自らの責任で意思決定する力のこと"
-      //         }
-      //       ],
-      //       grit: [
-      //         {
-      //           label: "courage",
-      //           value: "度胸",
-      //           text: "困難に挑み、逆境にたじろがない勇気"
-      //         },
-      //         {
-      //           label: "resilience",
-      //           value: "復元力",
-      //           text: "挫折から立ち直る力"
-      //         },
-      //         {
-      //           label: "spontaneity",
-      //           value: "自発性",
-      //           text: "率先して物事に取り組む力"
-      //         },
-      //         {
-      //           label: "obsession",
-      //           value: "執念",
-      //           text: "どんなことがあっても物事に集中しつづける能力"
-      //         }
-      //       ],
-      //       motivation: [
-      //         {
-      //           label: "home",
-      //           value: "家庭環境",
-      //           text: "生徒の家庭環境について知る事が可能"
-      //         },
-      //         {
-      //           label: "friendship",
-      //           value: "友人関係",
-      //           text: "生徒の友人関係についてどう感じているか知る事が可能"
-      //         },
-      //         {
-      //           label: "trust",
-      //           value: "教師への信頼度",
-      //           text: "生徒が教師に対してどう感じているかを知る事が可能"
-      //         },
-      //         {
-      //           label: "community",
-      //           value: "コミュニティへの満足度",
-      //           text: "部活動や社外活動などの満足度を知る事が可能"
-      //         }
-      //       ]
-      //     }
-      //   },
-      //   common: {
-      //     labels: {
-      //       selEq: "SEL/EQ",
-      //       motivation: "モチベーション",
-      //       motiva: "モチベ",
-      //       grit: "GRIT",
-      //       deviation: "模試"
-      //     }
-      //   }
-      // },
-      // summaryChartData: {
-      //   labels: ["4月", "7月", "11月", "1月"],
-      //   datasets: [
-      //     {
-      //       data: [3, 3, 3, 4],
-      //       lineTension: 0,
-      //       backgroundColor: "rgba(229, 247, 255, 0.6)",
-      //       borderColor: "#00ABFF",
-      //       pointBackgroundColor: "#00ABFF"
-      //     }
-      //   ]
-      // },
-      // detailChartData: {
-      //   labels: ["4月", "7月", "11月", "1月"],
-      //   datasets: [
-      //     {
-      //       data: [3, 3, 3, 4],
-      //       lineTension: 0,
-      //       backgroundColor: "rgba(229, 247, 255, 0.6)",
-      //       borderColor: "#00ABFF",
-      //       pointBackgroundColor: "#00ABFF"
-      //     }
-      //   ]
-      // },
-      // details: {
-      //   intro: {
-      //     title: "自己理解",
-      //     text:
-      //       "自分の感情や思考を理解し、自分の他者に対する態度や行動にどのように影響しているかを理解する"
-      //   },
-      //   data: [
-      //     {
-      //       label: "selfAwareness",
-      //       value: "自己理解",
-      //       text:
-      //         "自分の感情や思考を理解し、自分の他者に対する態度や行動にどのように影響しているかを理解する"
-      //     },
-      //     {
-      //       label: "selfManagement",
-      //       value: "セルフマネジメント",
-      //       text:
-      //         "難しい環境に遭っても、自分自身の感情や思考、態度をコントロールする"
-      //     },
-      //     {
-      //       label: "socialAwareness",
-      //       value: "社会や他者への理解",
-      //       text: "多様なバックグラウンドや文化を持つ他者に対して共感する力"
-      //     },
-      //     {
-      //       label: "relationship",
-      //       value: "対人関係スキル",
-      //       text:
-      //         "多様な人々と関わるグループにおいて、他者と適切に関係を構築・維持する力"
-      //     },
-      //     {
-      //       label: "responsibleDecision",
-      //       value: "責任ある意思決定",
-      //       text: "人が良く生きるために自らの責任で意思決定する力のこと"
-      //     }
-      //   ]
-      // },
-      // selectDetail: 0,
-      // contentKey: 0,
-      options: {
-        legend: {
-          labels: {
-            filter: items => {
-              return items.text = "";
-            }
+  data: () => ({
+    // myData: {
+    //   category: "SEL・EQ",
+    //   label: "selEq",
+    //   color: "#00ABFF",
+    //   background: "rgba(229, 247, 255, 0.6)",
+    //   summary: {
+    //     value: 3,
+    //     change: 0,
+    //     created_at: "2020-04"
+    //   },
+    //   monthly: [
+    //     {
+    //       value: 3,
+    //       change: 0,
+    //       created_at: "2020-04"
+    //     },
+    //     {
+    //       value: 3,
+    //       change: 0,
+    //       created_at: "2020-07"
+    //     },
+    //     {
+    //       value: 3,
+    //       change: 0,
+    //       created_at: "2020-11"
+    //     },
+    //     {
+    //       value: 4,
+    //       change: 0,
+    //       created_at: "2021-01"
+    //     }
+    //   ],
+    //   selfAwareness: {
+    //     summary: {
+    //       value: 3,
+    //       change: 0,
+    //       created_at: "2020-04"
+    //     },
+    //     monthly: [
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-04"
+    //       },
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-07"
+    //       },
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-11"
+    //       },
+    //       {
+    //         value: 4,
+    //         change: 0,
+    //         created_at: "2021-01"
+    //       }
+    //     ]
+    //   },
+    //   selfManagement: {
+    //     summary: {
+    //       value: 3,
+    //       change: 0,
+    //       created_at: "2020-04"
+    //     },
+    //     monthly: [
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-04"
+    //       },
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-07"
+    //       },
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-11"
+    //       },
+    //       {
+    //         value: 4,
+    //         change: 0,
+    //         created_at: "2021-01"
+    //       }
+    //     ]
+    //   },
+    //   socialAwareness: {
+    //     summary: {
+    //       value: 3,
+    //       change: 0,
+    //       created_at: "2020-04"
+    //     },
+    //     monthly: [
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-04"
+    //       },
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-07"
+    //       },
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-11"
+    //       },
+    //       {
+    //         value: 4,
+    //         change: 0,
+    //         created_at: "2021-01"
+    //       }
+    //     ]
+    //   },
+    //   relationship: {
+    //     summary: {
+    //       value: 3,
+    //       change: 0,
+    //       created_at: "2020-04"
+    //     },
+    //     monthly: [
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-04"
+    //       },
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-07"
+    //       },
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-11"
+    //       },
+    //       {
+    //         value: 4,
+    //         change: 0,
+    //         created_at: "2021-01"
+    //       }
+    //     ]
+    //   },
+    //   responsibleDecision: {
+    //     summary: {
+    //       value: 3,
+    //       change: 0,
+    //       created_at: "2020-04"
+    //     },
+    //     monthly: [
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-04"
+    //       },
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-07"
+    //       },
+    //       {
+    //         value: 3,
+    //         change: 0,
+    //         created_at: "2020-11"
+    //       },
+    //       {
+    //         value: 4,
+    //         change: 0,
+    //         created_at: "2021-01"
+    //       }
+    //     ]
+    //   }
+    // },
+    // myLabels: {
+    //   dashboard: {
+    //     labels: {
+    //       title: "{class}のダッシュボード"
+    //     },
+    //     nav: [
+    //       {
+    //         label: "ホーム",
+    //         icon: "IconHome",
+    //         target: "/dashboard",
+    //         isCurrent: true
+    //       },
+    //       {
+    //         label: "生徒情報",
+    //         icon: "IconPeople",
+    //         target: "/students",
+    //         isCurrent: false
+    //       },
+    //       {
+    //         label: "コーチングプラン",
+    //         icon: "IconBook",
+    //         target: "/coaching",
+    //         isCurrent: false
+    //       }
+    //     ],
+    //     details: {
+    //       selEq: [
+    //         {
+    //           label: "selfAwareness",
+    //           value: "自己理解",
+    //           text:
+    //             "自分の感情や思考を理解し、自分の他者に対する態度や行動にどのように影響しているかを理解する"
+    //         },
+    //         {
+    //           label: "selfManagement",
+    //           value: "セルフマネジメント",
+    //           text:
+    //             "難しい環境に遭っても、自分自身の感情や思考、態度をコントロールする"
+    //         },
+    //         {
+    //           label: "socialAwareness",
+    //           value: "社会や他者への理解",
+    //           text: "多様なバックグラウンドや文化を持つ他者に対して共感する力"
+    //         },
+    //         {
+    //           label: "relationship",
+    //           value: "対人関係スキル",
+    //           text:
+    //             "多様な人々と関わるグループにおいて、他者と適切に関係を構築・維持する力"
+    //         },
+    //         {
+    //           label: "responsibleDecision",
+    //           value: "責任ある意思決定",
+    //           text: "人が良く生きるために自らの責任で意思決定する力のこと"
+    //         }
+    //       ],
+    //       grit: [
+    //         {
+    //           label: "courage",
+    //           value: "度胸",
+    //           text: "困難に挑み、逆境にたじろがない勇気"
+    //         },
+    //         {
+    //           label: "resilience",
+    //           value: "復元力",
+    //           text: "挫折から立ち直る力"
+    //         },
+    //         {
+    //           label: "spontaneity",
+    //           value: "自発性",
+    //           text: "率先して物事に取り組む力"
+    //         },
+    //         {
+    //           label: "obsession",
+    //           value: "執念",
+    //           text: "どんなことがあっても物事に集中しつづける能力"
+    //         }
+    //       ],
+    //       motivation: [
+    //         {
+    //           label: "home",
+    //           value: "家庭環境",
+    //           text: "生徒の家庭環境について知る事が可能"
+    //         },
+    //         {
+    //           label: "friendship",
+    //           value: "友人関係",
+    //           text: "生徒の友人関係についてどう感じているか知る事が可能"
+    //         },
+    //         {
+    //           label: "trust",
+    //           value: "教師への信頼度",
+    //           text: "生徒が教師に対してどう感じているかを知る事が可能"
+    //         },
+    //         {
+    //           label: "community",
+    //           value: "コミュニティへの満足度",
+    //           text: "部活動や社外活動などの満足度を知る事が可能"
+    //         }
+    //       ]
+    //     }
+    //   },
+    //   common: {
+    //     labels: {
+    //       selEq: "SEL/EQ",
+    //       motivation: "モチベーション",
+    //       motiva: "モチベ",
+    //       grit: "GRIT",
+    //       deviation: "模試"
+    //     }
+    //   }
+    // },
+    // summaryChartData: {
+    //   labels: ["4月", "7月", "11月", "1月"],
+    //   datasets: [
+    //     {
+    //       data: [3, 3, 3, 4],
+    //       lineTension: 0,
+    //       backgroundColor: "rgba(229, 247, 255, 0.6)",
+    //       borderColor: "#00ABFF",
+    //       pointBackgroundColor: "#00ABFF"
+    //     }
+    //   ]
+    // },
+    // detailChartData: {
+    //   labels: ["4月", "7月", "11月", "1月"],
+    //   datasets: [
+    //     {
+    //       data: [3, 3, 3, 4],
+    //       lineTension: 0,
+    //       backgroundColor: "rgba(229, 247, 255, 0.6)",
+    //       borderColor: "#00ABFF",
+    //       pointBackgroundColor: "#00ABFF"
+    //     }
+    //   ]
+    // },
+    // details: {
+    //   intro: {
+    //     title: "自己理解",
+    //     text:
+    //       "自分の感情や思考を理解し、自分の他者に対する態度や行動にどのように影響しているかを理解する"
+    //   },
+    //   data: [
+    //     {
+    //       label: "selfAwareness",
+    //       value: "自己理解",
+    //       text:
+    //         "自分の感情や思考を理解し、自分の他者に対する態度や行動にどのように影響しているかを理解する"
+    //     },
+    //     {
+    //       label: "selfManagement",
+    //       value: "セルフマネジメント",
+    //       text:
+    //         "難しい環境に遭っても、自分自身の感情や思考、態度をコントロールする"
+    //     },
+    //     {
+    //       label: "socialAwareness",
+    //       value: "社会や他者への理解",
+    //       text: "多様なバックグラウンドや文化を持つ他者に対して共感する力"
+    //     },
+    //     {
+    //       label: "relationship",
+    //       value: "対人関係スキル",
+    //       text:
+    //         "多様な人々と関わるグループにおいて、他者と適切に関係を構築・維持する力"
+    //     },
+    //     {
+    //       label: "responsibleDecision",
+    //       value: "責任ある意思決定",
+    //       text: "人が良く生きるために自らの責任で意思決定する力のこと"
+    //     }
+    //   ]
+    // },
+    // selectDetail: 0,
+    // contentKey: 0,
+    options: {
+      legend: {
+        labels: {
+          filter: items => {
+            return items.text = "";
           }
-        },
-        tooltips: {
-          mode: "index",
-          intersect: true
-        },
-        scales: {
-          xAxes: [{
-            display: true,
-            // Y軸の表示
-            ticks: {
-              min: 0,
-              // Y軸の最小値
-              max: 5,
-              // Y軸の最大値
-              fontSize: 12,
-              // Y軸のフォントサイズ
-              fontColor: "#7BA0A6",
-              stepSize: 1 // Y軸の間隔
-
-            },
-            gridLines: {
-              color: "#E1EBEB"
-            }
-          }],
-          yAxes: [{
-            position: "right",
-            ticks: {
-              min: 0,
-              max: 5,
-              fontSize: 12,
-              fontColor: "#7BA0A6",
-              stepSize: 1
-            },
-            gridLines: {
-              color: "#E1EBEB"
-            }
-          }]
         }
-      }
-    });
+      },
+      tooltips: {
+        mode: "index",
+        intersect: true
+      },
+      scales: {
+        xAxes: [{
+          display: true,
+          // Y軸の表示
+          ticks: {
+            min: 0,
+            // Y軸の最小値
+            max: 5,
+            // Y軸の最大値
+            fontSize: 12,
+            // Y軸のフォントサイズ
+            fontColor: "#7BA0A6",
+            stepSize: 1 // Y軸の間隔
 
-    function selectDetailData(label, index) {
-      console.log(label, index, 'student-conclusions-graph is emit event');
-      emit("handleDetailData", {
+          },
+          gridLines: {
+            color: "#E1EBEB"
+          }
+        }],
+        yAxes: [{
+          position: "right",
+          ticks: {
+            min: 0,
+            max: 5,
+            fontSize: 12,
+            fontColor: "#7BA0A6",
+            stepSize: 1
+          },
+          gridLines: {
+            color: "#E1EBEB"
+          }
+        }]
+      }
+    }
+  }),
+  methods: {
+    selectDetailData(label, index) {
+      this.$emit("handleDetailData", {
         label,
         index,
-        key: props.contentKey,
-        category: props.myData.label
+        key: this.contentKey,
+        category: this.myData.label
       });
     }
 
-    console.log(state, 'student-conclusions-graph is state');
-    return {
-      myData: props.myData,
-      myLabels: props.myLabels,
-      summaryChartData: props.summaryChartData,
-      detailChartData: props.detailChartData,
-      details: props.details,
-      selectDetail: props.selectDetail,
-      contentKey: props.contentKey,
-      options: state.options,
-      selectDetailData
-    };
   }
-
-});
+};
 
 /* script */
 const __vue_script__$3 = script$3;
 /* template */
 
-var __vue_render__$8 = function () {
+var __vue_render__$6 = function () {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -1237,7 +1105,7 @@ var __vue_render__$8 = function () {
       }
     }, [_c('p', {
       staticClass: "p-student_detail_result"
-    }, [_vm._v(_vm._s(_vm.myData[text.label].summary.value))]), _vm._v(" "), _c('app-change-tag', {
+    }, [_vm._v("\n            " + _vm._s(_vm.myData[text.label].summary.value) + "\n          ")]), _vm._v(" "), _c('app-change-tag', {
       attrs: {
         "change": _vm.myData[text.label].summary.change
       }
@@ -1255,7 +1123,7 @@ var __vue_render__$8 = function () {
   })], 1)])])]);
 };
 
-var __vue_staticRenderFns__$8 = [function () {
+var __vue_staticRenderFns__$6 = [function () {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -1268,10 +1136,10 @@ var __vue_staticRenderFns__$8 = [function () {
 }];
 /* style */
 
-const __vue_inject_styles__$9 = function (inject) {
+const __vue_inject_styles__$7 = function (inject) {
   if (!inject) return;
-  inject("data-v-db4d484a_0", {
-    source: ".m-student_survey_graph[data-v-db4d484a]{margin-top:2rem;background:#fff;border-radius:5px;border:1px solid #e1ebeb}.m-student_survey_graph.is-selEq .p-student_survey_solid[data-v-db4d484a]{background:#00abff}.m-student_survey_graph.is-grit .p-student_survey_solid[data-v-db4d484a]{background:#bf6be6}.m-student_survey_graph.is-motivation .p-student_survey_solid[data-v-db4d484a]{background:#00c09e}.m-student_survey_graph.is-deviation .p-student_survey_solid[data-v-db4d484a]{background:#015593}.p-student_survey_solid[data-v-db4d484a]{display:block;height:.5rem;border-radius:5px 5px 0 0}header[data-v-db4d484a]{padding:1.55rem 2rem;font-size:1.6rem;font-weight:700;border-bottom:1px solid #e1ebeb}.p-student_survey_summary[data-v-db4d484a]{display:flex;justify-content:space-between;align-items:flex-start;padding:2rem 3rem;border-bottom:1px solid #e1ebeb}.p-student_survey_result[data-v-db4d484a]{font-size:0}.p-student_survey_result>div[data-v-db4d484a],.p-student_survey_result>p[data-v-db4d484a]{display:inline-block;vertical-align:middle}.p-student_survey_score[data-v-db4d484a]{padding-left:2rem;font-size:3.2rem;font-weight:700}.p-student_survey_content[data-v-db4d484a]{padding-top:1.6rem}.p-student_survey_content li[data-v-db4d484a]{position:relative;padding:.6rem 0 .6rem 2.8rem;font-size:1.4rem;line-height:1.2}.p-student_survey_content li[data-v-db4d484a]::before{content:\"\";display:block;position:absolute;top:50%;left:1rem;transform:translate(0,-50%);width:.6rem;height:.6rem;border-radius:50%;background:#00abff}.p-student_survey_result_graph[data-v-db4d484a]{width:43.2rem}.p-student_survey_detail[data-v-db4d484a]{display:flex;justify-content:space-between}.p-student_detail_list[data-v-db4d484a]{position:relative;width:calc(100% - 47rem);border-right:1px solid #e1ebeb}.p-student_detail_list li[data-v-db4d484a]{cursor:pointer;position:relative;padding:1rem 3rem;font-size:0;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li p[data-v-db4d484a]{display:inline-block;vertical-align:middle;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li[data-v-db4d484a]:hover{background:#f9fbfb}.p-student_detail_list li:hover .p-student_detail_result[data-v-db4d484a]{color:#00abff}.p-student_detail_list li:hover .p-student_detail_label[data-v-db4d484a]{color:#00abff}.p-student_detail_list li.is-select[data-v-db4d484a]::before{content:\"\";display:block;position:absolute;top:0;right:0;width:.5rem;height:100%;background:#00abff}.p-student_detail_list li.is-select[data-v-db4d484a]::after{content:\"\";display:block;position:absolute;top:50%;right:-1.2rem;transform:translate(0,-50%);width:0;height:0;border-top:solid .6rem transparent;border-right:solid .6rem transparent;border-bottom:solid .6rem transparent;border-left:solid .6rem #00abff}.p-student_detail_result[data-v-db4d484a]{padding-right:.6rem;font-size:2.4rem;font-weight:700}.p-student_detail_label[data-v-db4d484a]{padding-left:1.2rem;font-size:1.4rem;font-weight:700}.p-student_detail_graph[data-v-db4d484a]{padding:2.4rem 2rem;width:47rem}.p-student_detail_graph h4[data-v-db4d484a]{padding-bottom:1.4rem;font-size:1.6rem;font-weight:700}.p-student_detail_graph p[data-v-db4d484a]{padding-bottom:2rem;font-size:1.2rem;line-height:1.5}",
+  inject("data-v-0cf18194_0", {
+    source: ".m-student_survey_graph[data-v-0cf18194]{margin-top:2rem;background:#fff;border-radius:5px;border:1px solid #e1ebeb}.m-student_survey_graph.is-selEq .p-student_survey_solid[data-v-0cf18194]{background:#00abff}.m-student_survey_graph.is-grit .p-student_survey_solid[data-v-0cf18194]{background:#bf6be6}.m-student_survey_graph.is-motivation .p-student_survey_solid[data-v-0cf18194]{background:#00c09e}.m-student_survey_graph.is-deviation .p-student_survey_solid[data-v-0cf18194]{background:#015593}.p-student_survey_solid[data-v-0cf18194]{display:block;height:.5rem;border-radius:5px 5px 0 0}header[data-v-0cf18194]{padding:1.55rem 2rem;font-size:1.6rem;font-weight:700;border-bottom:1px solid #e1ebeb}.p-student_survey_summary[data-v-0cf18194]{display:flex;justify-content:space-between;align-items:flex-start;padding:2rem 3rem;border-bottom:1px solid #e1ebeb}.p-student_survey_result[data-v-0cf18194]{font-size:0}.p-student_survey_result>div[data-v-0cf18194],.p-student_survey_result>p[data-v-0cf18194]{display:inline-block;vertical-align:middle}.p-student_survey_score[data-v-0cf18194]{padding-left:2rem;font-size:3.2rem;font-weight:700}.p-student_survey_content[data-v-0cf18194]{padding-top:1.6rem}.p-student_survey_content li[data-v-0cf18194]{position:relative;padding:.6rem 0 .6rem 2.8rem;font-size:1.4rem;line-height:1.2}.p-student_survey_content li[data-v-0cf18194]::before{content:\"\";display:block;position:absolute;top:50%;left:1rem;transform:translate(0,-50%);width:.6rem;height:.6rem;border-radius:50%;background:#00abff}.p-student_survey_result_graph[data-v-0cf18194]{width:43.2rem}.p-student_survey_detail[data-v-0cf18194]{display:flex;justify-content:space-between}.p-student_detail_list[data-v-0cf18194]{position:relative;width:calc(100% - 47rem);border-right:1px solid #e1ebeb}.p-student_detail_list li[data-v-0cf18194]{cursor:pointer;position:relative;padding:1rem 3rem;font-size:0;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li p[data-v-0cf18194]{display:inline-block;vertical-align:middle;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li[data-v-0cf18194]:hover{background:#f9fbfb}.p-student_detail_list li:hover .p-student_detail_result[data-v-0cf18194]{color:#00abff}.p-student_detail_list li:hover .p-student_detail_label[data-v-0cf18194]{color:#00abff}.p-student_detail_list li.is-select[data-v-0cf18194]::before{content:\"\";display:block;position:absolute;top:0;right:0;width:.5rem;height:100%;background:#00abff}.p-student_detail_list li.is-select[data-v-0cf18194]::after{content:\"\";display:block;position:absolute;top:50%;right:-1.2rem;transform:translate(0,-50%);width:0;height:0;border-top:solid .6rem transparent;border-right:solid .6rem transparent;border-bottom:solid .6rem transparent;border-left:solid .6rem #00abff}.p-student_detail_result[data-v-0cf18194]{padding-right:.6rem;font-size:2.4rem;font-weight:700}.p-student_detail_label[data-v-0cf18194]{padding-left:1.2rem;font-size:1.4rem;font-weight:700}.p-student_detail_graph[data-v-0cf18194]{padding:2.4rem 2rem;width:47rem}.p-student_detail_graph h4[data-v-0cf18194]{padding-bottom:1.4rem;font-size:1.6rem;font-weight:700}.p-student_detail_graph p[data-v-0cf18194]{padding-bottom:2rem;font-size:1.2rem;line-height:1.5}",
     map: undefined,
     media: undefined
   });
@@ -1279,34 +1147,34 @@ const __vue_inject_styles__$9 = function (inject) {
 /* scoped */
 
 
-const __vue_scope_id__$9 = "data-v-db4d484a";
+const __vue_scope_id__$7 = "data-v-0cf18194";
 /* module identifier */
 
-const __vue_module_identifier__$9 = undefined;
+const __vue_module_identifier__$7 = undefined;
 /* functional template */
 
-const __vue_is_functional_template__$9 = false;
+const __vue_is_functional_template__$7 = false;
 /* style inject SSR */
 
 /* style inject shadow dom */
 
-const __vue_component__$9 = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__$8,
-  staticRenderFns: __vue_staticRenderFns__$8
-}, __vue_inject_styles__$9, __vue_script__$3, __vue_scope_id__$9, __vue_is_functional_template__$9, __vue_module_identifier__$9, false, createInjector, undefined, undefined);
+const __vue_component__$7 = /*#__PURE__*/normalizeComponent({
+  render: __vue_render__$6,
+  staticRenderFns: __vue_staticRenderFns__$6
+}, __vue_inject_styles__$7, __vue_script__$3, __vue_scope_id__$7, __vue_is_functional_template__$7, __vue_module_identifier__$7, false, createInjector, undefined, undefined);
 
 // Import vue component
 
 const install = function installStudentConclusionsGraph(Vue) {
   if (install.installed) return;
   install.installed = true;
-  Vue.component('StudentConclusionsGraph', __vue_component__$9);
+  Vue.component('StudentConclusionsGraph', __vue_component__$7);
 }; // Create module definition for Vue.use()
 // to be registered via Vue.use() as well as Vue.component()
 
 
-__vue_component__$9.install = install; // Export component by default
+__vue_component__$7.install = install; // Export component by default
 // also be used as directives, etc. - eg. import { RollupDemoDirective } from 'rollup-demo';
 // export const RollupDemoDirective = component;
 
-export default __vue_component__$9;
+export default __vue_component__$7;
