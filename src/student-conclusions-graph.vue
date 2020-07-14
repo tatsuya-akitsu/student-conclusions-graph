@@ -1,21 +1,21 @@
 <template>
-  <div class="m-student_survey_graph" :class="`is-${myData.label}`">
+  <div class="m-student_survey_graph" :class="`is-${state.myData.label}`">
     <span class="p-student_survey_solid"></span>
     <header>
-      <h3>{{ myData.category }}の調査結果</h3>
+      <h3>{{ state.myData.category }}の調査結果</h3>
     </header>
     <div class="p-student_survey_body">
       <div class="p-student_survey_summary">
         <div class="p-student_survey_result_box">
           <div class="p-student_survey_result">
             <app-compilation-icon
-              :label="myData.label"
+              :label="state.myData.label"
               :width="`5rem`"
               :height="`5rem`"
               :img-width="`auto`"
             ></app-compilation-icon>
-            <p class="p-student_survey_score">{{ myData.summary.value }}</p>
-            <app-change-tag :change="myData.summary.change"></app-change-tag>
+            <p class="p-student_survey_score">{{ state.myData.summary.value }}</p>
+            <app-change-tag :change="state.myData.summary.change"></app-change-tag>
           </div>
           <div class="p-student_survey_content">
             <ul>
@@ -27,8 +27,8 @@
         </div>
         <div class="p-student_survey_result_graph">
           <line-chart
-            :chart-data="summaryChartData"
-            :options="options"
+            :chart-data="state.myData.summaryData"
+            :options="state.options"
             :height="124"
           ></line-chart>
         </div>
@@ -36,27 +36,27 @@
       <div class="p-student_survey_detail">
         <ul class="p-student_detail_list">
           <li
-            v-for="(text, index) in details.data"
+            v-for="(text, index) in state.myData.details.data"
             :key="`detail-${index}`"
             :ref="`selectDetail-${index}`"
-            :class="{ 'is-select': selectDetail === index }"
+            :class="{ 'is-select': state.myData.selectDetailIndex === index }"
             @click="selectDetailData(text.label, index)"
           >
             <p class="p-student_detail_result">
-              {{ myData[text.label].summary.value }}
+              {{ state.myData.feature[text.label].summary.value }}
             </p>
             <app-change-tag
-              :change="myData[text.label].summary.change"
+              :change="state.myData.feature[text.label].summary.change"
             ></app-change-tag>
             <p class="p-student_detail_label">{{ text.value }}</p>
           </li>
         </ul>
         <div class="p-student_detail_graph">
-          <h4>{{ details.intro.title }}</h4>
-          <p>{{ details.intro.text }}</p>
+          <h4>{{ state.myData.details.intro.title }}</h4>
+          <p>{{ state.myData.details.intro.text }}</p>
           <line-chart
-            :chart-data="detailChartData"
-            :options="options"
+            :chart-data="state.myData.detailData"
+            :options="state.options"
             :height="124"
           ></line-chart>
         </div>
@@ -66,83 +66,52 @@
 </template>
 
 <script>
-import AppChangeTag from "@/AppChangeTag";
-import AppCompilationIcon from "@/AppCompilationIcon";
-import LineChart from "@/LineChart";
+import { defineComponent, reactive } from '@vue/composition-api'
+import AppChangeTag from '@/AppChangeTag';
+import AppCompilationIcon from '@/AppCompilationIcon';
+import LineChart from '@/LineChart';
+import { variables } from '@/config/variables.js'
+import { createGraphData } from '@/config/inject.js'
 
-export default {
+export default defineComponent({
   components: {
     AppChangeTag,
     AppCompilationIcon,
     LineChart,
   },
+
   props: {
-    myData: { type: Object, required: true, default: () => {} },
-    myLabels: { type: Object, required: true, default: () => {} },
-    summaryChartData: { type: Object, required: true, default: () => {} },
-    detailChartData: { type: Object, required: true, default: () => {} },
-    details: { type: Object, required: true, default: () => {} },
-    selectDetail: { type: Number, required: true, default: 0 },
-    contentKey: { type: Number, required: false, default: 0 },
+    summaryData: { type: Object, required: true, default: () => {} },
+    monthlyData: { type: Object, required: true, default: () => {} },
+    contentKey: { type: Number, required: true, default: 0 },
+    contentLabel: { type: String, required: false, default: '' }
   },
-  data: () => ({
-    options: {
-      legend: {
-        labels: {
-          filter: (items) => {
-            return (items.text = "");
-          },
-        },
-      },
-      tooltips: {
-        mode: "index",
-        intersect: true,
-      },
-      scales: {
-        xAxes: [
-          {
-            display: true, // Y軸の表示
-            ticks: {
-              min: 0, // Y軸の最小値
-              max: 5, // Y軸の最大値
-              fontSize: 12, // Y軸のフォントサイズ
-              fontColor: "#7BA0A6",
-              stepSize: 1, // Y軸の間隔
-            },
-            gridLines: {
-              color: "#E1EBEB",
-            },
-          },
-        ],
-        yAxes: [
-          {
-            position: "right",
-            ticks: {
-              min: 0,
-              max: 5,
-              fontSize: 12,
-              fontColor: "#7BA0A6",
-              stepSize: 1,
-            },
-            gridLines: {
-              color: "#E1EBEB",
-            },
-          },
-        ],
-      },
-    },
-  }),
-  methods: {
-    selectDetailData(label, index) {
-      this.$emit("handleDetailData", {
+
+  setup (props, context) {
+    const state = reactive({
+      options: {},
+      myData: {}
+    })
+
+    state.myData = createGraphData(props.summaryData, props.monthlyData, 'selEq', 'sel_eq')
+    state.options = variables.OPTIONS
+    console.log(state)
+
+    const selectDetailData = (label, index) => {
+      context.emit('handleDetailData', {
         label,
         index,
-        key: this.contentKey,
-        category: this.myData.label,
-      });
-    },
-  },
-};
+        key: props.contentKey,
+        category: state.myData.label
+      })
+    }
+
+    return {
+      state,
+      selectDetailData
+    }
+  }
+});
 </script>
 
 <style lang="scss" scoped>
