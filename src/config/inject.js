@@ -28,6 +28,7 @@ export const createGraphData = (summary, list, contentLabel, keyLabel) => {
       },
       data: variables.MY_LABELS[variables.DESIGNATION_COLORS[contentLabel].label]
     },
+    outline: variables.MY_LABELS[contentLabel],
     selectDetailIndex: 0
   }
 

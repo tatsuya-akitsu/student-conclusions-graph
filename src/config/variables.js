@@ -71,6 +71,11 @@ export const variables = {
       }
     ]
   },
+  OUTLINES: {
+    selEq: '社会性・情動スキルの教育のことで、欧米諸国で実践されている自尊感情、対人関係能力の育成を目的とした教育アプローチ',
+    grit: '「やり抜く力」または「粘る力」。 困難に遭ってもくじけない闘志、気概や気骨など',
+    motivation: '人が何かをする際の動機づけや目的意識を表す'
+  },
   DESIGNATION_COLORS: {
     selEq: {
       category: 'SEL・EQ',

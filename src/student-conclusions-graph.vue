@@ -18,11 +18,7 @@
             <app-change-tag :change="state.myData.summary.change"></app-change-tag>
           </div>
           <div class="p-student_survey_content">
-            <ul>
-              <li>感情・情動能力</li>
-              <li>短い説明</li>
-              <li>みじかい説明</li>
-            </ul>
+            <p>{{ state.myData.outline }}</p>
           </div>
         </div>
         <div class="p-student_survey_result_graph">
@@ -95,7 +91,6 @@ export default defineComponent({
 
     state.myData = createGraphData(props.summaryData, props.monthlyData, 'selEq', 'sel_eq')
     state.options = variables.OPTIONS
-    console.log(state)
 
     const selectDetailData = (label, index) => {
       context.emit('handleDetailData', {
@@ -196,23 +191,9 @@ header {
 .p-student_survey_content {
   padding-top: 1.6rem;
 
-  li {
-    position: relative;
-    padding: 0.6rem 0 0.6rem 2.8rem;
-    font-size: 1.4rem;
-    line-height: 1.2;
-  }
-  li::before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 1rem;
-    transform: translate(0, -50%);
-    width: 0.6rem;
-    height: 0.6rem;
-    border-radius: 50%;
-    background: $base-primary-color;
+  p {
+    font-size: 1.2rem;
+    line-height: 1.8;
   }
 }
 
