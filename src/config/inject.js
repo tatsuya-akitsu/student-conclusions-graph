@@ -15,7 +15,10 @@ export const createGraphData = (summary, list, contentLabel, keyLabel) => {
       color: variables.DESIGNATION_COLORS[contentLabel].color
     }),
     detailData: _c.setDetailChartData(
-      switchInjectFeature(keyLabel, list)[variables.MY_LABELS[variables.DESIGNATION_COLORS[contentLabel].label][0].label].data,
+      switchInjectFeature(keyLabel, list)[
+        variables.MY_LABELS[variables.DESIGNATION_COLORS[contentLabel].label][0]
+          .label
+      ].data,
       {
         background: variables.DESIGNATION_COLORS[contentLabel].background,
         color: variables.DESIGNATION_COLORS[contentLabel].color
@@ -23,12 +26,19 @@ export const createGraphData = (summary, list, contentLabel, keyLabel) => {
     ),
     details: {
       intro: {
-        title: variables.MY_LABELS[variables.DESIGNATION_COLORS[contentLabel].label][0].value,
-        text: variables.MY_LABELS[variables.DESIGNATION_COLORS[contentLabel].label][0].text
+        title:
+          variables.MY_LABELS[
+            variables.DESIGNATION_COLORS[contentLabel].label
+          ][0].value,
+        text:
+          variables.MY_LABELS[
+            variables.DESIGNATION_COLORS[contentLabel].label
+          ][0].text
       },
-      data: variables.MY_LABELS[variables.DESIGNATION_COLORS[contentLabel].label]
+      data:
+        variables.MY_LABELS[variables.DESIGNATION_COLORS[contentLabel].label]
     },
-    outline: variables.MY_LABELS[contentLabel],
+    outline: variables.OUTLINES[contentLabel],
     selectDetailIndex: 0
   }
 
