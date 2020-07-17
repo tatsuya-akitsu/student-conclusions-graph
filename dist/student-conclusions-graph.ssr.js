@@ -491,63 +491,124 @@ var __vue_is_functional_template__$6 = undefined;
 
 /* style inject shadow dom */
 
-var __vue_component__$6 = /*#__PURE__*/normalizeComponent({}, __vue_inject_styles__$6, __vue_script__$2, __vue_scope_id__$6, __vue_is_functional_template__$6, __vue_module_identifier__$6, false, undefined, undefined, undefined);var variables = {
+var __vue_component__$6 = /*#__PURE__*/normalizeComponent({}, __vue_inject_styles__$6, __vue_script__$2, __vue_scope_id__$6, __vue_is_functional_template__$6, __vue_module_identifier__$6, false, undefined, undefined, undefined);/* script */
+
+/* template */
+var __vue_render__$6 = function __vue_render__() {
+  var _vm = this;
+
+  var _h = _vm.$createElement;
+
+  var _c = _vm._self._c || _h;
+
+  return _c('svg', {
+    attrs: {
+      "width": "24",
+      "height": "24",
+      "viewBox": "0 0 24 24",
+      "fill": "none",
+      "xmlns": "http://www.w3.org/2000/svg"
+    }
+  }, [_vm._ssrNode("<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M8.49999 12C8.49999 11.744 8.59799 11.488 8.79299 11.293L12.793 7.29301C13.184 6.90201 13.816 6.90201 14.207 7.29301C14.598 7.68401 14.598 8.31601 14.207 8.70701L10.902 12.012L14.082 15.305C14.465 15.704 14.454 16.335 14.057 16.719C13.66 17.103 13.026 17.092 12.643 16.695L8.78099 12.695C8.59299 12.5 8.49999 12.25 8.49999 12Z\" fill=\"#7BA0A6\"></path> <mask id=\"mask0\" mask-type=\"alpha\" maskUnits=\"userSpaceOnUse\" x=\"8\" y=\"6\" width=\"7\" height=\"11\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M8.49999 12C8.49999 11.744 8.59799 11.488 8.79299 11.293L12.793 7.29301C13.184 6.90201 13.816 6.90201 14.207 7.29301C14.598 7.68401 14.598 8.31601 14.207 8.70701L10.902 12.012L14.082 15.305C14.465 15.704 14.454 16.335 14.057 16.719C13.66 17.103 13.026 17.092 12.643 16.695L8.78099 12.695C8.59299 12.5 8.49999 12.25 8.49999 12Z\" fill=\"white\"></path></mask> <g mask=\"url(#mask0)\"></g>")]);
+};
+
+var __vue_staticRenderFns__$6 = [];
+/* style */
+
+var __vue_inject_styles__$7 = undefined;
+/* scoped */
+
+var __vue_scope_id__$7 = undefined;
+/* module identifier */
+
+var __vue_module_identifier__$7 = "data-v-f934ab40";
+/* functional template */
+
+var __vue_is_functional_template__$7 = false;
+/* style inject */
+
+/* style inject SSR */
+
+/* style inject shadow dom */
+
+var __vue_component__$7 = /*#__PURE__*/normalizeComponent({
+  render: __vue_render__$6,
+  staticRenderFns: __vue_staticRenderFns__$6
+}, __vue_inject_styles__$7, {}, __vue_scope_id__$7, __vue_is_functional_template__$7, __vue_module_identifier__$7, false, undefined, undefined, undefined);var variables = {
   MY_LABELS: {
     selEq: [{
       label: 'selfAwareness',
       value: '自己理解',
-      text: '自分の感情や思考を理解し、自分の他者に対する態度や行動にどのように影響しているかを理解する'
+      text: '自分の感情や思考を理解し、自分の他者に対する態度や行動にどのように影響しているかを理解する',
+      isShow: false
     }, {
       label: 'selfManagement',
       value: 'セルフマネジメント',
-      text: '難しい環境に遭っても、自分自身の感情や思考、態度をコントロールする'
+      text: '難しい環境に遭っても、自分自身の感情や思考、態度をコントロールする',
+      isShow: false
     }, {
       label: 'socialAwareness',
       value: '社会や他者への理解',
-      text: '多様なバックグラウンドや文化を持つ他者に対して共感する力'
+      text: '多様なバックグラウンドや文化を持つ他者に対して共感する力',
+      isShow: false
     }, {
       label: 'relationship',
       value: '対人関係スキル',
-      text: '多様な人々と関わるグループにおいて、他者と適切に関係を構築・維持する力'
+      text: '多様な人々と関わるグループにおいて、他者と適切に関係を構築・維持する力',
+      isShow: false
     }, {
       label: 'responsibleDecision',
       value: '責任ある意思決定',
-      text: '人が良く生きるために自らの責任で意思決定する力のこと'
+      text: '人が良く生きるために自らの責任で意思決定する力のこと',
+      isShow: false
     }],
     grit: [{
       label: 'courage',
       value: '度胸',
-      text: '困難に挑み、逆境にたじろがない勇気'
+      text: '困難に挑み、逆境にたじろがない勇気',
+      isShow: false
     }, {
       label: 'resilience',
       value: '復元力',
-      text: '挫折から立ち直る力'
+      text: '挫折から立ち直る力',
+      isShow: false
     }, {
       label: 'spontaneity',
       value: '自発性',
-      text: '率先して物事に取り組む力'
+      text: '率先して物事に取り組む力',
+      isShow: false
     }, {
       label: 'obsession',
       value: '執念',
-      text: 'どんなことがあっても物事に集中しつづける能力'
+      text: 'どんなことがあっても物事に集中しつづける能力',
+      isShow: false
     }],
     motivation: [{
       label: 'home',
       value: '家庭環境',
-      text: '生徒の家庭環境について知る事が可能'
+      text: '生徒の家庭環境について知る事が可能',
+      isShow: false
     }, {
       label: 'friendship',
       value: '友人関係',
-      text: '生徒の友人関係についてどう感じているか知る事が可能'
+      text: '生徒の友人関係についてどう感じているか知る事が可能',
+      isShow: false
     }, {
       label: 'trust',
       value: '教師への信頼度',
-      text: '生徒が教師に対してどう感じているかを知る事が可能'
+      text: '生徒が教師に対してどう感じているかを知る事が可能',
+      isShow: false
     }, {
       label: 'community',
       value: 'コミュニティへの満足度',
-      text: '部活動や社外活動などの満足度を知る事が可能'
+      text: '部活動や社外活動などの満足度を知る事が可能',
+      isShow: false
     }]
+  },
+  OUTLINES: {
+    selEq: '社会性・情動スキルの教育のことで、欧米諸国で実践されている自尊感情、対人関係能力の育成を目的とした教育アプローチ',
+    grit: '「やり抜く力」または「粘る力」。 困難に遭ってもくじけない闘志、気概や気骨など',
+    motivation: '人が何かをする際の動機づけや目的意識を表す'
   },
   DESIGNATION_COLORS: {
     selEq: {
@@ -576,49 +637,97 @@ var __vue_component__$6 = /*#__PURE__*/normalizeComponent({}, __vue_inject_style
     }
   },
   OPTIONS: {
-    legend: {
-      labels: {
-        filter: function filter(items) {
-          return items.text = "";
+    pc: {
+      legend: {
+        labels: {
+          filter: function filter(items) {
+            return items.text = '';
+          }
         }
+      },
+      tooltips: {
+        mode: 'index',
+        intersect: true
+      },
+      scales: {
+        xAxes: [{
+          display: true,
+          // Y軸の表示
+          ticks: {
+            min: 0,
+            // Y軸の最小値
+            max: 5,
+            // Y軸の最大値
+            fontSize: 12,
+            // Y軸のフォントサイズ
+            fontColor: '#7BA0A6',
+            stepSize: 1 // Y軸の間隔
+
+          },
+          gridLines: {
+            color: '#E1EBEB'
+          }
+        }],
+        yAxes: [{
+          position: 'right',
+          ticks: {
+            min: 0,
+            max: 5,
+            fontSize: 12,
+            fontColor: '#7BA0A6',
+            stepSize: 1
+          },
+          gridLines: {
+            color: '#E1EBEB'
+          }
+        }]
       }
     },
-    tooltips: {
-      mode: "index",
-      intersect: true
-    },
-    scales: {
-      xAxes: [{
-        display: true,
-        // Y軸の表示
-        ticks: {
-          min: 0,
-          // Y軸の最小値
-          max: 5,
-          // Y軸の最大値
-          fontSize: 12,
-          // Y軸のフォントサイズ
-          fontColor: "#7BA0A6",
-          stepSize: 1 // Y軸の間隔
+    sp: {
+      legend: {
+        labels: {
+          filter: function filter(items) {
+            return items.text = '';
+          }
+        }
+      },
+      tooltips: {
+        mode: 'index',
+        intersect: true
+      },
+      scales: {
+        xAxes: [{
+          display: true,
+          // Y軸の表示
+          ticks: {
+            min: 0,
+            // Y軸の最小値
+            max: 5,
+            // Y軸の最大値
+            fontSize: 12,
+            // Y軸のフォントサイズ
+            fontColor: '#7BA0A6',
+            stepSize: 1 // Y軸の間隔
 
-        },
-        gridLines: {
-          color: "#E1EBEB"
-        }
-      }],
-      yAxes: [{
-        position: "right",
-        ticks: {
-          min: 0,
-          max: 5,
-          fontSize: 12,
-          fontColor: "#7BA0A6",
-          stepSize: 1
-        },
-        gridLines: {
-          color: "#E1EBEB"
-        }
-      }]
+          },
+          gridLines: {
+            color: '#E1EBEB'
+          }
+        }],
+        yAxes: [{
+          position: 'right',
+          ticks: {
+            min: 0,
+            max: 5,
+            fontSize: 12,
+            fontColor: '#7BA0A6',
+            stepSize: 3
+          },
+          gridLines: {
+            color: '#E1EBEB'
+          }
+        }]
+      }
     }
   }
 };function _toConsumableArray(arr) {
@@ -726,6 +835,7 @@ var commonUtil = {
       },
       data: variables.MY_LABELS[variables.DESIGNATION_COLORS[contentLabel].label]
     },
+    outline: variables.OUTLINES[contentLabel],
     selectDetailIndex: 0
   };
   return survey;
@@ -802,6 +912,7 @@ var script$3 = compositionApi.defineComponent({
   components: {
     AppChangeTag: __vue_component__,
     AppCompilationIcon: __vue_component__$5,
+    IconCheveron: __vue_component__$7,
     LineChart: __vue_component__$6
   },
   props: {
@@ -824,36 +935,100 @@ var script$3 = compositionApi.defineComponent({
       type: String,
       required: false,
       default: ''
+    },
+    keyLabel: {
+      type: String,
+      required: true,
+      default: ''
     }
   },
   setup: function setup(props, context) {
     var state = compositionApi.reactive({
       options: {},
-      myData: {}
+      myData: {},
+      mql: window.matchMedia('(max-width: 768px)'),
+      height: 0,
+      isMobile: false
     });
-    state.myData = createGraphData(props.summaryData, props.monthlyData, 'selEq', 'sel_eq');
-    state.options = variables.OPTIONS;
-    console.log(state);
+    var contLabel = compositionApi.computed(function () {
+      return props.contentLabel;
+    });
+    var contKey = compositionApi.computed(function () {
+      return props.keyLabel;
+    });
+    state.myData = createGraphData(props.summaryData, props.monthlyData, contLabel.value, contKey.value);
+
+    if (state.mql.matches) {
+      state.options = variables.OPTIONS.sp;
+      state.height = 126;
+      state.isMobile = true;
+    } else {
+      state.options = variables.OPTIONS.pc;
+      state.height = 124;
+      state.isMobile = false;
+    }
 
     var selectDetailData = function selectDetailData(label, index) {
-      context.emit('handleDetailData', {
-        label: label,
-        index: index,
-        key: props.contentKey,
-        category: state.myData.label
+      state.myData.detailData = commonUtil.setDetailChartData(state.myData.feature[label].data, {
+        background: state.myData.background,
+        color: state.myData.color
       });
+      state.myData.selectDetailIndex = index;
+      state.myData.details = {
+        intro: {
+          title: variables.MY_LABELS[state.myData.label][index].value,
+          text: variables.MY_LABELS[state.myData.label][index].text
+        },
+        data: variables.MY_LABELS[state.myData.label]
+      };
+    };
+
+    var nextFrame = function nextFrame(fn) {
+      window.requestAnimationFrame(function () {
+        return window.requestAnimationFrame(fn);
+      });
+    };
+
+    var enter = function enter(el) {
+      el.style.overflow = 'hidden';
+      el.style.height = '0';
+      nextFrame(function () {
+        el.style.height = "".concat(el.scrollHeight, "px");
+      });
+    };
+
+    var leave = function leave(el) {
+      el.style.overflow = 'hidden';
+      el.style.height = "".concat(el.scrollHeight, "px");
+      nextFrame(function () {
+        el.style.height = '0';
+      });
+    };
+
+    var afterEnter = function afterEnter(el) {
+      el.style.height = '';
+      el.style.overflow = '';
+    };
+
+    var afterLeave = function afterLeave(el) {
+      el.style.height = '';
+      el.style.overflow = '';
     };
 
     return {
       state: state,
-      selectDetailData: selectDetailData
+      selectDetailData: selectDetailData,
+      enter: enter,
+      leave: leave,
+      afterEnter: afterEnter,
+      afterLeave: afterLeave
     };
   }
 });/* script */
 var __vue_script__$3 = script$3;
 /* template */
 
-var __vue_render__$6 = function __vue_render__() {
+var __vue_render__$7 = function __vue_render__() {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -863,47 +1038,81 @@ var __vue_render__$6 = function __vue_render__() {
   return _c('div', {
     staticClass: "m-student_survey_graph",
     class: "is-" + _vm.state.myData.label
-  }, [_vm._ssrNode("<span class=\"p-student_survey_solid\" data-v-4a9ff202></span> <header data-v-4a9ff202><h3 data-v-4a9ff202>" + _vm._ssrEscape(_vm._s(_vm.state.myData.category) + "の調査結果") + "</h3></header> "), _vm._ssrNode("<div class=\"p-student_survey_body\" data-v-4a9ff202>", "</div>", [_vm._ssrNode("<div class=\"p-student_survey_summary\" data-v-4a9ff202>", "</div>", [_vm._ssrNode("<div class=\"p-student_survey_result_box\" data-v-4a9ff202>", "</div>", [_vm._ssrNode("<div class=\"p-student_survey_result\" data-v-4a9ff202>", "</div>", [_c('app-compilation-icon', {
+  }, [_vm._ssrNode("<span class=\"p-student_survey_solid\" data-v-72fea413></span> <header data-v-72fea413><h3 data-v-72fea413>" + _vm._ssrEscape(_vm._s(_vm.state.myData.category) + "の調査結果") + "</h3></header> "), _vm._ssrNode("<div class=\"p-student_survey_body\" data-v-72fea413>", "</div>", [_vm._ssrNode("<div class=\"p-student_survey_summary\" data-v-72fea413>", "</div>", [_vm._ssrNode("<div class=\"p-student_survey_result_box\" data-v-72fea413>", "</div>", [_vm._ssrNode("<div class=\"p-student_survey_result\" data-v-72fea413>", "</div>", [_c('app-compilation-icon', {
     attrs: {
       "label": _vm.state.myData.label,
       "width": "5rem",
       "height": "5rem",
       "img-width": "auto"
     }
-  }), _vm._ssrNode(" <p class=\"p-student_survey_score\" data-v-4a9ff202>" + _vm._ssrEscape(_vm._s(_vm.state.myData.summary.value)) + "</p> "), _c('app-change-tag', {
+  }), _vm._ssrNode(" <p class=\"p-student_survey_score\" data-v-72fea413>" + _vm._ssrEscape("\n            " + _vm._s(_vm.state.myData.summary.value) + "\n          ") + "</p> "), _c('app-change-tag', {
     attrs: {
       "change": _vm.state.myData.summary.change
     }
-  })], 2), _vm._ssrNode(" <div class=\"p-student_survey_content\" data-v-4a9ff202><ul data-v-4a9ff202><li data-v-4a9ff202>感情・情動能力</li> <li data-v-4a9ff202>短い説明</li> <li data-v-4a9ff202>みじかい説明</li></ul></div>")], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"p-student_survey_result_graph\" data-v-4a9ff202>", "</div>", [_c('line-chart', {
+  })], 2), _vm._ssrNode(" <div class=\"p-student_survey_content\" data-v-72fea413><p data-v-72fea413>" + _vm._ssrEscape(_vm._s(_vm.state.myData.outline)) + "</p></div>")], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"p-student_survey_result_graph\" data-v-72fea413>", "</div>", [_c('line-chart', {
     attrs: {
       "chart-data": _vm.state.myData.summaryData,
       "options": _vm.state.options,
-      "height": 124
+      "height": _vm.state.height
     }
-  })], 1)], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"p-student_survey_detail\" data-v-4a9ff202>", "</div>", [_vm._ssrNode("<ul class=\"p-student_detail_list\" data-v-4a9ff202>", "</ul>", _vm._l(_vm.state.myData.details.data, function (text, index) {
+  })], 1)], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"p-student_survey_detail\" data-v-72fea413>", "</div>", [!_vm.state.isMobile ? [_vm._ssrNode("<ul class=\"p-student_detail_list\" data-v-72fea413>", "</ul>", _vm._l(_vm.state.myData.details.data, function (text, index) {
     return _vm._ssrNode("<li" + _vm._ssrClass(null, {
       'is-select': _vm.state.myData.selectDetailIndex === index
-    }) + " data-v-4a9ff202>", "</li>", [_vm._ssrNode("<p class=\"p-student_detail_result\" data-v-4a9ff202>" + _vm._ssrEscape("\n            " + _vm._s(_vm.state.myData.feature[text.label].summary.value) + "\n          ") + "</p> "), _c('app-change-tag', {
+    }) + " data-v-72fea413>", "</li>", [_vm._ssrNode("<p class=\"p-student_detail_result\" data-v-72fea413>" + _vm._ssrEscape("\n              " + _vm._s(_vm.state.myData.feature[text.label].summary.value) + "\n            ") + "</p> "), _c('app-change-tag', {
       attrs: {
         "change": _vm.state.myData.feature[text.label].summary.change
       }
-    }), _vm._ssrNode(" <p class=\"p-student_detail_label\" data-v-4a9ff202>" + _vm._ssrEscape(_vm._s(text.value)) + "</p>")], 2);
-  }), 0), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"p-student_detail_graph\" data-v-4a9ff202>", "</div>", [_vm._ssrNode("<h4 data-v-4a9ff202>" + _vm._ssrEscape(_vm._s(_vm.state.myData.details.intro.title)) + "</h4> <p data-v-4a9ff202>" + _vm._ssrEscape(_vm._s(_vm.state.myData.details.intro.text)) + "</p> "), _c('line-chart', {
+    }), _vm._ssrNode(" <p class=\"p-student_detail_label\" data-v-72fea413>" + _vm._ssrEscape(_vm._s(text.value)) + "</p>")], 2);
+  }), 0), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"p-student_detail_graph\" data-v-72fea413>", "</div>", [_vm._ssrNode("<h4 data-v-72fea413>" + _vm._ssrEscape(_vm._s(_vm.state.myData.details.intro.title)) + "</h4> <p data-v-72fea413>" + _vm._ssrEscape(_vm._s(_vm.state.myData.details.intro.text)) + "</p> "), _c('line-chart', {
     attrs: {
       "chart-data": _vm.state.myData.detailData,
       "options": _vm.state.options,
-      "height": 124
+      "height": _vm.state.height
     }
-  })], 2)], 2)], 2)], 2);
+  })], 2)] : [_vm._ssrNode("<ul class=\"p-student_detail_accordion_list\" data-v-72fea413>", "</ul>", _vm._l(_vm.state.myData.details.data, function (text, index) {
+    return _vm._ssrNode("<li data-v-72fea413>", "</li>", [_vm._ssrNode("<button type=\"button\"" + _vm._ssrClass(null, {
+      'is-active': _vm.state.myData.selectDetailIndex === index
+    }) + " data-v-72fea413>", "</button>", [_vm._ssrNode("<div class=\"p-student_detail_info\" data-v-72fea413>", "</div>", [_vm._ssrNode("<p class=\"p-student_detail_result\" data-v-72fea413>" + _vm._ssrEscape("\n                  " + _vm._s(_vm.state.myData.feature[text.label].summary.value) + "\n                ") + "</p> "), _c('app-change-tag', {
+      attrs: {
+        "change": _vm.state.myData.feature[text.label].summary.change
+      }
+    }), _vm._ssrNode(" <p class=\"p-student_detail_label\" data-v-72fea413>" + _vm._ssrEscape(_vm._s(text.value)) + "</p>")], 2), _vm._ssrNode(" "), _c('icon-cheveron')], 2), _vm._ssrNode(" "), _c('transition', {
+      attrs: {
+        "name": "detail"
+      },
+      on: {
+        "enter": _vm.enter,
+        "after-enter": _vm.afterEnter,
+        "leave": _vm.leave,
+        "after-leave": _vm.afterLeave
+      }
+    }, [_c('div', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: _vm.state.myData.selectDetailIndex === index,
+        expression: "state.myData.selectDetailIndex === index"
+      }],
+      staticClass: "p-student_detail_area"
+    }, [_c('p', [_vm._v(_vm._s(_vm.state.myData.details.intro.text))]), _vm._v(" "), _c('div', {
+      staticClass: "p-student_detail_graph_area"
+    }, [_c('line-chart', {
+      attrs: {
+        "chart-data": _vm.state.myData.detailData,
+        "options": _vm.state.options,
+        "height": _vm.state.height
+      }
+    })], 1)])])], 2);
+  }), 0)]], 2)], 2)], 2);
 };
 
-var __vue_staticRenderFns__$6 = [];
+var __vue_staticRenderFns__$7 = [];
 /* style */
 
-var __vue_inject_styles__$7 = function __vue_inject_styles__(inject) {
+var __vue_inject_styles__$8 = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-4a9ff202_0", {
-    source: ".m-student_survey_graph[data-v-4a9ff202]{margin-top:2rem;background:#fff;border-radius:5px;border:1px solid #e1ebeb}.m-student_survey_graph.is-selEq .p-student_survey_solid[data-v-4a9ff202]{background:#00abff}.m-student_survey_graph.is-grit .p-student_survey_solid[data-v-4a9ff202]{background:#bf6be6}.m-student_survey_graph.is-motivation .p-student_survey_solid[data-v-4a9ff202]{background:#00c09e}.m-student_survey_graph.is-deviation .p-student_survey_solid[data-v-4a9ff202]{background:#015593}.p-student_survey_solid[data-v-4a9ff202]{display:block;height:.5rem;border-radius:5px 5px 0 0}header[data-v-4a9ff202]{padding:1.55rem 2rem;font-size:1.6rem;font-weight:700;border-bottom:1px solid #e1ebeb}.p-student_survey_summary[data-v-4a9ff202]{display:flex;justify-content:space-between;align-items:flex-start;padding:2rem 3rem;border-bottom:1px solid #e1ebeb}.p-student_survey_result[data-v-4a9ff202]{font-size:0}.p-student_survey_result>div[data-v-4a9ff202],.p-student_survey_result>p[data-v-4a9ff202]{display:inline-block;vertical-align:middle}.p-student_survey_score[data-v-4a9ff202]{padding-left:2rem;font-size:3.2rem;font-weight:700}.p-student_survey_content[data-v-4a9ff202]{padding-top:1.6rem}.p-student_survey_content li[data-v-4a9ff202]{position:relative;padding:.6rem 0 .6rem 2.8rem;font-size:1.4rem;line-height:1.2}.p-student_survey_content li[data-v-4a9ff202]::before{content:\"\";display:block;position:absolute;top:50%;left:1rem;transform:translate(0,-50%);width:.6rem;height:.6rem;border-radius:50%;background:#00abff}.p-student_survey_result_graph[data-v-4a9ff202]{width:43.2rem}.p-student_survey_detail[data-v-4a9ff202]{display:flex;justify-content:space-between}.p-student_detail_list[data-v-4a9ff202]{position:relative;width:calc(100% - 47rem);border-right:1px solid #e1ebeb}.p-student_detail_list li[data-v-4a9ff202]{cursor:pointer;position:relative;padding:1rem 3rem;font-size:0;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li p[data-v-4a9ff202]{display:inline-block;vertical-align:middle;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li[data-v-4a9ff202]:hover{background:#f9fbfb}.p-student_detail_list li:hover .p-student_detail_result[data-v-4a9ff202]{color:#00abff}.p-student_detail_list li:hover .p-student_detail_label[data-v-4a9ff202]{color:#00abff}.p-student_detail_list li.is-select[data-v-4a9ff202]::before{content:\"\";display:block;position:absolute;top:0;right:0;width:.5rem;height:100%;background:#00abff}.p-student_detail_list li.is-select[data-v-4a9ff202]::after{content:\"\";display:block;position:absolute;top:50%;right:-1.2rem;transform:translate(0,-50%);width:0;height:0;border-top:solid .6rem transparent;border-right:solid .6rem transparent;border-bottom:solid .6rem transparent;border-left:solid .6rem #00abff}.p-student_detail_result[data-v-4a9ff202]{padding-right:.6rem;font-size:2.4rem;font-weight:700}.p-student_detail_label[data-v-4a9ff202]{padding-left:1.2rem;font-size:1.4rem;font-weight:700}.p-student_detail_graph[data-v-4a9ff202]{padding:2.4rem 2rem;width:47rem}.p-student_detail_graph h4[data-v-4a9ff202]{padding-bottom:1.4rem;font-size:1.6rem;font-weight:700}.p-student_detail_graph p[data-v-4a9ff202]{padding-bottom:2rem;font-size:1.2rem;line-height:1.5}",
+  inject("data-v-72fea413_0", {
+    source: ".m-student_survey_graph[data-v-72fea413]{margin-top:2rem;background:#fff;border-radius:5px;border:1px solid #e1ebeb}@media screen and (max-width:768px){.m-student_survey_graph[data-v-72fea413]{margin:2rem 1rem 0 1rem}}.m-student_survey_graph.is-selEq .p-student_survey_solid[data-v-72fea413]{background:#00abff}@media screen and (max-width:768px){.m-student_survey_graph.is-selEq header[data-v-72fea413]{background:#00abff}}.m-student_survey_graph.is-grit .p-student_survey_solid[data-v-72fea413]{background:#bf6be6}@media screen and (max-width:768px){.m-student_survey_graph.is-grit header[data-v-72fea413]{background:#bf6be6}}.m-student_survey_graph.is-motivation .p-student_survey_solid[data-v-72fea413]{background:#00c09e}@media screen and (max-width:768px){.m-student_survey_graph.is-motivation header[data-v-72fea413]{background:#00c09e}}.m-student_survey_graph.is-deviation .p-student_survey_solid[data-v-72fea413]{background:#015593}@media screen and (max-width:768px){.m-student_survey_graph.is-deviation header[data-v-72fea413]{background:#015593}}.p-student_survey_solid[data-v-72fea413]{display:block;height:.5rem;border-radius:5px 5px 0 0}@media screen and (max-width:768px){.p-student_survey_solid[data-v-72fea413]{display:none}}header[data-v-72fea413]{padding:1.55rem 2rem;font-size:1.6rem;font-weight:700;border-bottom:1px solid #e1ebeb}@media screen and (max-width:768px){header[data-v-72fea413]{padding:1.2rem 2rem;color:#fff;border-radius:5px 5px 0 0;border-bottom:none}}.p-student_survey_summary[data-v-72fea413]{display:flex;justify-content:space-between;align-items:flex-start;padding:2rem 3rem;border-bottom:1px solid #e1ebeb}@media screen and (max-width:768px){.p-student_survey_summary[data-v-72fea413]{display:block;padding:2rem}}.p-student_survey_result[data-v-72fea413]{font-size:0}.p-student_survey_result>div[data-v-72fea413],.p-student_survey_result>p[data-v-72fea413]{display:inline-block;vertical-align:middle}.p-student_survey_score[data-v-72fea413]{padding-left:2rem;font-size:3.2rem;font-weight:700}@media screen and (max-width:768px){.m-survey_change_tag[data-v-72fea413]{margin-left:1rem}}.p-student_survey_content[data-v-72fea413]{padding-top:1.6rem}.p-student_survey_content p[data-v-72fea413]{font-size:1.2rem;line-height:1.8}.p-student_survey_result_graph[data-v-72fea413]{width:43.2rem}@media screen and (max-width:768px){.p-student_survey_result_graph[data-v-72fea413]{width:100%}}.p-student_survey_detail[data-v-72fea413]{display:flex;justify-content:space-between}@media screen and (max-width:768px){.p-student_survey_detail[data-v-72fea413]{display:block}}.p-student_detail_list[data-v-72fea413]{position:relative;width:calc(100% - 47rem);border-right:1px solid #e1ebeb}.p-student_detail_list li[data-v-72fea413]{cursor:pointer;position:relative;padding:1rem 3rem;font-size:0;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li p[data-v-72fea413]{display:inline-block;vertical-align:middle;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li[data-v-72fea413]:hover{background:#f9fbfb}.p-student_detail_list li:hover .p-student_detail_result[data-v-72fea413]{color:#00abff}.p-student_detail_list li:hover .p-student_detail_label[data-v-72fea413]{color:#00abff}.p-student_detail_list li.is-select[data-v-72fea413]::before{content:\"\";display:block;position:absolute;top:0;right:0;width:.5rem;height:100%;background:#00abff}.p-student_detail_list li.is-select[data-v-72fea413]::after{content:\"\";display:block;position:absolute;top:50%;right:-1.2rem;transform:translate(0,-50%);width:0;height:0;border-top:solid .6rem transparent;border-right:solid .6rem transparent;border-bottom:solid .6rem transparent;border-left:solid .6rem #00abff}.p-student_detail_accordion_list li[data-v-72fea413]{border-bottom:1px solid #e1ebeb}.p-student_detail_accordion_list button[data-v-72fea413]{display:flex;justify-content:space-between;align-items:center;padding:2.2rem 2rem;width:100%}.p-student_detail_accordion_list button svg[data-v-72fea413]{transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_accordion_list button.is-active svg[data-v-72fea413]{transform:rotate(-90deg)}.p-student_detail_info[data-v-72fea413]{display:flex;justify-content:flex-start;align-items:center;width:calc(100% - 2.4rem)}.p-student_detail_info .m-survey_change_tag[data-v-72fea413]{margin-left:1.6rem}.p-student_detail_area[data-v-72fea413]{padding:0 2rem 2rem}.p-student_detail_area p[data-v-72fea413]{padding-bottom:1.5rem;font-size:1.2rem;line-height:1.5}.p-student_detail_area .p-student_detail_graph_area[data-v-72fea413]{width:100%}.p-student_detail_result[data-v-72fea413]{padding-right:.6rem;font-size:2.4rem;font-weight:700}.p-student_detail_label[data-v-72fea413]{padding-left:1.2rem;font-size:1.4rem;font-weight:700}@media screen and (max-width:768px){.p-student_detail_label[data-v-72fea413]{font-size:1.6rem}}.p-student_detail_graph[data-v-72fea413]{padding:2.4rem 2rem;width:47rem}.p-student_detail_graph h4[data-v-72fea413]{padding-bottom:1.4rem;font-size:1.6rem;font-weight:700}.p-student_detail_graph p[data-v-72fea413]{padding-bottom:2rem;font-size:1.2rem;line-height:1.5}.detail-enter-active[data-v-72fea413],.detail-leave-active[data-v-72fea413]{transition:height .4s ease}",
     map: undefined,
     media: undefined
   });
@@ -911,24 +1120,24 @@ var __vue_inject_styles__$7 = function __vue_inject_styles__(inject) {
 /* scoped */
 
 
-var __vue_scope_id__$7 = "data-v-4a9ff202";
+var __vue_scope_id__$8 = "data-v-72fea413";
 /* module identifier */
 
-var __vue_module_identifier__$7 = "data-v-4a9ff202";
+var __vue_module_identifier__$8 = "data-v-72fea413";
 /* functional template */
 
-var __vue_is_functional_template__$7 = false;
+var __vue_is_functional_template__$8 = false;
 /* style inject shadow dom */
 
-var __vue_component__$7 = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__$6,
-  staticRenderFns: __vue_staticRenderFns__$6
-}, __vue_inject_styles__$7, __vue_script__$3, __vue_scope_id__$7, __vue_is_functional_template__$7, __vue_module_identifier__$7, false, undefined, createInjectorSSR, undefined);// Import vue component
+var __vue_component__$8 = /*#__PURE__*/normalizeComponent({
+  render: __vue_render__$7,
+  staticRenderFns: __vue_staticRenderFns__$7
+}, __vue_inject_styles__$8, __vue_script__$3, __vue_scope_id__$8, __vue_is_functional_template__$8, __vue_module_identifier__$8, false, undefined, createInjectorSSR, undefined);// Import vue component
 
 var install = function installStudentConclusionsGraph(Vue) {
   if (install.installed) return;
   install.installed = true;
-  Vue.component('StudentConclusionsGraph', __vue_component__$7);
+  Vue.component('StudentConclusionsGraph', __vue_component__$8);
 }; // Create module definition for Vue.use()
 
 
@@ -955,7 +1164,7 @@ var plugin = {
 // to be registered via Vue.use() as well as Vue.component()
 
 
-__vue_component__$7.install = install; // Export component by default
+__vue_component__$8.install = install; // Export component by default
 // also be used as directives, etc. - eg. import { RollupDemoDirective } from 'rollup-demo';
 // export const RollupDemoDirective = component;
-exports.default=__vue_component__$7;
+exports.default=__vue_component__$8;
