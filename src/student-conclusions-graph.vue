@@ -254,7 +254,7 @@ $easeInOutQuart: all 600ms cubic-bezier(0.77, 0, 0.175, 1);
   border: 1px solid $base-border-color;
 
   @include mobile-window() {
-    margin: 2rem 1rem 0 1rem;
+    margin: 2rem 0 0;
   }
 
   &.is-selEq {
