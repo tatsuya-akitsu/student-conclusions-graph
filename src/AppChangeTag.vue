@@ -48,12 +48,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@mixin mobile-window {
+  @media screen and(max-width: 768px) {
+    @content;
+  }
+}
+
 .m-survey_change_tag {
   display: inline-block;
   padding: 0.5rem 1rem;
   font-size: 0;
   text-align: center;
   border-radius: 5px;
+
+  @include mobile-window() {
+    padding: 0.8rem 1.4rem;
+  }
 
   &.is-down {
     background: #ffebf2;
@@ -103,6 +113,10 @@ export default {
     font-size: 1.4rem;
     font-weight: bold;
     line-height: 1;
+
+    @include mobile-window() {
+      padding-left: 0.6rem;
+    }
   }
 }
 </style>

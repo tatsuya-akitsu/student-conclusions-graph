@@ -154,7 +154,7 @@ var __vue_render__ = function __vue_render__() {
   return _c('div', {
     staticClass: "m-survey_change_tag",
     class: _vm.changeType
-  }, [_vm._t("default"), _vm._ssrNode(" "), _vm._ssrNode("<p class=\"m-survey_change_result\" data-v-210cfd60>", "</p>", [_vm.changeType === 'is-down' ? [_c('icon-triangle-down')] : _vm.changeType === 'is-up' ? [_c('icon-triangle-up')] : _vm._ssrNode("<span data-v-210cfd60>-</span>"), _vm._ssrNode(" <span class=\"m-survey_change_value\" data-v-210cfd60>" + _vm._ssrEscape(_vm._s(_vm._f("removeMinus")(_vm.change))) + "</span>")], 2)], 2);
+  }, [_vm._t("default"), _vm._ssrNode(" "), _vm._ssrNode("<p class=\"m-survey_change_result\" data-v-3c972fee>", "</p>", [_vm.changeType === 'is-down' ? [_c('icon-triangle-down')] : _vm.changeType === 'is-up' ? [_c('icon-triangle-up')] : _vm._ssrNode("<span data-v-3c972fee>-</span>"), _vm._ssrNode(" <span class=\"m-survey_change_value\" data-v-3c972fee>" + _vm._ssrEscape(_vm._s(_vm._f("removeMinus")(_vm.change))) + "</span>")], 2)], 2);
 };
 
 var __vue_staticRenderFns__ = [];
@@ -162,8 +162,8 @@ var __vue_staticRenderFns__ = [];
 
 var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-210cfd60_0", {
-    source: ".m-survey_change_tag[data-v-210cfd60]{display:inline-block;padding:.5rem 1rem;font-size:0;text-align:center;border-radius:5px}.m-survey_change_tag.is-down[data-v-210cfd60]{background:#ffebf2}.m-survey_change_tag.is-down .m-survey_change_result>span[data-v-210cfd60]{color:#f05}.m-survey_change_tag.is-up[data-v-210cfd60]{background:#ebfff8}.m-survey_change_tag.is-up .m-survey_change_result>span[data-v-210cfd60]{color:#00eb9d}.m-survey_change_tag.is-normal[data-v-210cfd60]{background:#f9fbfb}.m-survey_change_tag.is-normal .m-survey_change_result>span[data-v-210cfd60]{color:#7ba0a6}.m-survey_change_tag.is-normal .m-survey_change_result>span[data-v-210cfd60]:nth-child(1){padding-left:0;padding-right:1rem}.m-survey_change_tag.is-normal .m-survey_change_result>span[data-v-210cfd60]:nth-child(2){padding:0}.m-survey_change_result[data-v-210cfd60]{display:inline-block;vertical-align:middle;font-size:0}.m-survey_change_result span[data-v-210cfd60],.m-survey_change_result svg[data-v-210cfd60]{display:inline-block;vertical-align:middle}.m-survey_change_result svg[data-v-210cfd60]{width:3rem}.m-survey_change_result span[data-v-210cfd60]{padding-left:.28rem;font-size:1.4rem;font-weight:700;line-height:1}",
+  inject("data-v-3c972fee_0", {
+    source: ".m-survey_change_tag[data-v-3c972fee]{display:inline-block;padding:.5rem 1rem;font-size:0;text-align:center;border-radius:5px}@media screen and (max-width:768px){.m-survey_change_tag[data-v-3c972fee]{padding:.8rem 1.4rem}}.m-survey_change_tag.is-down[data-v-3c972fee]{background:#ffebf2}.m-survey_change_tag.is-down .m-survey_change_result>span[data-v-3c972fee]{color:#f05}.m-survey_change_tag.is-up[data-v-3c972fee]{background:#ebfff8}.m-survey_change_tag.is-up .m-survey_change_result>span[data-v-3c972fee]{color:#00eb9d}.m-survey_change_tag.is-normal[data-v-3c972fee]{background:#f9fbfb}.m-survey_change_tag.is-normal .m-survey_change_result>span[data-v-3c972fee]{color:#7ba0a6}.m-survey_change_tag.is-normal .m-survey_change_result>span[data-v-3c972fee]:nth-child(1){padding-left:0;padding-right:1rem}.m-survey_change_tag.is-normal .m-survey_change_result>span[data-v-3c972fee]:nth-child(2){padding:0}.m-survey_change_result[data-v-3c972fee]{display:inline-block;vertical-align:middle;font-size:0}.m-survey_change_result span[data-v-3c972fee],.m-survey_change_result svg[data-v-3c972fee]{display:inline-block;vertical-align:middle}.m-survey_change_result svg[data-v-3c972fee]{width:3rem}.m-survey_change_result span[data-v-3c972fee]{padding-left:.28rem;font-size:1.4rem;font-weight:700;line-height:1}@media screen and (max-width:768px){.m-survey_change_result span[data-v-3c972fee]{padding-left:.6rem}}",
     map: undefined,
     media: undefined
   });
@@ -171,10 +171,10 @@ var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
 /* scoped */
 
 
-var __vue_scope_id__ = "data-v-210cfd60";
+var __vue_scope_id__ = "data-v-3c972fee";
 /* module identifier */
 
-var __vue_module_identifier__ = "data-v-210cfd60";
+var __vue_module_identifier__ = "data-v-3c972fee";
 /* functional template */
 
 var __vue_is_functional_template__ = false;
