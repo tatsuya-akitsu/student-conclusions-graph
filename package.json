@@ -1,6 +1,6 @@
 {
   "name": "student-conclusions-graph",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "",
   "main": "dist/student-conclusions-graph.ssr.js",
   "browser": "dist/student-conclusions-graph.esm.js",
