@@ -122,6 +122,9 @@ import { variables } from '@/config/variables.js'
 import { createGraphData } from '@/config/inject.js'
 import { commonUtil as _c } from '@/config/commonUtil.js'
 
+const nextFrame = (fn) => {
+  window.requestAnimationFrame(() => window.requestAnimationFrame(fn))
+}
 export default defineComponent({
   components: {
     AppChangeTag,
