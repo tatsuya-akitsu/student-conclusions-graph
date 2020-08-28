@@ -181,14 +181,9 @@ export default defineComponent({
     setStateGraphData()
 
     onMounted(() => {
+      setStateGraphData()
       window.addEventListener('load', handleMediaQuery())
       window.addEventListener('resize', handleMediaQuery())
-    })
-
-    onUpdated(() => {
-      if (objEmpty(state.myData)) {
-        setStateGraphData()
-      }
     })
 
     onBeforeUnmount(() => {
