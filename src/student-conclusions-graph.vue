@@ -113,7 +113,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, computed, onMounted, onBeforeUnmount, onUpdated } from '@vue/composition-api'
+import { defineComponent, reactive, computed, onMounted, onBeforeUnmount, onDeactivated } from '@vue/composition-api'
 import AppChangeTag from '@/AppChangeTag'
 import AppCompilationIcon from '@/AppCompilationIcon'
 import LineChart from '@/LineChart'
@@ -174,14 +174,9 @@ export default defineComponent({
       }
     }
 
-    const objEmpty = (obj) => {
-      return !Object.keys(obj).length
-    }
-
     setStateGraphData()
 
     onMounted(() => {
-      setStateGraphData()
       window.addEventListener('load', handleMediaQuery())
       window.addEventListener('resize', handleMediaQuery())
     })
@@ -189,6 +184,10 @@ export default defineComponent({
     onBeforeUnmount(() => {
       window.removeEventListener('load', handleMediaQuery())
       window.removeEventListener('resize', handleMediaQuery())
+    })
+
+    onDeactivated(() => {
+      state.myData = {}
     })
 
     const selectDetailData = (label, index) => {
