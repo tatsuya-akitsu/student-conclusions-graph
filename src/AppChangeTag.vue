@@ -21,6 +21,10 @@ import IconTriangleDown from "@/IconTriangleDown";
 import IconTriangleUp from "@/IconTriangleUp";
 
 export default {
+  components: {
+    IconTriangleDown,
+    IconTriangleUp
+  },
   filters: {
     removeMinus: (num) => {
       if (String(num).includes('-')) {
