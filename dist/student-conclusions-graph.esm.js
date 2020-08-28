@@ -1,4 +1,4 @@
-import { defineComponent, reactive, computed } from '@vue/composition-api';
+import { defineComponent, reactive, computed, onMounted, onUpdated, onBeforeUnmount } from '@vue/composition-api';
 import { Line, mixins } from 'vue-chartjs';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ja';
@@ -1176,17 +1176,35 @@ var script$5 = defineComponent({
     });
     const contLabel = computed(() => props.contentLabel);
     const contKey = computed(() => props.keyLabel);
-    state.myData = createGraphData(props.summaryData, props.monthlyData, contLabel.value, contKey.value);
 
-    if (state.mql.matches) {
-      state.options = variables.OPTIONS.sp;
-      state.height = 126;
-      state.isMobile = true;
-    } else {
-      state.options = variables.OPTIONS.pc;
-      state.height = 124;
-      state.isMobile = false;
-    }
+    const setStateGraphData = () => {
+      state.myData = createGraphData(props.summaryData, props.monthlyData, contLabel.value, contKey.value);
+    };
+
+    const handleMediaQuery = () => {
+      if (state.mql.matches) {
+        state.options = variables.OPTIONS.sp;
+        state.height = 126;
+        state.isMobile = true;
+      } else {
+        state.options = variables.OPTIONS.pc;
+        state.height = 124;
+        state.isMobile = false;
+      }
+    };
+
+    onMounted(() => {
+      setStateGraphData();
+      window.addEventListener('load', handleMediaQuery());
+      window.addEventListener('resize', handleMediaQuery());
+    });
+    onUpdated(() => {
+      setStateGraphData();
+    });
+    onBeforeUnmount(() => {
+      window.removeEventListener('load', handleMediaQuery());
+      window.removeEventListener('resize', handleMediaQuery());
+    });
 
     const selectDetailData = (label, index) => {
       state.myData.detailData = commonUtil.setDetailChartData(state.myData.feature[label].data, {
@@ -1388,8 +1406,8 @@ var __vue_staticRenderFns__$9 = [];
 
 const __vue_inject_styles__$a = function (inject) {
   if (!inject) return;
-  inject("data-v-41ed5035_0", {
-    source: ".m-student_survey_graph[data-v-41ed5035]{margin-top:2rem;background:#fff;border-radius:5px;border:1px solid #e1ebeb}@media screen and (max-width:768px){.m-student_survey_graph[data-v-41ed5035]{margin:2rem 0 0}}.m-student_survey_graph.is-selEq .p-student_survey_solid[data-v-41ed5035]{background:#00abff}@media screen and (max-width:768px){.m-student_survey_graph.is-selEq header[data-v-41ed5035]{background:#00abff}}.m-student_survey_graph.is-grit .p-student_survey_solid[data-v-41ed5035]{background:#bf6be6}@media screen and (max-width:768px){.m-student_survey_graph.is-grit header[data-v-41ed5035]{background:#bf6be6}}.m-student_survey_graph.is-motivation .p-student_survey_solid[data-v-41ed5035]{background:#00c09e}@media screen and (max-width:768px){.m-student_survey_graph.is-motivation header[data-v-41ed5035]{background:#00c09e}}.m-student_survey_graph.is-deviation .p-student_survey_solid[data-v-41ed5035]{background:#015593}@media screen and (max-width:768px){.m-student_survey_graph.is-deviation header[data-v-41ed5035]{background:#015593}}.p-student_survey_solid[data-v-41ed5035]{display:block;height:.5rem;border-radius:5px 5px 0 0}@media screen and (max-width:768px){.p-student_survey_solid[data-v-41ed5035]{display:none}}header[data-v-41ed5035]{padding:1.55rem 2rem;font-size:1.6rem;font-weight:700;border-bottom:1px solid #e1ebeb}@media screen and (max-width:768px){header[data-v-41ed5035]{padding:1.2rem 2rem;color:#fff;border-radius:5px 5px 0 0;border-bottom:none}}.p-student_survey_summary[data-v-41ed5035]{display:flex;justify-content:space-between;align-items:flex-start;padding:2rem 3rem;border-bottom:1px solid #e1ebeb}@media screen and (max-width:768px){.p-student_survey_summary[data-v-41ed5035]{display:block;padding:2rem}}.p-student_survey_result[data-v-41ed5035]{font-size:0}.p-student_survey_result>div[data-v-41ed5035],.p-student_survey_result>p[data-v-41ed5035]{display:inline-block;vertical-align:middle}.p-student_survey_score[data-v-41ed5035]{padding-left:2rem;font-size:3.2rem;font-weight:700}@media screen and (max-width:768px){.m-survey_change_tag[data-v-41ed5035]{margin-left:1rem}}.p-student_survey_content[data-v-41ed5035]{padding-top:1.6rem}.p-student_survey_content p[data-v-41ed5035]{font-size:1.2rem;line-height:1.8}.p-student_survey_result_graph[data-v-41ed5035]{width:43.2rem}@media screen and (max-width:768px){.p-student_survey_result_graph[data-v-41ed5035]{width:100%}}.p-student_survey_detail[data-v-41ed5035]{display:flex;justify-content:space-between}@media screen and (max-width:768px){.p-student_survey_detail[data-v-41ed5035]{display:block}}.p-student_detail_list[data-v-41ed5035]{position:relative;width:calc(100% - 47rem);border-right:1px solid #e1ebeb}.p-student_detail_list li[data-v-41ed5035]{cursor:pointer;position:relative;padding:1rem 3rem;font-size:0;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li p[data-v-41ed5035]{display:inline-block;vertical-align:middle;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li[data-v-41ed5035]:hover{background:#f9fbfb}.p-student_detail_list li:hover .p-student_detail_result[data-v-41ed5035]{color:#00abff}.p-student_detail_list li:hover .p-student_detail_label[data-v-41ed5035]{color:#00abff}.p-student_detail_list li.is-select[data-v-41ed5035]::before{content:\"\";display:block;position:absolute;top:0;right:0;width:.5rem;height:100%;background:#00abff}.p-student_detail_list li.is-select[data-v-41ed5035]::after{content:\"\";display:block;position:absolute;top:50%;right:-1.2rem;transform:translate(0,-50%);width:0;height:0;border-top:solid .6rem transparent;border-right:solid .6rem transparent;border-bottom:solid .6rem transparent;border-left:solid .6rem #00abff}.p-student_detail_accordion_list li[data-v-41ed5035]{border-bottom:1px solid #e1ebeb}.p-student_detail_accordion_list button[data-v-41ed5035]{display:flex;justify-content:space-between;align-items:center;padding:2.2rem 2rem;width:100%}.p-student_detail_accordion_list button svg[data-v-41ed5035]{transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_accordion_list button.is-active svg[data-v-41ed5035]{transform:rotate(-90deg)}.p-student_detail_info[data-v-41ed5035]{display:flex;justify-content:flex-start;align-items:center;width:calc(100% - 2.4rem)}.p-student_detail_info .m-survey_change_tag[data-v-41ed5035]{margin-left:1.6rem}.p-student_detail_area[data-v-41ed5035]{padding:0 2rem 2rem}.p-student_detail_area p[data-v-41ed5035]{padding-bottom:1.5rem;font-size:1.2rem;line-height:1.5}.p-student_detail_area .p-student_detail_graph_area[data-v-41ed5035]{width:100%}.p-student_detail_result[data-v-41ed5035]{padding-right:.6rem;font-size:2.4rem;font-weight:700}.p-student_detail_label[data-v-41ed5035]{padding-left:1.2rem;font-size:1.4rem;font-weight:700}@media screen and (max-width:768px){.p-student_detail_label[data-v-41ed5035]{font-size:1.6rem}}.p-student_detail_graph[data-v-41ed5035]{padding:2.4rem 2rem;width:47rem}.p-student_detail_graph h4[data-v-41ed5035]{padding-bottom:1.4rem;font-size:1.6rem;font-weight:700}.p-student_detail_graph p[data-v-41ed5035]{padding-bottom:2rem;font-size:1.2rem;line-height:1.5}.detail-enter-active[data-v-41ed5035],.detail-leave-active[data-v-41ed5035]{transition:height .4s ease}",
+  inject("data-v-e29ac736_0", {
+    source: ".m-student_survey_graph[data-v-e29ac736]{margin-top:2rem;background:#fff;border-radius:5px;border:1px solid #e1ebeb}@media screen and (max-width:768px){.m-student_survey_graph[data-v-e29ac736]{margin:2rem 0 0}}.m-student_survey_graph.is-selEq .p-student_survey_solid[data-v-e29ac736]{background:#00abff}@media screen and (max-width:768px){.m-student_survey_graph.is-selEq header[data-v-e29ac736]{background:#00abff}}.m-student_survey_graph.is-grit .p-student_survey_solid[data-v-e29ac736]{background:#bf6be6}@media screen and (max-width:768px){.m-student_survey_graph.is-grit header[data-v-e29ac736]{background:#bf6be6}}.m-student_survey_graph.is-motivation .p-student_survey_solid[data-v-e29ac736]{background:#00c09e}@media screen and (max-width:768px){.m-student_survey_graph.is-motivation header[data-v-e29ac736]{background:#00c09e}}.m-student_survey_graph.is-deviation .p-student_survey_solid[data-v-e29ac736]{background:#015593}@media screen and (max-width:768px){.m-student_survey_graph.is-deviation header[data-v-e29ac736]{background:#015593}}.p-student_survey_solid[data-v-e29ac736]{display:block;height:.5rem;border-radius:5px 5px 0 0}@media screen and (max-width:768px){.p-student_survey_solid[data-v-e29ac736]{display:none}}header[data-v-e29ac736]{padding:1.55rem 2rem;font-size:1.6rem;font-weight:700;border-bottom:1px solid #e1ebeb}@media screen and (max-width:768px){header[data-v-e29ac736]{padding:1.2rem 2rem;color:#fff;border-radius:5px 5px 0 0;border-bottom:none}}.p-student_survey_summary[data-v-e29ac736]{display:flex;justify-content:space-between;align-items:flex-start;padding:2rem 3rem;border-bottom:1px solid #e1ebeb}@media screen and (max-width:768px){.p-student_survey_summary[data-v-e29ac736]{display:block;padding:2rem}}.p-student_survey_result[data-v-e29ac736]{font-size:0}.p-student_survey_result>div[data-v-e29ac736],.p-student_survey_result>p[data-v-e29ac736]{display:inline-block;vertical-align:middle}.p-student_survey_score[data-v-e29ac736]{padding-left:2rem;font-size:3.2rem;font-weight:700}@media screen and (max-width:768px){.m-survey_change_tag[data-v-e29ac736]{margin-left:1rem}}.p-student_survey_content[data-v-e29ac736]{padding-top:1.6rem}.p-student_survey_content p[data-v-e29ac736]{font-size:1.2rem;line-height:1.8}.p-student_survey_result_graph[data-v-e29ac736]{width:43.2rem}@media screen and (max-width:768px){.p-student_survey_result_graph[data-v-e29ac736]{width:100%}}.p-student_survey_detail[data-v-e29ac736]{display:flex;justify-content:space-between}@media screen and (max-width:768px){.p-student_survey_detail[data-v-e29ac736]{display:block}}.p-student_detail_list[data-v-e29ac736]{position:relative;width:calc(100% - 47rem);border-right:1px solid #e1ebeb}.p-student_detail_list li[data-v-e29ac736]{cursor:pointer;position:relative;padding:1rem 3rem;font-size:0;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li p[data-v-e29ac736]{display:inline-block;vertical-align:middle;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li[data-v-e29ac736]:hover{background:#f9fbfb}.p-student_detail_list li:hover .p-student_detail_result[data-v-e29ac736]{color:#00abff}.p-student_detail_list li:hover .p-student_detail_label[data-v-e29ac736]{color:#00abff}.p-student_detail_list li.is-select[data-v-e29ac736]::before{content:\"\";display:block;position:absolute;top:0;right:0;width:.5rem;height:100%;background:#00abff}.p-student_detail_list li.is-select[data-v-e29ac736]::after{content:\"\";display:block;position:absolute;top:50%;right:-1.2rem;transform:translate(0,-50%);width:0;height:0;border-top:solid .6rem transparent;border-right:solid .6rem transparent;border-bottom:solid .6rem transparent;border-left:solid .6rem #00abff}.p-student_detail_accordion_list li[data-v-e29ac736]{border-bottom:1px solid #e1ebeb}.p-student_detail_accordion_list button[data-v-e29ac736]{display:flex;justify-content:space-between;align-items:center;padding:2.2rem 2rem;width:100%}.p-student_detail_accordion_list button svg[data-v-e29ac736]{transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_accordion_list button.is-active svg[data-v-e29ac736]{transform:rotate(-90deg)}.p-student_detail_info[data-v-e29ac736]{display:flex;justify-content:flex-start;align-items:center;width:calc(100% - 2.4rem)}.p-student_detail_info .m-survey_change_tag[data-v-e29ac736]{margin-left:1.6rem}.p-student_detail_area[data-v-e29ac736]{padding:0 2rem 2rem}.p-student_detail_area p[data-v-e29ac736]{padding-bottom:1.5rem;font-size:1.2rem;line-height:1.5}.p-student_detail_area .p-student_detail_graph_area[data-v-e29ac736]{width:100%}.p-student_detail_result[data-v-e29ac736]{padding-right:.6rem;font-size:2.4rem;font-weight:700}.p-student_detail_label[data-v-e29ac736]{padding-left:1.2rem;font-size:1.4rem;font-weight:700}@media screen and (max-width:768px){.p-student_detail_label[data-v-e29ac736]{font-size:1.6rem}}.p-student_detail_graph[data-v-e29ac736]{padding:2.4rem 2rem;width:47rem}.p-student_detail_graph h4[data-v-e29ac736]{padding-bottom:1.4rem;font-size:1.6rem;font-weight:700}.p-student_detail_graph p[data-v-e29ac736]{padding-bottom:2rem;font-size:1.2rem;line-height:1.5}.detail-enter-active[data-v-e29ac736],.detail-leave-active[data-v-e29ac736]{transition:height .4s ease}",
     map: undefined,
     media: undefined
   });
@@ -1397,7 +1415,7 @@ const __vue_inject_styles__$a = function (inject) {
 /* scoped */
 
 
-const __vue_scope_id__$a = "data-v-41ed5035";
+const __vue_scope_id__$a = "data-v-e29ac736";
 /* module identifier */
 
 const __vue_module_identifier__$a = undefined;

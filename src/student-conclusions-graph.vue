@@ -113,7 +113,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, computed } from '@vue/composition-api'
+import { defineComponent, reactive, computed, onMounted, onBeforeUnmount, onUpdated } from '@vue/composition-api'
 import AppChangeTag from '@/AppChangeTag'
 import AppCompilationIcon from '@/AppCompilationIcon'
 import LineChart from '@/LineChart'
@@ -153,22 +153,41 @@ export default defineComponent({
     const contLabel = computed(() => props.contentLabel)
     const contKey = computed(() => props.keyLabel)
 
-    state.myData = createGraphData(
-      props.summaryData,
-      props.monthlyData,
-      contLabel.value,
-      contKey.value
-    )
-
-    if (state.mql.matches) {
-      state.options = variables.OPTIONS.sp
-      state.height = 126
-      state.isMobile = true
-    } else {
-      state.options = variables.OPTIONS.pc
-      state.height = 124
-      state.isMobile = false
+    const setStateGraphData = () => {
+      state.myData = createGraphData(
+        props.summaryData,
+        props.monthlyData,
+        contLabel.value,
+        contKey.value
+      )
     }
+
+    const handleMediaQuery = () => {
+      if (state.mql.matches) {
+        state.options = variables.OPTIONS.sp
+        state.height = 126
+        state.isMobile = true
+      } else {
+        state.options = variables.OPTIONS.pc
+        state.height = 124
+        state.isMobile = false
+      }
+    }
+
+    onMounted(() => {
+      setStateGraphData()
+      window.addEventListener('load', handleMediaQuery())
+      window.addEventListener('resize', handleMediaQuery())
+    })
+
+    onUpdated(() => {
+      setStateGraphData()
+    })
+
+    onBeforeUnmount(() => {
+      window.removeEventListener('load', handleMediaQuery())
+      window.removeEventListener('resize', handleMediaQuery())
+    })
 
     const selectDetailData = (label, index) => {
       state.myData.detailData = _c.setDetailChartData(
