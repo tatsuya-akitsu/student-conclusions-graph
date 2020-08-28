@@ -174,6 +174,8 @@ export default defineComponent({
       }
     }
 
+    setStateGraphData()
+
     onMounted(() => {
       setStateGraphData()
       window.addEventListener('load', handleMediaQuery())
