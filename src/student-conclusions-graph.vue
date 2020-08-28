@@ -174,6 +174,10 @@ export default defineComponent({
       }
     }
 
+    const objEmpty = (obj) => {
+      return !Object.keys(obj).length
+    }
+
     setStateGraphData()
 
     onMounted(() => {
@@ -182,7 +186,9 @@ export default defineComponent({
     })
 
     onUpdated(() => {
-      setStateGraphData()
+      if (objEmpty(state.myData)) {
+        setStateGraphData()
+      }
     })
 
     onBeforeUnmount(() => {
