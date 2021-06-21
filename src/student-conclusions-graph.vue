@@ -113,7 +113,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, computed, onMounted, onBeforeUnmount, onDeactivated, onBeforeUpdate } from '@vue/composition-api'
+import { defineComponent, reactive, computed, onMounted, onBeforeUnmount, onDeactivated, onBeforeUpdate, onUpdated } from '@vue/composition-api'
 import AppChangeTag from '@/AppChangeTag'
 import AppCompilationIcon from '@/AppCompilationIcon'
 import LineChart from '@/LineChart'
@@ -185,6 +185,10 @@ export default defineComponent({
       if (!Object.keys(state.myData).length) {
         setStateGraphData()
       }
+    })
+
+    onUpdated(() => {
+      setStateGraphData()
     })
 
     onBeforeUnmount(() => {
