@@ -1059,22 +1059,17 @@ var script$5 = compositionApi.defineComponent({
       height: 0,
       isMobile: false
     });
-    var contLabel = compositionApi.computed(function () {
-      return props.contentLabel;
-    });
-    var contKey = compositionApi.computed(function () {
-      return props.keyLabel;
-    });
-    var summaryData = compositionApi.computed(function () {
-      return props.summaryData;
-    });
-    var monthlyData = compositionApi.computed(function () {
-      return props.monthlyData;
-    });
 
     var setStateGraphData = function setStateGraphData() {
-      state.myData = createGraphData(summaryData, monthlyData, contLabel.value, contKey.value);
+      state.myData = createGraphData(props.summaryData, props.monthlyData, props.contentLabel, props.keyLabel);
     };
+
+    setStateGraphData();
+    compositionApi.watch(function () {
+      return props;
+    }, function () {
+      return setStateGraphData();
+    });
 
     var handleMediaQuery = function handleMediaQuery() {
       if (state.mql.matches) {
@@ -1088,7 +1083,6 @@ var script$5 = compositionApi.defineComponent({
       }
     };
 
-    setStateGraphData();
     compositionApi.onMounted(function () {
       window.addEventListener('load', handleMediaQuery());
       window.addEventListener('resize', handleMediaQuery());
@@ -1176,45 +1170,45 @@ var __vue_render__$9 = function __vue_render__() {
   return _c('div', {
     staticClass: "m-student_survey_graph",
     class: "is-" + _vm.state.myData.label
-  }, [_vm._ssrNode("<span class=\"p-student_survey_solid\" data-v-1ce82088></span> <header data-v-1ce82088><h3 data-v-1ce82088>" + _vm._ssrEscape(_vm._s(_vm.state.myData.category) + "の調査結果") + "</h3></header> "), _vm._ssrNode("<div class=\"p-student_survey_body\" data-v-1ce82088>", "</div>", [_vm._ssrNode("<div class=\"p-student_survey_summary\" data-v-1ce82088>", "</div>", [_vm._ssrNode("<div class=\"p-student_survey_result_box\" data-v-1ce82088>", "</div>", [_vm._ssrNode("<div class=\"p-student_survey_result\" data-v-1ce82088>", "</div>", [_c('app-compilation-icon', {
+  }, [_vm._ssrNode("<span class=\"p-student_survey_solid\" data-v-ed59558e></span> <header data-v-ed59558e><h3 data-v-ed59558e>" + _vm._ssrEscape(_vm._s(_vm.state.myData.category) + "の調査結果") + "</h3></header> "), _vm._ssrNode("<div class=\"p-student_survey_body\" data-v-ed59558e>", "</div>", [_vm._ssrNode("<div class=\"p-student_survey_summary\" data-v-ed59558e>", "</div>", [_vm._ssrNode("<div class=\"p-student_survey_result_box\" data-v-ed59558e>", "</div>", [_vm._ssrNode("<div class=\"p-student_survey_result\" data-v-ed59558e>", "</div>", [_c('app-compilation-icon', {
     attrs: {
       "label": _vm.state.myData.label,
       "width": "5rem",
       "height": "5rem",
       "img-width": "auto"
     }
-  }), _vm._ssrNode(" <p class=\"p-student_survey_score\" data-v-1ce82088>" + _vm._ssrEscape("\n            " + _vm._s(_vm.state.myData.summary.value) + "\n          ") + "</p> "), _c('app-change-tag', {
+  }), _vm._ssrNode(" <p class=\"p-student_survey_score\" data-v-ed59558e>" + _vm._ssrEscape("\n            " + _vm._s(_vm.state.myData.summary.value) + "\n          ") + "</p> "), _c('app-change-tag', {
     attrs: {
       "change": _vm.state.myData.summary.change
     }
-  })], 2), _vm._ssrNode(" <div class=\"p-student_survey_content\" data-v-1ce82088><p data-v-1ce82088>" + _vm._ssrEscape(_vm._s(_vm.state.myData.outline)) + "</p></div>")], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"p-student_survey_result_graph\" data-v-1ce82088>", "</div>", [_c('line-chart', {
+  })], 2), _vm._ssrNode(" <div class=\"p-student_survey_content\" data-v-ed59558e><p data-v-ed59558e>" + _vm._ssrEscape(_vm._s(_vm.state.myData.outline)) + "</p></div>")], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"p-student_survey_result_graph\" data-v-ed59558e>", "</div>", [_c('line-chart', {
     attrs: {
       "chart-data": _vm.state.myData.summaryData,
       "options": _vm.state.options,
       "height": _vm.state.height
     }
-  })], 1)], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"p-student_survey_detail\" data-v-1ce82088>", "</div>", [!_vm.state.isMobile ? [_vm._ssrNode("<ul class=\"p-student_detail_list\" data-v-1ce82088>", "</ul>", _vm._l(_vm.state.myData.details.data, function (text, index) {
+  })], 1)], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"p-student_survey_detail\" data-v-ed59558e>", "</div>", [!_vm.state.isMobile ? [_vm._ssrNode("<ul class=\"p-student_detail_list\" data-v-ed59558e>", "</ul>", _vm._l(_vm.state.myData.details.data, function (text, index) {
     return _vm._ssrNode("<li" + _vm._ssrClass(null, {
       'is-select': _vm.state.myData.selectDetailIndex === index
-    }) + " data-v-1ce82088>", "</li>", [_vm._ssrNode("<p class=\"p-student_detail_result\" data-v-1ce82088>" + _vm._ssrEscape("\n              " + _vm._s(_vm.state.myData.feature[text.label].summary.value) + "\n            ") + "</p> "), _c('app-change-tag', {
+    }) + " data-v-ed59558e>", "</li>", [_vm._ssrNode("<p class=\"p-student_detail_result\" data-v-ed59558e>" + _vm._ssrEscape("\n              " + _vm._s(_vm.state.myData.feature[text.label].summary.value) + "\n            ") + "</p> "), _c('app-change-tag', {
       attrs: {
         "change": _vm.state.myData.feature[text.label].summary.change
       }
-    }), _vm._ssrNode(" <p class=\"p-student_detail_label\" data-v-1ce82088>" + _vm._ssrEscape(_vm._s(text.value)) + "</p>")], 2);
-  }), 0), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"p-student_detail_graph\" data-v-1ce82088>", "</div>", [_vm._ssrNode("<h4 data-v-1ce82088>" + _vm._ssrEscape(_vm._s(_vm.state.myData.details.intro.title)) + "</h4> <p data-v-1ce82088>" + _vm._ssrEscape(_vm._s(_vm.state.myData.details.intro.text)) + "</p> "), _c('line-chart', {
+    }), _vm._ssrNode(" <p class=\"p-student_detail_label\" data-v-ed59558e>" + _vm._ssrEscape(_vm._s(text.value)) + "</p>")], 2);
+  }), 0), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"p-student_detail_graph\" data-v-ed59558e>", "</div>", [_vm._ssrNode("<h4 data-v-ed59558e>" + _vm._ssrEscape(_vm._s(_vm.state.myData.details.intro.title)) + "</h4> <p data-v-ed59558e>" + _vm._ssrEscape(_vm._s(_vm.state.myData.details.intro.text)) + "</p> "), _c('line-chart', {
     attrs: {
       "chart-data": _vm.state.myData.detailData,
       "options": _vm.state.options,
       "height": _vm.state.height
     }
-  })], 2)] : [_vm._ssrNode("<ul class=\"p-student_detail_accordion_list\" data-v-1ce82088>", "</ul>", _vm._l(_vm.state.myData.details.data, function (text, index) {
-    return _vm._ssrNode("<li data-v-1ce82088>", "</li>", [_vm._ssrNode("<button type=\"button\"" + _vm._ssrClass(null, {
+  })], 2)] : [_vm._ssrNode("<ul class=\"p-student_detail_accordion_list\" data-v-ed59558e>", "</ul>", _vm._l(_vm.state.myData.details.data, function (text, index) {
+    return _vm._ssrNode("<li data-v-ed59558e>", "</li>", [_vm._ssrNode("<button type=\"button\"" + _vm._ssrClass(null, {
       'is-active': _vm.state.myData.selectDetailIndex === index
-    }) + " data-v-1ce82088>", "</button>", [_vm._ssrNode("<div class=\"p-student_detail_info\" data-v-1ce82088>", "</div>", [_vm._ssrNode("<p class=\"p-student_detail_result\" data-v-1ce82088>" + _vm._ssrEscape("\n                  " + _vm._s(_vm.state.myData.feature[text.label].summary.value) + "\n                ") + "</p> "), _c('app-change-tag', {
+    }) + " data-v-ed59558e>", "</button>", [_vm._ssrNode("<div class=\"p-student_detail_info\" data-v-ed59558e>", "</div>", [_vm._ssrNode("<p class=\"p-student_detail_result\" data-v-ed59558e>" + _vm._ssrEscape("\n                  " + _vm._s(_vm.state.myData.feature[text.label].summary.value) + "\n                ") + "</p> "), _c('app-change-tag', {
       attrs: {
         "change": _vm.state.myData.feature[text.label].summary.change
       }
-    }), _vm._ssrNode(" <p class=\"p-student_detail_label\" data-v-1ce82088>" + _vm._ssrEscape(_vm._s(text.value)) + "</p>")], 2), _vm._ssrNode(" "), _c('icon-cheveron')], 2), _vm._ssrNode(" "), _c('transition', {
+    }), _vm._ssrNode(" <p class=\"p-student_detail_label\" data-v-ed59558e>" + _vm._ssrEscape(_vm._s(text.value)) + "</p>")], 2), _vm._ssrNode(" "), _c('icon-cheveron')], 2), _vm._ssrNode(" "), _c('transition', {
       attrs: {
         "name": "detail"
       },
@@ -1249,8 +1243,8 @@ var __vue_staticRenderFns__$9 = [];
 
 var __vue_inject_styles__$a = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-1ce82088_0", {
-    source: ".m-student_survey_graph[data-v-1ce82088]{margin-top:2rem;background:#fff;border-radius:5px;border:1px solid #e1ebeb}@media screen and (max-width:768px){.m-student_survey_graph[data-v-1ce82088]{margin:2rem 0 0}}.m-student_survey_graph.is-selEq .p-student_survey_solid[data-v-1ce82088]{background:#00abff}@media screen and (max-width:768px){.m-student_survey_graph.is-selEq header[data-v-1ce82088]{background:#00abff}}.m-student_survey_graph.is-grit .p-student_survey_solid[data-v-1ce82088]{background:#bf6be6}@media screen and (max-width:768px){.m-student_survey_graph.is-grit header[data-v-1ce82088]{background:#bf6be6}}.m-student_survey_graph.is-motivation .p-student_survey_solid[data-v-1ce82088]{background:#00c09e}@media screen and (max-width:768px){.m-student_survey_graph.is-motivation header[data-v-1ce82088]{background:#00c09e}}.m-student_survey_graph.is-deviation .p-student_survey_solid[data-v-1ce82088]{background:#015593}@media screen and (max-width:768px){.m-student_survey_graph.is-deviation header[data-v-1ce82088]{background:#015593}}.p-student_survey_solid[data-v-1ce82088]{display:block;height:.5rem;border-radius:5px 5px 0 0}@media screen and (max-width:768px){.p-student_survey_solid[data-v-1ce82088]{display:none}}header[data-v-1ce82088]{padding:1.55rem 2rem;font-size:1.6rem;font-weight:700;border-bottom:1px solid #e1ebeb}@media screen and (max-width:768px){header[data-v-1ce82088]{padding:1.2rem 2rem;color:#fff;border-radius:5px 5px 0 0;border-bottom:none}}.p-student_survey_summary[data-v-1ce82088]{display:flex;justify-content:space-between;align-items:flex-start;padding:2rem 3rem;border-bottom:1px solid #e1ebeb}@media screen and (max-width:768px){.p-student_survey_summary[data-v-1ce82088]{display:block;padding:2rem}}.p-student_survey_result[data-v-1ce82088]{font-size:0}.p-student_survey_result>div[data-v-1ce82088],.p-student_survey_result>p[data-v-1ce82088]{display:inline-block;vertical-align:middle}.p-student_survey_score[data-v-1ce82088]{padding-left:2rem;font-size:3.2rem;font-weight:700}@media screen and (max-width:768px){.m-survey_change_tag[data-v-1ce82088]{margin-left:1rem}}.p-student_survey_content[data-v-1ce82088]{padding-top:1.6rem}.p-student_survey_content p[data-v-1ce82088]{font-size:1.2rem;line-height:1.8}.p-student_survey_result_graph[data-v-1ce82088]{width:43.2rem}@media screen and (max-width:768px){.p-student_survey_result_graph[data-v-1ce82088]{width:100%}}.p-student_survey_detail[data-v-1ce82088]{display:flex;justify-content:space-between}@media screen and (max-width:768px){.p-student_survey_detail[data-v-1ce82088]{display:block}}.p-student_detail_list[data-v-1ce82088]{position:relative;width:calc(100% - 47rem);border-right:1px solid #e1ebeb}.p-student_detail_list li[data-v-1ce82088]{cursor:pointer;position:relative;padding:1rem 3rem;font-size:0;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li p[data-v-1ce82088]{display:inline-block;vertical-align:middle;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li[data-v-1ce82088]:hover{background:#f9fbfb}.p-student_detail_list li:hover .p-student_detail_result[data-v-1ce82088]{color:#00abff}.p-student_detail_list li:hover .p-student_detail_label[data-v-1ce82088]{color:#00abff}.p-student_detail_list li.is-select[data-v-1ce82088]::before{content:\"\";display:block;position:absolute;top:0;right:0;width:.5rem;height:100%;background:#00abff}.p-student_detail_list li.is-select[data-v-1ce82088]::after{content:\"\";display:block;position:absolute;top:50%;right:-1.2rem;transform:translate(0,-50%);width:0;height:0;border-top:solid .6rem transparent;border-right:solid .6rem transparent;border-bottom:solid .6rem transparent;border-left:solid .6rem #00abff}.p-student_detail_accordion_list li[data-v-1ce82088]{border-bottom:1px solid #e1ebeb}.p-student_detail_accordion_list button[data-v-1ce82088]{display:flex;justify-content:space-between;align-items:center;padding:2.2rem 2rem;width:100%}.p-student_detail_accordion_list button svg[data-v-1ce82088]{transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_accordion_list button.is-active svg[data-v-1ce82088]{transform:rotate(-90deg)}.p-student_detail_info[data-v-1ce82088]{display:flex;justify-content:flex-start;align-items:center;width:calc(100% - 2.4rem)}.p-student_detail_info .m-survey_change_tag[data-v-1ce82088]{margin-left:1.6rem}.p-student_detail_area[data-v-1ce82088]{padding:0 2rem 2rem}.p-student_detail_area p[data-v-1ce82088]{padding-bottom:1.5rem;font-size:1.2rem;line-height:1.5}.p-student_detail_area .p-student_detail_graph_area[data-v-1ce82088]{width:100%}.p-student_detail_result[data-v-1ce82088]{padding-right:.6rem;font-size:2.4rem;font-weight:700}.p-student_detail_label[data-v-1ce82088]{padding-left:1.2rem;font-size:1.4rem;font-weight:700}@media screen and (max-width:768px){.p-student_detail_label[data-v-1ce82088]{font-size:1.6rem}}.p-student_detail_graph[data-v-1ce82088]{padding:2.4rem 2rem;width:47rem}.p-student_detail_graph h4[data-v-1ce82088]{padding-bottom:1.4rem;font-size:1.6rem;font-weight:700}.p-student_detail_graph p[data-v-1ce82088]{padding-bottom:2rem;font-size:1.2rem;line-height:1.5}.detail-enter-active[data-v-1ce82088],.detail-leave-active[data-v-1ce82088]{transition:height .4s ease}",
+  inject("data-v-ed59558e_0", {
+    source: ".m-student_survey_graph[data-v-ed59558e]{margin-top:2rem;background:#fff;border-radius:5px;border:1px solid #e1ebeb}@media screen and (max-width:768px){.m-student_survey_graph[data-v-ed59558e]{margin:2rem 0 0}}.m-student_survey_graph.is-selEq .p-student_survey_solid[data-v-ed59558e]{background:#00abff}@media screen and (max-width:768px){.m-student_survey_graph.is-selEq header[data-v-ed59558e]{background:#00abff}}.m-student_survey_graph.is-grit .p-student_survey_solid[data-v-ed59558e]{background:#bf6be6}@media screen and (max-width:768px){.m-student_survey_graph.is-grit header[data-v-ed59558e]{background:#bf6be6}}.m-student_survey_graph.is-motivation .p-student_survey_solid[data-v-ed59558e]{background:#00c09e}@media screen and (max-width:768px){.m-student_survey_graph.is-motivation header[data-v-ed59558e]{background:#00c09e}}.m-student_survey_graph.is-deviation .p-student_survey_solid[data-v-ed59558e]{background:#015593}@media screen and (max-width:768px){.m-student_survey_graph.is-deviation header[data-v-ed59558e]{background:#015593}}.p-student_survey_solid[data-v-ed59558e]{display:block;height:.5rem;border-radius:5px 5px 0 0}@media screen and (max-width:768px){.p-student_survey_solid[data-v-ed59558e]{display:none}}header[data-v-ed59558e]{padding:1.55rem 2rem;font-size:1.6rem;font-weight:700;border-bottom:1px solid #e1ebeb}@media screen and (max-width:768px){header[data-v-ed59558e]{padding:1.2rem 2rem;color:#fff;border-radius:5px 5px 0 0;border-bottom:none}}.p-student_survey_summary[data-v-ed59558e]{display:flex;justify-content:space-between;align-items:flex-start;padding:2rem 3rem;border-bottom:1px solid #e1ebeb}@media screen and (max-width:768px){.p-student_survey_summary[data-v-ed59558e]{display:block;padding:2rem}}.p-student_survey_result[data-v-ed59558e]{font-size:0}.p-student_survey_result>div[data-v-ed59558e],.p-student_survey_result>p[data-v-ed59558e]{display:inline-block;vertical-align:middle}.p-student_survey_score[data-v-ed59558e]{padding-left:2rem;font-size:3.2rem;font-weight:700}@media screen and (max-width:768px){.m-survey_change_tag[data-v-ed59558e]{margin-left:1rem}}.p-student_survey_content[data-v-ed59558e]{padding-top:1.6rem}.p-student_survey_content p[data-v-ed59558e]{font-size:1.2rem;line-height:1.8}.p-student_survey_result_graph[data-v-ed59558e]{width:43.2rem}@media screen and (max-width:768px){.p-student_survey_result_graph[data-v-ed59558e]{width:100%}}.p-student_survey_detail[data-v-ed59558e]{display:flex;justify-content:space-between}@media screen and (max-width:768px){.p-student_survey_detail[data-v-ed59558e]{display:block}}.p-student_detail_list[data-v-ed59558e]{position:relative;width:calc(100% - 47rem);border-right:1px solid #e1ebeb}.p-student_detail_list li[data-v-ed59558e]{cursor:pointer;position:relative;padding:1rem 3rem;font-size:0;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li p[data-v-ed59558e]{display:inline-block;vertical-align:middle;transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_list li[data-v-ed59558e]:hover{background:#f9fbfb}.p-student_detail_list li:hover .p-student_detail_result[data-v-ed59558e]{color:#00abff}.p-student_detail_list li:hover .p-student_detail_label[data-v-ed59558e]{color:#00abff}.p-student_detail_list li.is-select[data-v-ed59558e]::before{content:\"\";display:block;position:absolute;top:0;right:0;width:.5rem;height:100%;background:#00abff}.p-student_detail_list li.is-select[data-v-ed59558e]::after{content:\"\";display:block;position:absolute;top:50%;right:-1.2rem;transform:translate(0,-50%);width:0;height:0;border-top:solid .6rem transparent;border-right:solid .6rem transparent;border-bottom:solid .6rem transparent;border-left:solid .6rem #00abff}.p-student_detail_accordion_list li[data-v-ed59558e]{border-bottom:1px solid #e1ebeb}.p-student_detail_accordion_list button[data-v-ed59558e]{display:flex;justify-content:space-between;align-items:center;padding:2.2rem 2rem;width:100%}.p-student_detail_accordion_list button svg[data-v-ed59558e]{transition:all .6s cubic-bezier(.77,0,.175,1)}.p-student_detail_accordion_list button.is-active svg[data-v-ed59558e]{transform:rotate(-90deg)}.p-student_detail_info[data-v-ed59558e]{display:flex;justify-content:flex-start;align-items:center;width:calc(100% - 2.4rem)}.p-student_detail_info .m-survey_change_tag[data-v-ed59558e]{margin-left:1.6rem}.p-student_detail_area[data-v-ed59558e]{padding:0 2rem 2rem}.p-student_detail_area p[data-v-ed59558e]{padding-bottom:1.5rem;font-size:1.2rem;line-height:1.5}.p-student_detail_area .p-student_detail_graph_area[data-v-ed59558e]{width:100%}.p-student_detail_result[data-v-ed59558e]{padding-right:.6rem;font-size:2.4rem;font-weight:700}.p-student_detail_label[data-v-ed59558e]{padding-left:1.2rem;font-size:1.4rem;font-weight:700}@media screen and (max-width:768px){.p-student_detail_label[data-v-ed59558e]{font-size:1.6rem}}.p-student_detail_graph[data-v-ed59558e]{padding:2.4rem 2rem;width:47rem}.p-student_detail_graph h4[data-v-ed59558e]{padding-bottom:1.4rem;font-size:1.6rem;font-weight:700}.p-student_detail_graph p[data-v-ed59558e]{padding-bottom:2rem;font-size:1.2rem;line-height:1.5}.detail-enter-active[data-v-ed59558e],.detail-leave-active[data-v-ed59558e]{transition:height .4s ease}",
     map: undefined,
     media: undefined
   });
@@ -1258,10 +1252,10 @@ var __vue_inject_styles__$a = function __vue_inject_styles__(inject) {
 /* scoped */
 
 
-var __vue_scope_id__$a = "data-v-1ce82088";
+var __vue_scope_id__$a = "data-v-ed59558e";
 /* module identifier */
 
-var __vue_module_identifier__$a = "data-v-1ce82088";
+var __vue_module_identifier__$a = "data-v-ed59558e";
 /* functional template */
 
 var __vue_is_functional_template__$a = false;

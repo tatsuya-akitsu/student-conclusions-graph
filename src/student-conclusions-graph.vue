@@ -113,7 +113,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, computed, onMounted, onBeforeUnmount, onDeactivated, onBeforeUpdate } from '@vue/composition-api'
+import { defineComponent, reactive, computed, onMounted, onBeforeUnmount, onDeactivated, onBeforeUpdate, watch } from '@vue/composition-api'
 import AppChangeTag from '@/AppChangeTag'
 import AppCompilationIcon from '@/AppCompilationIcon'
 import LineChart from '@/LineChart'
@@ -150,19 +150,18 @@ export default defineComponent({
       isMobile: false
     })
 
-    const contLabel = computed(() => props.contentLabel)
-    const contKey = computed(() => props.keyLabel)
-    const summaryData = computed(() => props.summaryData)
-    const monthlyData = computed(() => props.monthlyData)
-
     const setStateGraphData = () => {
       state.myData = createGraphData(
-        summaryData,
-        monthlyData,
-        contLabel.value,
-        contKey.value
+        props.summaryData,
+        props.monthlyData,
+        props.contentLabel,
+        props.keyLabel
       )
     }
+
+    setStateGraphData()
+
+    watch(() => props, () => setStateGraphData())
 
     const handleMediaQuery = () => {
       if (state.mql.matches) {
@@ -175,8 +174,6 @@ export default defineComponent({
         state.isMobile = false
       }
     }
-
-    setStateGraphData()
 
     onMounted(() => {
       window.addEventListener('load', handleMediaQuery())
