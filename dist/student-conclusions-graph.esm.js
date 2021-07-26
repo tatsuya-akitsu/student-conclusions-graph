@@ -847,7 +847,7 @@ const variables = {
       isShow: false
     }, {
       label: 'trust',
-      value: '教師への信頼度',
+      value: '教師への相談力',
       text: '生徒が教師に対してどう感じているかを知る事が可能',
       isShow: false
     }, {
